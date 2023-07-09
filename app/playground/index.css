@@ -1,0 +1,21 @@
+.box-layout {
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .box-layout > div {
+    display: flex; 
+    flex-basis: calc(25% - 40px);  
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+  }
+  .box-layout > div > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
