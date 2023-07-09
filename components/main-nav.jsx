@@ -9,11 +9,18 @@ import { Icons } from "@/components/icons";
 
 export function MainNav({ items }) {
   const { setTheme, theme } = useTheme();
+  console.log("theme: ", theme);
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-end space-x-2">
         {/* <img className="h-6 w-6" id="nav-logo" /> */}
-        {theme == "dark" ? <Icons.logo.dark /> : <Icons.logo.light />}
+        {theme == "dark" ? (
+          <Icons.logo.dark />
+        ) : theme == "light" ? (
+          <Icons.logo.light />
+        ) : (
+          <Icons.logo.dark />
+        )}
         <span className="inline-block font-bold tracking-widest">
           {siteConfig.name.toUpperCase()}
         </span>

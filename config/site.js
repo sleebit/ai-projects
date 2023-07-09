@@ -15,7 +15,6 @@ export const siteConfig = {
   links: {
     twitter: "https://twitter.com/thesleebit",
     github: "https://github.com/codeit13",
-    repo: "https://github.com/thesleebit/ai-projects",
-    docs: "https://ui.shadcn.com",
+    repo: "https://github.com/sleebit/ai-projects",
   },
 };

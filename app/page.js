@@ -25,7 +25,7 @@ export default function Home() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.twitter}
+          href={siteConfig.links.repo}
           className={buttonVariants({ variant: "outline" })}
         >
           GitHub
