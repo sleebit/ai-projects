@@ -1,23 +1,9 @@
 import { LucideProps, Moon, SunMedium, Twitter } from "lucide-react";
-import darkLogo from "./assets/sleebit-logo-transparent-white.png";
-import lightLogo from "./assets/sleebit-logo-transparent-black.png";
 
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
   twitter: Twitter,
-  logo: {
-    light: () => (
-      <>
-        <img width={25} src={lightLogo.src} />
-      </>
-    ),
-    dark: () => (
-      <>
-        <img width={25} src={darkLogo.src} />
-      </>
-    ),
-  },
   gitHub: (props) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

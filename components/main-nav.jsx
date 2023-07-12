@@ -2,25 +2,33 @@
 import * as React from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
+// import { Icons } from "@/components/icons";
+
+import darkLogo from "./assets/sleebit-logo-transparent-white.png";
+import lightLogo from "./assets/sleebit-logo-transparent-black.png";
 
 export function MainNav({ items }) {
   const { setTheme, theme } = useTheme();
-  console.log("theme: ", theme);
+  let [logo, setLogo] = useState();
+  useEffect(() => {
+    setLogo(
+      theme == "dark"
+        ? darkLogo.src
+        : theme == "light"
+        ? lightLogo.src
+        : lightLogo.src
+    );
+  }, [theme]);
+
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-end space-x-2">
-        {/* <img className="h-6 w-6" id="nav-logo" /> */}
-        {theme == "dark" ? (
-          <Icons.logo.dark />
-        ) : theme == "light" ? (
-          <Icons.logo.light />
-        ) : (
-          <Icons.logo.dark />
-        )}
+        <img width={25} src={logo} />
+
         <span className="inline-block font-bold tracking-widest">
           {siteConfig.name.toUpperCase()}
         </span>
