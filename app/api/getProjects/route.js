@@ -5,20 +5,20 @@ export async function GET(request) {
   return NextResponse.json(
     [
       {
-        name: "Chat with PDF",
-        slug: "chat-with-pdf",
+        name: "Youtube Video Summarizer",
+        slug: "youtube-video-summarizer",
         description:
-          "This project uses the GPT-3 embeddings APIs to generate embeddings from text of PDF, and then perform a cosine similarity between the embeddings and the user's question to generate a response.",
+          "This project uses GPT-3 API's along with clever langchain tricks to summarize any given youtube video.",
         image:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png",
       },
       {
-        name: "Sentiment Analysis ",
-        slug: "sentiment-analysis",
+        name: "Chat with Youtube",
+        slug: "chat-with-youtube",
         description:
-          "This project uses GPT-3 API's along with clever langchain tricks to determine the sentiment of any given text.",
+          "This project allows you to chat with in context of a given youtube video using GPT-3 API's.",
         image:
-          "https://daxg39y63pxwu.cloudfront.net/images/blog/image-captioning-deep-learning-project/Image_Captioning_Deep_Learning_Projects.png",
+          "https://static.vecteezy.com/system/resources/previews/018/930/572/original/youtube-logo-youtube-icon-transparent-free-png.png",
       },
     ],
     { status: 200 }

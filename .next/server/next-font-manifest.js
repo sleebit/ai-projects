@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/home/sumit/_Projects/ai_projects/app/layout\":[\"static/media/2aaf0723e720e8b9-s.p.woff2\",\"static/media/86fdec36ddd9097e-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/sumit/_Projects/ai_projects/app/layout":["static/media/2aaf0723e720e8b9-s.p.woff2","static/media/86fdec36ddd9097e-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

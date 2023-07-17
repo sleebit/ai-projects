@@ -5,8 +5,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Provider } from "react-redux";
-import store from "@/store";
 
 import "./globals.css";
 
@@ -38,13 +36,11 @@ export default function RootLayout({ children }) {
             fontSans.variable
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="dark">
             <div className="relative flex min-h-screen flex-col">
-              <Provider store={store}>
-                <SiteHeader />
-                <div className="flex-1">{children}</div>
-                <SiteFooter />
-              </Provider>
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+              <SiteFooter />
             </div>
             {/* <TailwindIndicator /> */}
           </ThemeProvider>
