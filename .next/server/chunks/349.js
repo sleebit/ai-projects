@@ -1,15 +1,15 @@
-exports.id = 140;
-exports.ids = [140];
+exports.id = 349;
+exports.ids = [349];
 exports.modules = {
 
-/***/ 1656:
+/***/ 7470:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 1522, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 125, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 6249, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 7844, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 8782, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 1522, 23))
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 8782, 23))
 
 /***/ }),
 
@@ -953,6 +953,7 @@ function RootLayout({ children }) {
                     children: [
                         /*#__PURE__*/ jsx_runtime_.jsx(theme_provider_e0, {
                             attribute: "class",
+                            enableSystem: false,
                             defaultTheme: "dark",
                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                                 className: "relative flex min-h-screen flex-col",
