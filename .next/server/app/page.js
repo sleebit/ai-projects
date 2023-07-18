@@ -262,6 +262,8 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(6786);
+// EXTERNAL MODULE: external "next/dist/compiled/react"
+var react_ = __webpack_require__(8038);
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__(1621);
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
@@ -25005,7 +25007,30 @@ function ClimatePlayer() {
 
 
 
+
 function Home() {
+    const [index, setIndex] = (0,react_.useState)(2);
+    const handleRotIconsClick = ()=>{
+        setIndex(index === 6 ? 1 : index + 1);
+        if (index === 1) {
+            document.querySelector("#mountains").classList.remove("storm");
+            document.querySelector("#mountains").classList.remove("snow");
+            document.querySelector("#mountains").classList.remove("clouds");
+        } else if (index === 2) {
+            document.querySelector("#mountains").classList.add("sunset");
+        } else if (index === 3) {
+            document.querySelector("#mountains").classList.remove("sunset");
+            document.querySelector("#mountains").classList.add("moon");
+        } else if (index === 4) {
+            document.querySelector("#mountains").classList.add("clouds");
+        } else if (index === 5) {
+            document.querySelector("#mountains").classList.add("storm");
+        } else if (index === 6) {
+            document.querySelector("#mountains").classList.remove("moon");
+            document.querySelector("#mountains").classList.remove("storm");
+            document.querySelector("#mountains").classList.add("snow");
+        }
+    };
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         className: "z-in-150 relative",
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
@@ -25015,7 +25040,7 @@ function Home() {
                     className: "relative w-fit m-auto py-[0px] px-[12px] mt-[40px] md:mt-auto lg:mt-auto",
                     children: [
                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h1", {
-                            className: "text-3xl text-left font-extrabold leading-tight tracking-wider md:text-4xl ml-[10px]",
+                            className: "text-3xl text-left font-extrabold leading-tight tracking-wider md:text-4xl ml-[10px] mb-[5px]",
                             style: {
                                 textShadow: "1px 1px 2px #000"
                             },
@@ -25113,7 +25138,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,612,349], () => (__webpack_exec__(966)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,612,777], () => (__webpack_exec__(966)));
 module.exports = __webpack_exports__;
 
 })();

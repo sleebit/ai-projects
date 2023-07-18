@@ -1,7 +1,7 @@
 (() => {
 var exports = {};
-exports.id = 383;
-exports.ids = [383];
+exports.id = 729;
+exports.ids = [729];
 exports.modules = {
 
 /***/ 8038:
@@ -164,75 +164,11 @@ module.exports = require("next/dist/shared/lib/utils");
 
 /***/ }),
 
-/***/ 9491:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("assert");
-
-/***/ }),
-
-/***/ 2361:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("events");
-
-/***/ }),
-
-/***/ 7147:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ 3685:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("http");
-
-/***/ }),
-
-/***/ 5687:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("https");
-
-/***/ }),
-
-/***/ 2037:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("os");
-
-/***/ }),
-
 /***/ 1017:
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("path");
-
-/***/ }),
-
-/***/ 2781:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("stream");
-
-/***/ }),
-
-/***/ 6224:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("tty");
 
 /***/ }),
 
@@ -244,23 +180,7 @@ module.exports = require("url");
 
 /***/ }),
 
-/***/ 3837:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("util");
-
-/***/ }),
-
-/***/ 9796:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("zlib");
-
-/***/ }),
-
-/***/ 9339:
+/***/ 9619:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -285,12 +205,21 @@ __webpack_require__.r(__webpack_exports__);
         '',
         {
         children: [
-        'playground',
+        'app',
+        {
+        children: [
+        'youtube-summarizer',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3870)), "/home/sumit/_Projects/ai_projects/app/playground/page.jsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 4114)), "/home/sumit/_Projects/ai_projects/app/app/youtube-summarizer/page.jsx"],
           
         }]
+      },
+        {
+          
+          
+        }
+      ]
       },
         {
           
@@ -316,9 +245,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       ]
       }.children;
-    const pages = ["/home/sumit/_Projects/ai_projects/app/playground/page.jsx"];
+    const pages = ["/home/sumit/_Projects/ai_projects/app/app/youtube-summarizer/page.jsx"];
     
-    const originalPathname = "/playground/page"
+    const originalPathname = "/app/youtube-summarizer/page"
     const __next_app__ = {
       require: __webpack_require__,
       // all modules are in the entry chunk, so we never actually need to load chunks in webpack
@@ -330,127 +259,52 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4772:
+/***/ 8114:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3524))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 7651))
 
 /***/ }),
 
-/***/ 3524:
+/***/ 7651:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ Playground)
-});
-
-// EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(6786);
-// EXTERNAL MODULE: external "next/dist/compiled/react"
-var react_ = __webpack_require__(8038);
-// EXTERNAL MODULE: ./components/ui/styled-card/index.css
-var styled_card = __webpack_require__(9430);
-;// CONCATENATED MODULE: ./components/ui/styled-card/index.jsx
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Playground)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6786);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ui_use_toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(346);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8038);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* __next_internal_client_entry_do_not_use__ default auto */ 
 
 
-
-function StyledCard(props) {
-    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-            children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "card",
-                onClick: props.onClick,
-                children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                    className: "content",
-                    children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "back",
-                        children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                            className: "back-content",
-                            children: props.children
-                        })
+function Playground() {
+    const { toast } = (0,_components_ui_use_toast__WEBPACK_IMPORTED_MODULE_1__/* .useToast */ .pm)();
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "container grid items-center gap-6 pb-8 pt-6 md:py-10",
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+            className: "flex max-w-[980px] flex-col items-start gap-2",
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
+                className: "text-3xl font-extrabold leading-tight tracking-wider  md:text-4xl",
+                children: [
+                    "Youtube Summarizer ",
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
+                        className: "hidden sm:inline"
                     })
-                })
+                ]
             })
         })
     });
 }
 
-// EXTERNAL MODULE: ./components/ui/use-toast.ts
-var use_toast = __webpack_require__(346);
-// EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
-var axios = __webpack_require__(248);
-// EXTERNAL MODULE: ./app/playground/index.css
-var playground = __webpack_require__(9805);
-;// CONCATENATED MODULE: ./app/playground/page.jsx
-/* __next_internal_client_entry_do_not_use__ default auto */ 
-
-
-
-
-
-function Playground() {
-    const [projects, setProjects] = (0,react_.useState)([]);
-    const { toast } = (0,use_toast/* useToast */.pm)();
-    (0,react_.useEffect)(()=>{
-        const fetchProjects = async ()=>{
-            const { data } = await axios/* default */.Z.get("/api/getProjects");
-            setProjects(data);
-        };
-        fetchProjects();
-    }, []);
-    function projectClick(project) {
-        toast({
-            title: "Coming soon",
-            description: `${project.name} will be coming soon.`
-        });
-    }
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-        className: "container grid items-center gap-6 pb-8 pt-6 md:py-10",
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "flex max-w-[980px] flex-col items-start gap-2",
-                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h1", {
-                    className: "text-3xl font-extrabold leading-tight tracking-wider  md:text-4xl",
-                    children: [
-                        "PROJECTS ",
-                        /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                            className: "hidden sm:inline"
-                        })
-                    ]
-                })
-            }),
-            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "box-layout",
-                children: projects.map((project, i)=>{
-                    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(StyledCard, {
-                        onClick: ()=>{
-                            projectClick(project);
-                        },
-                        children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("img", {
-                                src: project.image
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("strong", {
-                                className: "text-center",
-                                children: project.name
-                            })
-                        ]
-                    }, i);
-                })
-            })
-        ]
-    });
-}
-
 
 /***/ }),
 
-/***/ 3870:
+/***/ 4114:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -462,7 +316,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1313);
 
-const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/home/sumit/_Projects/ai_projects/app/playground/page.jsx`)
+const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/home/sumit/_Projects/ai_projects/app/app/youtube-summarizer/page.jsx`)
 
 // Accessing the __esModule property and exporting $$typeof are required here.
 // The __esModule getter forces the proxy target to create the default export
@@ -474,30 +328,16 @@ const __default__ = proxy.default;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__default__);
 
-/***/ }),
-
-/***/ 9805:
-/***/ (() => {
-
-
-
-/***/ }),
-
-/***/ 9430:
-/***/ (() => {
-
-
-
 /***/ })
 
 };
 ;
 
 // load runtime
-var __webpack_require__ = require("../../webpack-runtime.js");
+var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,612,248,777], () => (__webpack_exec__(9339)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,612,777], () => (__webpack_exec__(9619)));
 module.exports = __webpack_exports__;
 
 })();

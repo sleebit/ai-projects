@@ -1,6 +1,7 @@
 {
-  "/page": "/",
   "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
   "/playground/page": "/playground",
-  "/api/getProjects/route": "/api/getProjects"
+  "/api/getProjects/route": "/api/getProjects",
+  "/app/youtube-summarizer/page": "/app/youtube-summarizer"
 }

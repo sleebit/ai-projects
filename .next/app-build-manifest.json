@@ -1,33 +1,40 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack-d97f9e6859cfb8fa.js",
-      "static/chunks/bce60fc1-a10169790ee3ceae.js",
-      "static/chunks/769-72763ab098f9cb27.js",
-      "static/chunks/main-app-9e42ea4c911baa82.js",
-      "static/chunks/775-ca15c9ed174612d7.js",
-      "static/css/becf936830b763f4.css",
-      "static/chunks/app/page-ac48f8bc64fb6b3d.js"
-    ],
     "/layout": [
-      "static/chunks/webpack-d97f9e6859cfb8fa.js",
+      "static/chunks/webpack-c0978d1f7d8c69f9.js",
       "static/chunks/bce60fc1-a10169790ee3ceae.js",
       "static/chunks/769-72763ab098f9cb27.js",
       "static/chunks/main-app-9e42ea4c911baa82.js",
       "static/chunks/9dbc26f1-5497f44fbf4103e8.js",
       "static/chunks/775-ca15c9ed174612d7.js",
       "static/chunks/142-5de367bd406bb370.js",
-      "static/css/bd7f3dce0546a9a3.css",
-      "static/chunks/app/layout-4c1b368cf77ef3b4.js"
+      "static/css/a92c8be18cb7b0fb.css",
+      "static/chunks/app/layout-478ad96faad70258.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-c0978d1f7d8c69f9.js",
+      "static/chunks/bce60fc1-a10169790ee3ceae.js",
+      "static/chunks/769-72763ab098f9cb27.js",
+      "static/chunks/main-app-9e42ea4c911baa82.js",
+      "static/chunks/775-ca15c9ed174612d7.js",
+      "static/css/becf936830b763f4.css",
+      "static/chunks/app/page-5ab54eac24d59c2b.js"
     ],
     "/playground/page": [
-      "static/chunks/webpack-d97f9e6859cfb8fa.js",
+      "static/chunks/webpack-c0978d1f7d8c69f9.js",
       "static/chunks/bce60fc1-a10169790ee3ceae.js",
       "static/chunks/769-72763ab098f9cb27.js",
       "static/chunks/main-app-9e42ea4c911baa82.js",
       "static/chunks/348-03b4b6326b82da16.js",
       "static/css/187946f220ca4167.css",
       "static/chunks/app/playground/page-73f6f3d4988212db.js"
+    ],
+    "/app/youtube-summarizer/page": [
+      "static/chunks/webpack-c0978d1f7d8c69f9.js",
+      "static/chunks/bce60fc1-a10169790ee3ceae.js",
+      "static/chunks/769-72763ab098f9cb27.js",
+      "static/chunks/main-app-9e42ea4c911baa82.js",
+      "static/chunks/app/app/youtube-summarizer/page-4fe2f1fe931a1c07.js"
     ]
   }
 }

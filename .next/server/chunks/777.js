@@ -1,5 +1,5 @@
-exports.id = 349;
-exports.ids = [349];
+exports.id = 777;
+exports.ids = [777];
 exports.modules = {
 
 /***/ 7470:
@@ -13,12 +13,12 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 9674:
+/***/ 3951:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 7977, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9325));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9478));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9325));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3763));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9361))
 
@@ -198,23 +198,16 @@ function ThemeToggle() {
             document.querySelector("#mountains").classList.add("snow");
         }
     };
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_button/* Button */.z, {
-        variant: "ghost",
-        size: "sm",
-        // onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+    return /*#__PURE__*/ jsx_runtime_.jsx(ui_button/* Button */.z, {
         onClick: handleRotIconsClick,
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx(Icons.sun, {
-                className: "rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-            }),
-            /*#__PURE__*/ jsx_runtime_.jsx(Icons.moon, {
-                className: "absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-            }),
-            /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                className: "sr-only",
-                children: "Toggle theme"
-            })
-        ]
+        rel: "noreferrer",
+        variant: "default",
+        className: "motion-safe:animate-bounce",
+        size: "lg",
+        children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
+            className: "motion-safe:animate-bounce",
+            children: "PLAY WITH ME"
+        })
     });
 }
 
