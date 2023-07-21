@@ -215,7 +215,7 @@ export default function Playground() {
                 className="w-[80vw] md:w-[35vw]"
               >
                 {summaries.map((video, i) => (
-                  <AccordionItem value={`video-${i}`}>
+                  <AccordionItem value={`video-${i}`} key={i}>
                     <AccordionTrigger>
                       {video.summaryType} - {video.videoTitle}
                     </AccordionTrigger>

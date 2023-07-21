@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 
@@ -27,7 +28,7 @@ export function MainNav({ items }) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-end space-x-2">
-        <img width={25} src={logo} />
+        <Image width={25} src={logo} alt="logo" />
 
         <span className="inline-block font-bold tracking-widest">
           {siteConfig.name.toUpperCase()}

@@ -60,6 +60,14 @@ module.exports = require("next/dist/shared/lib/app-router-context");
 
 /***/ }),
 
+/***/ 1830:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/get-img-props");
+
+/***/ }),
+
 /***/ 20199:
 /***/ ((module) => {
 
@@ -68,11 +76,35 @@ module.exports = require("next/dist/shared/lib/hash");
 
 /***/ }),
 
+/***/ 66864:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/head");
+
+/***/ }),
+
 /***/ 39569:
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("next/dist/shared/lib/hooks-client-context");
+
+/***/ }),
+
+/***/ 52210:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/image-config");
+
+/***/ }),
+
+/***/ 35359:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/image-config-context");
 
 /***/ }),
 
@@ -161,6 +193,14 @@ module.exports = require("next/dist/shared/lib/server-inserted-html");
 
 "use strict";
 module.exports = require("next/dist/shared/lib/utils");
+
+/***/ }),
+
+/***/ 98658:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/utils/warn-once");
 
 /***/ }),
 
@@ -384,12 +424,16 @@ function StyledCard(props) {
 var use_toast = __webpack_require__(80346);
 // EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
 var axios = __webpack_require__(40248);
+// EXTERNAL MODULE: ./node_modules/next/image.js
+var next_image = __webpack_require__(48421);
+var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 // EXTERNAL MODULE: ./app/apps/index.css
 var apps = __webpack_require__(98611);
 // EXTERNAL MODULE: ./node_modules/next/navigation.js
 var navigation = __webpack_require__(59483);
 ;// CONCATENATED MODULE: ./app/apps/page.jsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
+
 
 
 
@@ -440,7 +484,7 @@ function Playground() {
                             projectClick(project);
                         },
                         children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("img", {
+                            /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
                                 src: project.image
                             }),
                             /*#__PURE__*/ jsx_runtime_.jsx("strong", {
@@ -505,7 +549,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,474,516], () => (__webpack_exec__(32343)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,11,675], () => (__webpack_exec__(32343)));
 module.exports = __webpack_exports__;
 
 })();

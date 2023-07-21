@@ -1,5 +1,5 @@
-exports.id = 516;
-exports.ids = [516];
+exports.id = 675;
+exports.ids = [675];
 exports.modules = {
 
 /***/ 7470:
@@ -13,15 +13,15 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 3764:
+/***/ 90586:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 27977, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 69325));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 29478));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 69325));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 36705));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763))
 
 /***/ }),
 
@@ -44,6 +44,9 @@ var react_ = __webpack_require__(18038);
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__(31621);
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+// EXTERNAL MODULE: ./node_modules/next/image.js
+var next_image = __webpack_require__(48421);
+var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 // EXTERNAL MODULE: ./node_modules/next-themes/dist/index.js
 var dist = __webpack_require__(95176);
 // EXTERNAL MODULE: ./config/site.js
@@ -56,6 +59,7 @@ var utils = __webpack_require__(23853);
 /* harmony default export */ const sleebit_logo_transparent_black = ({"src":"/_next/static/media/sleebit-logo-transparent-black.307433a9.png","height":500,"width":500,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAMAAADz0U65AAAAIVBMVEVMaXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+JJ50AAAAC3RSTlMAhrNS4Gf6ekuSN4u7aR0AAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAzSURBVHicPcpBDsAwCMRALyyh7f8fXBFF8XUMtyioAJ6V30qgZfkF5LZqKKxNkeqc+fQDFFQAjWmBR0wAAAAASUVORK5CYII=","blurWidth":8,"blurHeight":8});
 ;// CONCATENATED MODULE: ./components/main-nav.jsx
 /* __next_internal_client_entry_do_not_use__ MainNav auto */ 
+
 
 
 
@@ -80,7 +84,7 @@ function MainNav({ items }) {
                 href: "/",
                 className: "flex items-end space-x-2",
                 children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("img", {
+                    /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
                         width: 25,
                         src: logo
                     }),

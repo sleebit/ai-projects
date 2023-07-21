@@ -3,6 +3,7 @@ import StyledCard from "@/components/ui/styled-card";
 import { useToast } from "@/components/ui/use-toast";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 import "./index.css";
 import { useRouter } from "next/navigation";
@@ -48,7 +49,7 @@ export default function Playground() {
                 projectClick(project);
               }}
             >
-              <img src={project.image} />
+              <Image src={project.image} alt="project-image" />
               <strong className="text-center">{project.name}</strong>
             </StyledCard>
           );
