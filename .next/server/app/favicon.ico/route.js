@@ -5,21 +5,21 @@ exports.id = 155;
 exports.ids = [155];
 exports.modules = {
 
-/***/ 4021:
+/***/ 14021:
 /***/ ((module) => {
 
 module.exports = import("next/dist/compiled/@vercel/og/index.node.js");;
 
 /***/ }),
 
-/***/ 2037:
+/***/ 22037:
 /***/ ((module) => {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 9179:
+/***/ 29179:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -45,12 +45,12 @@ __webpack_require__.d(favicon_next_metadata_namespaceObject, {
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
-var node_polyfill_headers = __webpack_require__(5387);
+var node_polyfill_headers = __webpack_require__(35387);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/future/route-modules/app-route/module.js
-var app_route_module = __webpack_require__(9267);
+var app_route_module = __webpack_require__(29267);
 var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
 // EXTERNAL MODULE: ./node_modules/next/server.js
-var server = __webpack_require__(4664);
+var server = __webpack_require__(14664);
 ;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-metadata-route-loader.js?page=%2Ffavicon.ico%2Froute&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js!./app/favicon.ico?__next_metadata__
 
 
@@ -107,7 +107,7 @@ const dynamic = 'force-static'
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625,664], () => (__webpack_exec__(9179)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,664], () => (__webpack_exec__(29179)));
 module.exports = __webpack_exports__;
 
 })();

@@ -8,8 +8,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      title: "Playground",
-      href: "/playground",
+      title: "Apps",
+      href: "/apps",
     },
   ],
   links: {

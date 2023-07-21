@@ -48,12 +48,8 @@ export default function Home() {
             </p>
           </div>
           <div className="flex gap-4 ml-[10px]">
-            <Link
-              href="/playground"
-              rel="noreferrer"
-              className={buttonVariants()}
-            >
-              Go to Projects
+            <Link href="/apps" rel="noreferrer" className={buttonVariants()}>
+              Go to Apps
             </Link>
             <Link
               target="_blank"

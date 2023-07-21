@@ -5,14 +5,14 @@ exports.id = 23;
 exports.ids = [23];
 exports.modules = {
 
-/***/ 2037:
+/***/ 22037:
 /***/ ((module) => {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 4428:
+/***/ 64428:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -37,12 +37,12 @@ __webpack_require__.d(route_namespaceObject, {
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
-var node_polyfill_headers = __webpack_require__(5387);
+var node_polyfill_headers = __webpack_require__(35387);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/future/route-modules/app-route/module.js
-var app_route_module = __webpack_require__(9267);
+var app_route_module = __webpack_require__(29267);
 var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-response.js
-var next_response = __webpack_require__(2413);
+var next_response = __webpack_require__(32413);
 ;// CONCATENATED MODULE: ./app/api/getProjects/route.js
 
 async function GET(request) {
@@ -50,15 +50,17 @@ async function GET(request) {
     return next_response/* default */.Z.json([
         {
             name: "Youtube Video Summarizer",
-            slug: "youtube-video-summarizer",
+            slug: "youtube-summarizer",
             description: "This project uses GPT-3 API's along with clever langchain tricks to summarize any given youtube video.",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png"
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png",
+            comingSoon: false
         },
         {
             name: "Chat with Youtube",
             slug: "chat-with-youtube",
             description: "This project allows you to chat with in context of a given youtube video using GPT-3 API's.",
-            image: "https://static.vecteezy.com/system/resources/previews/018/930/572/original/youtube-logo-youtube-icon-transparent-free-png.png"
+            image: "https://static.vecteezy.com/system/resources/previews/018/930/572/original/youtube-logo-youtube-icon-transparent-free-png.png",
+            comingSoon: true
         }
     ], {
         status: 200
@@ -96,7 +98,7 @@ async function GET(request) {
 
 /***/ }),
 
-/***/ 2413:
+/***/ 32413:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 var __webpack_unused_export__;
@@ -111,7 +113,7 @@ Object.defineProperty(exports, "Z", ({
         return _response.NextResponse;
     }
 }));
-const _response = __webpack_require__(2917); //# sourceMappingURL=next-response.js.map
+const _response = __webpack_require__(72917); //# sourceMappingURL=next-response.js.map
 
 
 /***/ })
@@ -123,7 +125,7 @@ const _response = __webpack_require__(2917); //# sourceMappingURL=next-response.
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625], () => (__webpack_exec__(4428)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625], () => (__webpack_exec__(64428)));
 module.exports = __webpack_exports__;
 
 })();

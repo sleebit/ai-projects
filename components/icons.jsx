@@ -1,9 +1,10 @@
-import { LucideProps, Moon, SunMedium, Twitter } from "lucide-react";
+import { LucideProps, Moon, SunMedium, Twitter, User2Icon } from "lucide-react";
 
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
   twitter: Twitter,
+  profile: User2Icon,
   gitHub: (props) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

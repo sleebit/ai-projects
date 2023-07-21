@@ -3,7 +3,7 @@ exports.id = 664;
 exports.ids = [664];
 exports.modules = {
 
-/***/ 7004:
+/***/ 47004:
 /***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;
@@ -2203,7 +2203,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 /***/ }),
 
-/***/ 222:
+/***/ 20222:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2258,7 +2258,7 @@ class RemovedUAError extends Error {
 
 /***/ }),
 
-/***/ 7970:
+/***/ 37970:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 var __webpack_unused_export__;
@@ -2282,7 +2282,7 @@ class ImageResponse {
             const readable = new ReadableStream({
                 async start (controller) {
                     const OGImageResponse = // as the auto resolving is not working
-                    (await Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 4021))).ImageResponse;
+                    (await Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 14021))).ImageResponse;
                     const imageResponse = new OGImageResponse(...args);
                     if (!imageResponse.body) {
                         return controller.close();
@@ -2314,7 +2314,7 @@ class ImageResponse {
 
 /***/ }),
 
-/***/ 6569:
+/***/ 66569:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -2336,9 +2336,9 @@ _export(exports, {
         return NextRequest;
     }
 });
-const _nexturl = __webpack_require__(3369);
-const _utils = __webpack_require__(7252);
-const _error = __webpack_require__(222);
+const _nexturl = __webpack_require__(43369);
+const _utils = __webpack_require__(17252);
+const _error = __webpack_require__(20222);
 const _cookies = __webpack_require__(4521);
 const INTERNALS = Symbol("internal request");
 class NextRequest extends Request {
@@ -2415,7 +2415,7 @@ class NextRequest extends Request {
 
 /***/ }),
 
-/***/ 1789:
+/***/ 71789:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -2440,7 +2440,7 @@ _export(exports, {
         return userAgent;
     }
 });
-const _uaparserjs = /*#__PURE__*/ _interop_require_default(__webpack_require__(7004));
+const _uaparserjs = /*#__PURE__*/ _interop_require_default(__webpack_require__(47004));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
@@ -2462,16 +2462,16 @@ function userAgent({ headers }) {
 
 /***/ }),
 
-/***/ 4664:
+/***/ 14664:
 /***/ ((module, exports, __webpack_require__) => {
 
 
 const serverExports = {
-    NextRequest: (__webpack_require__(6569).NextRequest),
-    NextResponse: (__webpack_require__(2917).NextResponse),
-    ImageResponse: (__webpack_require__(7970)/* .ImageResponse */ .E),
-    userAgentFromString: (__webpack_require__(1789).userAgentFromString),
-    userAgent: (__webpack_require__(1789).userAgent)
+    NextRequest: (__webpack_require__(66569).NextRequest),
+    NextResponse: (__webpack_require__(72917).NextResponse),
+    ImageResponse: (__webpack_require__(37970)/* .ImageResponse */ .E),
+    userAgentFromString: (__webpack_require__(71789).userAgentFromString),
+    userAgent: (__webpack_require__(71789).userAgent)
 };
 if (typeof URLPattern !== "undefined") {
     // eslint-disable-next-line no-undef

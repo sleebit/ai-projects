@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 // import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 
 export function ThemeToggle() {
   // const { setTheme, theme } = useTheme();
+  const pathname = usePathname();
   const [index, setIndex] = useState(2);
 
   const handleRotIconsClick = () => {
@@ -31,9 +33,11 @@ export function ThemeToggle() {
       document.querySelector("#mountains").classList.add("snow");
     }
   };
-
   return (
     <Button
+      style={{
+        display: pathname != "/" ? "none" : "block",
+      }}
       onClick={handleRotIconsClick}
       rel="noreferrer"
       variant="default"

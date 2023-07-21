@@ -13,6 +13,17 @@ export function SiteHeader() {
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
+            <Link href="/profile" rel="noreferrer">
+              <div
+                className={buttonVariants({
+                  size: "sm",
+                  variant: "ghost",
+                })}
+              >
+                <Icons.profile className="h-5 w-5" />
+                <span className="sr-only">Profile</span>
+              </div>
+            </Link>
             <Link
               href={siteConfig.links.github}
               target="_blank"
