@@ -32,11 +32,16 @@ export default function RootLayout({ children }) {
       <html lang="en" suppressHydrationWarning>
         <head>
           <Script src="https://www.googletagmanager.com/gtag/js?id=G-WVXW8DQXW5" />
-          <Script id="google-analytics">
-            {`window.dataLayer = window.dataLayer || []; function gtag()
-            {dataLayer.push(arguments)}
-            gtag('js', new Date()); gtag('config', 'G-WVXW8DQXW5');`}
+          {/* Google Tag Manager */}
+          <Script id="gtag">
+            {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-WVXW8DQXW5');
+              `}
           </Script>
+          {/* End Google Tag Manager */}
         </head>
         <body
           className={cn(
@@ -44,6 +49,9 @@ export default function RootLayout({ children }) {
             fontSans.variable
           )}
         >
+          {/* <Google Tag Manager (noscript) */}
+
+          {/* End Google Tag Manager (noscript) */}
           <ThemeProvider
             attribute="class"
             enableSystem={false}

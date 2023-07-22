@@ -1,11 +1,12 @@
 "use client";
 import { useToast } from "@/components/ui/use-toast";
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import useLoadingInterval from "../../../hooks/useLoadingInterval";
+
+import { z } from "zod";
 import axios from "axios";
-import { getOpenaiApiKey } from "@/helpers";
 
 import { Loader2Icon } from "lucide-react";
 
@@ -35,14 +36,11 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
   youtubeLink: z.string().min(2, {
@@ -53,13 +51,32 @@ const FormSchema = z.object({
   }),
 });
 
-export default function Playground() {
+export default function YoutubeSummarizer() {
   const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
   const [summaries, setSummaries] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
+  const {
+    reactiveTimeTaken,
+    timeTaken,
+    startLoadingInterval,
+    stopLoadingInterval,
+  } = useLoadingInterval(1250);
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return minutes == 0
+      ? `${remainingSeconds}s`
+      : `${minutes}m ${remainingSeconds}s`;
+  };
 
   const form = useForm({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      summaryType: "quick",
+    },
   });
 
   const getQuickSummary = async ({ transcript }) => {
@@ -73,12 +90,29 @@ export default function Playground() {
       });
       const docs = await textSplitter.createDocuments([transcript]);
 
-      const chain = loadSummarizationChain(model, { type: "map_reduce" });
-      const res = await chain.call({
-        input_documents: docs,
-      });
+      try {
+        const chain = loadSummarizationChain(model, { type: "map_reduce" });
+        const res = await chain.call({
+          input_documents: docs,
+        });
 
-      return res.text;
+        return {
+          status: true,
+          data: {
+            summary: res.text,
+          },
+          message: "",
+        };
+      } catch (e) {
+        console.log(e.response.data.error.message);
+        return {
+          status: false,
+          data: {
+            summary: null,
+          },
+          message: e.response.data.error.message || "Something went wrong",
+        };
+      }
     }
   };
 
@@ -89,7 +123,21 @@ export default function Playground() {
 
   async function onSubmit(data) {
     console.log(data);
+    gtag("event", "YOUTUBE_SUMMARIZATION", {
+      data: data,
+    });
+
+    if (!localStorage.getItem("OPENAI_API_KEY")) {
+      toast({
+        title: "OpenAI API key not found",
+        description:
+          "Please set your OpenAI API key in the profile section first.",
+      });
+      return;
+    }
+
     process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
+
     if (loading) {
       toast({
         title: "Loading",
@@ -98,34 +146,54 @@ export default function Playground() {
       });
     } else {
       setLoading(true);
+      startLoadingInterval();
+
       const { data: apiResp } = await axios.post("/api/getYoutubeTranscripts", {
         url: data.youtubeLink,
       });
 
       if (apiResp.status) {
         const transcript = apiResp.data.transcript.map((e) => e.text).join(" ");
-        let summary;
+        let summaryResp;
         if (data.summaryType == "quick") {
-          summary = await getQuickSummary({ transcript });
+          summaryResp = await getQuickSummary({ transcript });
         } else if (data.summaryType == "detailed") {
-          summary = await getDetailedSummary({ transcript });
+          summaryResp = await getDetailedSummary({ transcript });
         }
 
-        setSummaries([
-          ...summaries,
-          {
-            ...apiResp.data,
-            transcript,
-            summary,
-            summaryType: `${
-              data.summaryType[0].toUpperCase() + data.summaryType.slice(1)
-            } Summary`,
-          },
-        ]);
+        if (summaryResp.status) {
+          setSummaries([
+            ...summaries,
+            {
+              ...apiResp.data,
+              ...summaryResp.data,
+              transcript,
+              summary: summaryResp.data.summary,
+              summaryType: `${
+                data.summaryType[0].toUpperCase() + data.summaryType.slice(1)
+              } Summary`,
+              timeTaken: formatTime(timeTaken.current),
+            },
+          ]);
+        } else {
+          toast({
+            title: "Error",
+            description: summaryResp.message,
+          });
+        }
+
+        setLoading(false);
+        // setTimeout(() => {
+        //   stopLoadingInterval();
+        // }, 2000);
       } else {
         toast({
           title: "Error",
-          description: "Something went wrong",
+          description: apiResp.message.includes(
+            "Impossible to retrieve Youtube video ID"
+          )
+            ? "This video does not seem to have transcripts. Try with some other video that have transcripts."
+            : apiResp.message,
         });
       }
       setLoading(false);
@@ -160,10 +228,8 @@ export default function Playground() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Summary Type</SelectLabel>
-                          <SelectItem value="quick" selected>
-                            Quick Summary
-                          </SelectItem>
-                          <SelectItem value="detailed" selected>
+                          <SelectItem value="quick">Quick Summary</SelectItem>
+                          <SelectItem value="detailed">
                             Detailed Summary
                           </SelectItem>
                         </SelectGroup>
@@ -179,11 +245,14 @@ export default function Playground() {
                   <FormItem>
                     <div className="flex w-full max-w-lg items-center space-x-2">
                       <FormControl>
-                        <Input placeholder="Enter your URL" {...field} />
+                        <Input
+                          placeholder="Enter any Youtube link"
+                          {...field}
+                        />
                       </FormControl>
                       <Button type="submit">
                         <div
-                          className="animate-spin mr-2"
+                          className="animate-spin"
                           viewBox="0 0 24 24"
                           style={{
                             display: loading ? "block" : "none",
@@ -191,7 +260,17 @@ export default function Playground() {
                         >
                           <Loader2Icon />
                         </div>
-                        Summarize
+                        <span className="whitespace-nowrap ml-2 mr-[4px]">
+                          {loading ? "Summarizing in" : "Summarize"}
+                        </span>
+                        <span
+                          className="whitespace-nowrap"
+                          style={{
+                            display: loading ? "block" : "none",
+                          }}
+                        >
+                          {formatTime(reactiveTimeTaken)}
+                        </span>
                       </Button>
                     </div>
 
@@ -201,21 +280,27 @@ export default function Playground() {
               />
             </form>
             <div className="flex flex-col items-center">
-              <h2 className="text-2xl text-center font-semibold tracking-tight mt-4">
+              {/* <h2 className="text-2xl text-center font-semibold tracking-tight mt-4">
                 Here lies your video summarizations.
-              </h2>
+              </h2> */}
               <Accordion
                 type="single"
                 collapsible
-                className="w-[80vw] md:w-[35vw]"
+                className="w-[85vw] md:w-[48vw]"
               >
                 {summaries.map((video, i) => (
-                  <AccordionItem value={`video-${i}`} key={i}>
+                  <AccordionItem
+                    value={`video-${i}`}
+                    key={i}
+                    className="bg-[#2d333f4d] p-4"
+                  >
                     <AccordionTrigger>
-                      {video.summaryType} - {video.videoTitle}
+                      <h2 className="text-lg text-center font-semibold tracking-tight text-[#e1e7ee]">
+                        &#8226; {video.summaryType} - {video.videoTitle}
+                      </h2>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="w-[80vw] md:w-[35vw] text-justify m-auto leading-relaxed">
+                      <div className="w-[74vw] md:w-[45vw] text-base text-justify m-auto leading-relaxed text-[#d1d5db]">
                         <Typewriter
                           options={{
                             delay: 15,
@@ -225,6 +310,9 @@ export default function Playground() {
                             typewriter.typeString(video.summary).start();
                           }}
                         />
+                        <div className="mt-4 text-end">
+                          Time taken: {video.timeTaken}
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { useState, useEffect } from "react";
 
 const profileFormSchema = z.object({
   openAIKey: z.string({
@@ -26,6 +27,12 @@ const profileFormSchema = z.object({
 export function ProfileForm() {
   const form = useForm({
     resolver: zodResolver(profileFormSchema),
+    defaultValues: {
+      openAIKey:
+        typeof window !== "undefined"
+          ? localStorage.getItem("OPENAI_API_KEY")
+          : "",
+    },
     mode: "onChange",
   });
 
@@ -52,12 +59,12 @@ export function ProfileForm() {
                 <Input placeholder="sk-xxxxxxxxxxx" {...field} />
               </FormControl>
               <FormDescription>
-                You can find it in your account{" "}
+                You can get your OpenAI API Keys here{" "}
                 <Button
                   variant="link"
                   target="_blank"
                   href="https://platform.openai.com/account/api-keys"
-                  className="pl-[1px]"
+                  className="pl-[1px] text-sm"
                 >
                   here.
                 </Button>

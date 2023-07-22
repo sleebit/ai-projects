@@ -1,13 +1,16 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
 
 export function SiteFooter() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const addUserToSubscribersList = async () => {
+    setLoading(true);
     const { data } = await axios.post("/api/newsletter", { email });
 
     if (data.status) {
@@ -22,6 +25,7 @@ export function SiteFooter() {
         description: data.message,
       });
     }
+    setLoading(false);
   };
   return (
     <footer className="flex justify-center px-4 text-gray-800  dark:text-white ">
@@ -38,7 +42,18 @@ export function SiteFooter() {
             placeholder="Enter you co-ordinates (email)"
           />
 
-          <Button onClick={addUserToSubscribersList}>Subscribe</Button>
+          <Button onClick={addUserToSubscribersList}>
+            <div
+              className="animate-spin mr-2"
+              viewBox="0 0 24 24"
+              style={{
+                display: loading ? "block" : "none",
+              }}
+            >
+              <Loader2Icon />
+            </div>
+            Subscribe
+          </Button>
         </div>
       </div>
     </footer>

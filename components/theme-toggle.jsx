@@ -41,7 +41,7 @@ export function ThemeToggle() {
       onClick={handleRotIconsClick}
       rel="noreferrer"
       variant="default"
-      className="motion-safe:animate-bounce"
+      className="relative top-[12px] motion-safe:animate-bounce"
       size="lg"
     >
       <span className="motion-safe:animate-bounce">PLAY WITH ME</span>
