@@ -83,6 +83,8 @@ var node_polyfill_headers = __webpack_require__(35387);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/future/route-modules/app-route/module.js
 var app_route_module = __webpack_require__(29267);
 var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
+// EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-request.js
+var next_request = __webpack_require__(47301);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-response.js
 var next_response = __webpack_require__(32413);
 ;// CONCATENATED MODULE: ./helpers/youtube-transcript.js
@@ -228,8 +230,11 @@ class YoutubeTranscript {
 ;// CONCATENATED MODULE: ./app/api/getYoutubeTranscripts/route.js
 
 
+
 async function POST(request, response) {
     const data = await request.json();
+    console.log("IP: ", next_request/* default */.Z.ip);
+    console.log("GEO: ", next_request/* default */.Z.geo);
     try {
         const transcript = await YoutubeTranscript.fetchTranscript(data.url);
         return next_response/* default */.Z.json({
@@ -290,7 +295,7 @@ async function POST(request, response) {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625,890], () => (__webpack_exec__(69808)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,515], () => (__webpack_exec__(69808)));
 module.exports = __webpack_exports__;
 
 })();

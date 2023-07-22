@@ -42,8 +42,12 @@ var node_polyfill_headers = __webpack_require__(35387);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/future/route-modules/app-route/module.js
 var app_route_module = __webpack_require__(29267);
 var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
+// EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-request.js
+var next_request = __webpack_require__(47301);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-response.js
 var next_response = __webpack_require__(32413);
+// EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/user-agent.js
+var user_agent = __webpack_require__(68315);
 ;// CONCATENATED MODULE: external "mongoose"
 const external_mongoose_namespaceObject = require("mongoose");
 var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_namespaceObject);
@@ -90,10 +94,16 @@ const Subscribers = (external_mongoose_default()).models.subscribers || external
 
 
 
+
+
 connect();
 async function POST(req, res) {
     const data = await req.json();
     let response;
+    const deviceInfo = (0,user_agent/* default */.Z)(req);
+    console.log("IP: ", next_request/* default */.Z.ip);
+    console.log("GEO: ", next_request/* default */.Z.geo);
+    console.log("DEVICE INFO: ", deviceInfo);
     try {
         const updatedData = await subscribers.create({
             email: data.email
@@ -170,26 +180,6 @@ async function GET(req, res) {
 
     
 
-/***/ }),
-
-/***/ 32413:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-var __webpack_unused_export__;
-// This file is for modularized imports for next/server to get fully-treeshaking.
-
-__webpack_unused_export__ = ({
-    value: true
-});
-Object.defineProperty(exports, "Z", ({
-    enumerable: true,
-    get: function() {
-        return _response.NextResponse;
-    }
-}));
-const _response = __webpack_require__(72917); //# sourceMappingURL=next-response.js.map
-
-
 /***/ })
 
 };
@@ -199,7 +189,7 @@ const _response = __webpack_require__(72917); //# sourceMappingURL=next-response
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625], () => (__webpack_exec__(36744)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,789,637], () => (__webpack_exec__(36744)));
 module.exports = __webpack_exports__;
 
 })();
