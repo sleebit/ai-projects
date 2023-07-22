@@ -84,6 +84,14 @@ module.exports = require("next/dist/shared/lib/head");
 
 /***/ }),
 
+/***/ 86819:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/head-manager-context");
+
+/***/ }),
+
 /***/ 39569:
 /***/ ((module) => {
 
@@ -390,11 +398,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 48164:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 28701))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 87537))
 
 /***/ }),
 
-/***/ 28701:
+/***/ 87537:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -420,11 +428,6 @@ var index_esm = __webpack_require__(71031);
 var lib = __webpack_require__(17123);
 // EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
 var axios = __webpack_require__(40248);
-;// CONCATENATED MODULE: ./helpers/index.js
-/* __next_internal_client_entry_do_not_use__ getOpenaiApiKey auto */ function getOpenaiApiKey() {
-    return localStorage.getItem("OPENAI_API_KEY") || null;
-}
-
 // EXTERNAL MODULE: ./node_modules/lucide-react/dist/cjs/lucide-react.js
 var lucide_react = __webpack_require__(64660);
 // EXTERNAL MODULE: ./node_modules/langchain/llms/openai.js
@@ -438,30 +441,100 @@ var react = __webpack_require__(99462);
 var dist_react_default = /*#__PURE__*/__webpack_require__.n(react);
 // EXTERNAL MODULE: ./components/ui/button.jsx
 var ui_button = __webpack_require__(28675);
-// EXTERNAL MODULE: ./components/ui/select.jsx
-var ui_select = __webpack_require__(75666);
-// EXTERNAL MODULE: ./node_modules/@radix-ui/react-accordion/dist/index.mjs + 1 modules
-var dist = __webpack_require__(28263);
 // EXTERNAL MODULE: ./node_modules/@radix-ui/react-icons/dist/react-icons.cjs.production.min.js
 var react_icons_cjs_production_min = __webpack_require__(99717);
+// EXTERNAL MODULE: ./node_modules/@radix-ui/react-select/dist/index.mjs + 1 modules
+var dist = __webpack_require__(17487);
 // EXTERNAL MODULE: ./lib/utils.js
 var utils = __webpack_require__(23853);
+;// CONCATENATED MODULE: ./components/ui/select.jsx
+/* __next_internal_client_entry_do_not_use__ Select,SelectGroup,SelectValue,SelectTrigger,SelectContent,SelectLabel,SelectItem,SelectSeparator auto */ 
+
+
+
+
+const Select = dist/* Root */.fC;
+const SelectGroup = dist/* Group */.ZA;
+const SelectValue = dist/* Value */.B4;
+const SelectTrigger = /*#__PURE__*/ react_.forwardRef(({ className, children, ...props }, ref)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)(dist/* Trigger */.xz, {
+        ref: ref,
+        className: (0,utils.cn)("flex h-9 w-full items-center justify-between rounded-md border border-zinc-200 border-zinc-200 bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-white placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:border-zinc-800 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus:ring-zinc-800", className),
+        ...props,
+        children: [
+            children,
+            /*#__PURE__*/ jsx_runtime_.jsx(dist/* Icon */.JO, {
+                asChild: true,
+                children: /*#__PURE__*/ jsx_runtime_.jsx(react_icons_cjs_production_min/* CaretSortIcon */.jnn, {
+                    className: "h-4 w-4 opacity-50"
+                })
+            })
+        ]
+    }));
+SelectTrigger.displayName = dist/* Trigger */.xz.displayName;
+const SelectContent = /*#__PURE__*/ react_.forwardRef(({ className, children, position = "popper", ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(dist/* Portal */.h_, {
+        children: /*#__PURE__*/ jsx_runtime_.jsx(dist/* Content */.VY, {
+            ref: ref,
+            className: (0,utils.cn)("relative z-50 min-w-[8rem] overflow-hidden rounded-md border border-zinc-200 bg-white text-zinc-950 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
+            position: position,
+            ...props,
+            children: /*#__PURE__*/ jsx_runtime_.jsx(dist/* Viewport */.l_, {
+                className: (0,utils.cn)("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"),
+                children: children
+            })
+        })
+    }));
+SelectContent.displayName = dist/* Content */.VY.displayName;
+const SelectLabel = /*#__PURE__*/ react_.forwardRef(({ className, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(dist/* Label */.__, {
+        ref: ref,
+        className: (0,utils.cn)("px-2 py-1.5 text-sm font-semibold", className),
+        ...props
+    }));
+SelectLabel.displayName = dist/* Label */.__.displayName;
+const SelectItem = /*#__PURE__*/ react_.forwardRef(({ className, children, ...props }, ref)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)(dist/* Item */.ck, {
+        ref: ref,
+        className: (0,utils.cn)("relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-zinc-100 focus:text-zinc-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-zinc-800 dark:focus:text-zinc-50", className),
+        ...props,
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                className: "absolute right-2 flex h-3.5 w-3.5 items-center justify-center",
+                children: /*#__PURE__*/ jsx_runtime_.jsx(dist/* ItemIndicator */.wU, {
+                    children: /*#__PURE__*/ jsx_runtime_.jsx(react_icons_cjs_production_min/* CheckIcon */.nQG, {
+                        className: "h-4 w-4"
+                    })
+                })
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx(dist/* ItemText */.eT, {
+                children: children
+            })
+        ]
+    }));
+SelectItem.displayName = dist/* Item */.ck.displayName;
+const SelectSeparator = /*#__PURE__*/ react_.forwardRef(({ className, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(dist/* Separator */.Z0, {
+        ref: ref,
+        className: (0,utils.cn)("-mx-1 my-1 h-px bg-zinc-100 dark:bg-zinc-800", className),
+        ...props
+    }));
+SelectSeparator.displayName = dist/* Separator */.Z0.displayName;
+
+
+// EXTERNAL MODULE: ./node_modules/@radix-ui/react-accordion/dist/index.mjs + 1 modules
+var react_accordion_dist = __webpack_require__(28263);
 ;// CONCATENATED MODULE: ./components/ui/accordion.jsx
 /* __next_internal_client_entry_do_not_use__ Accordion,AccordionItem,AccordionTrigger,AccordionContent auto */ 
 
 
 
 
-const Accordion = dist/* Root */.fC;
-const AccordionItem = /*#__PURE__*/ react_.forwardRef(({ className, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(dist/* Item */.ck, {
+const Accordion = react_accordion_dist/* Root */.fC;
+const AccordionItem = /*#__PURE__*/ react_.forwardRef(({ className, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(react_accordion_dist/* Item */.ck, {
         ref: ref,
         className: (0,utils.cn)("border-b", className),
         ...props
     }));
 AccordionItem.displayName = "AccordionItem";
-const AccordionTrigger = /*#__PURE__*/ react_.forwardRef(({ className, children, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(dist/* Header */.h4, {
+const AccordionTrigger = /*#__PURE__*/ react_.forwardRef(({ className, children, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(react_accordion_dist/* Header */.h4, {
         className: "flex",
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(dist/* Trigger */.xz, {
+        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_accordion_dist/* Trigger */.xz, {
             ref: ref,
             className: (0,utils.cn)("flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180", className),
             ...props,
@@ -473,8 +546,8 @@ const AccordionTrigger = /*#__PURE__*/ react_.forwardRef(({ className, children,
             ]
         })
     }));
-AccordionTrigger.displayName = dist/* Trigger */.xz.displayName;
-const AccordionContent = /*#__PURE__*/ react_.forwardRef(({ className, children, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(dist/* Content */.VY, {
+AccordionTrigger.displayName = react_accordion_dist/* Trigger */.xz.displayName;
+const AccordionContent = /*#__PURE__*/ react_.forwardRef(({ className, children, ...props }, ref)=>/*#__PURE__*/ jsx_runtime_.jsx(react_accordion_dist/* Content */.VY, {
         ref: ref,
         className: (0,utils.cn)("overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down", className),
         ...props,
@@ -483,7 +556,7 @@ const AccordionContent = /*#__PURE__*/ react_.forwardRef(({ className, children,
             children: children
         })
     }));
-AccordionContent.displayName = dist/* Content */.VY.displayName;
+AccordionContent.displayName = react_accordion_dist/* Content */.VY.displayName;
 
 
 // EXTERNAL MODULE: ./components/ui/form.jsx + 1 modules
@@ -522,20 +595,12 @@ function Playground() {
     const { toast } = (0,use_toast/* useToast */.pm)();
     const [loading, setLoading] = (0,react_.useState)(false);
     const [summaries, setSummaries] = (0,react_.useState)([]);
-    let OPENAI_API_KEY;
     const form = (0,index_esm/* useForm */.cI)({
         resolver: (0,zod/* zodResolver */.F)(FormSchema)
     });
-    (0,react_.useEffect)(()=>{
-        OPENAI_API_KEY = getOpenaiApiKey();
-        process.env.OPENAI_API_KEY = OPENAI_API_KEY;
-        console.log("OPENAI_API_KEY: ", OPENAI_API_KEY);
-    }, []);
     const getQuickSummary = async ({ transcript })=>{
-        console.log("OPENAI_API_KEY: ", OPENAI_API_KEY);
         if (transcript.length) {
             const model = new openai/* OpenAI */.Pp({
-                openAIApiKey: OPENAI_API_KEY,
                 temperature: 0,
                 modelName: "gpt-3.5-turbo"
             });
@@ -560,6 +625,7 @@ function Playground() {
     };
     async function onSubmit(data) {
         console.log(data);
+        process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
         if (loading) {
             toast({
                 title: "Loading",
@@ -628,26 +694,31 @@ function Playground() {
                                         control: form.control,
                                         name: "summaryType",
                                         render: ({ field })=>/*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormItem */.xJ, {
-                                                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_select/* Select */.Ph, {
+                                                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Select, {
                                                     onValueChange: field.onChange,
                                                     defaultValue: field.value,
                                                     children: [
-                                                        /*#__PURE__*/ jsx_runtime_.jsx(ui_select/* SelectTrigger */.i4, {
+                                                        /*#__PURE__*/ jsx_runtime_.jsx(SelectTrigger, {
                                                             className: "w-[220px]",
-                                                            children: /*#__PURE__*/ jsx_runtime_.jsx(ui_select/* SelectValue */.ki, {
+                                                            children: /*#__PURE__*/ jsx_runtime_.jsx(SelectValue, {
                                                                 placeholder: "Select summary type"
                                                             })
                                                         }),
-                                                        /*#__PURE__*/ jsx_runtime_.jsx(ui_select/* SelectContent */.Bw, {
-                                                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_select/* SelectGroup */.DI, {
+                                                        /*#__PURE__*/ jsx_runtime_.jsx(SelectContent, {
+                                                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(SelectGroup, {
                                                                 children: [
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx(ui_select/* SelectLabel */.n5, {
+                                                                    /*#__PURE__*/ jsx_runtime_.jsx(SelectLabel, {
                                                                         children: "Summary Type"
                                                                     }),
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx(ui_select/* SelectItem */.Ql, {
+                                                                    /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
                                                                         value: "quick",
                                                                         selected: true,
                                                                         children: "Quick Summary"
+                                                                    }),
+                                                                    /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
+                                                                        value: "detailed",
+                                                                        selected: true,
+                                                                        children: "Detailed Summary"
                                                                     })
                                                                 ]
                                                             })
@@ -674,7 +745,7 @@ function Playground() {
                                                                 type: "submit",
                                                                 children: [
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                        class: "animate-spin mr-2",
+                                                                        className: "animate-spin mr-2",
                                                                         viewBox: "0 0 24 24",
                                                                         style: {
                                                                             display: loading ? "block" : "none"
@@ -721,7 +792,6 @@ function Playground() {
                                                                     delay: 15
                                                                 },
                                                                 onInit: (typewriter)=>{
-                                                                    // setTypewriter(typewriter);
                                                                     console.log(video);
                                                                     typewriter.typeString(video.summary).start();
                                                                 }
@@ -777,7 +847,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,11,51,942,858,487,101,675,499,666], () => (__webpack_exec__(59741)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,576,710,499], () => (__webpack_exec__(59741)));
 module.exports = __webpack_exports__;
 
 })();

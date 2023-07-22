@@ -2,13 +2,13 @@
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
   "/apps/page": "app/apps/page.js",
-  "/api/getProjects/route": "app/api/getProjects/route.js",
   "/api/getYoutubeTranscripts/route": "app/api/getYoutubeTranscripts/route.js",
+  "/api/getProjects/route": "app/api/getProjects/route.js",
   "/api/newsletter/route": "app/api/newsletter/route.js",
   "/apps/youtube-summarizer/page": "app/apps/youtube-summarizer/page.js",
   "/profile/page": "app/profile/page.js",
   "/profile/appearance/page": "app/profile/appearance/page.js",
-  "/profile/display/page": "app/profile/display/page.js",
   "/profile/account/page": "app/profile/account/page.js",
+  "/profile/display/page": "app/profile/display/page.js",
   "/profile/notifications/page": "app/profile/notifications/page.js"
 }

@@ -1,5 +1,5 @@
-exports.id = 675;
-exports.ids = [675];
+exports.id = 710;
+exports.ids = [710];
 exports.modules = {
 
 /***/ 7470:
@@ -13,15 +13,16 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 90586:
+/***/ 40667:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 63481, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 27977, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 29478));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 69325));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 29478));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 36705));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361))
 
 /***/ }),
 
@@ -86,7 +87,9 @@ function MainNav({ items }) {
                 children: [
                     /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
                         width: 25,
-                        src: logo
+                        height: 25,
+                        src: logo,
+                        alt: "logo"
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx("span", {
                         className: "inline-block font-bold tracking-widest",
@@ -1001,9 +1004,13 @@ const theme_provider_default_ = theme_provider_proxy.default;
 
 const theme_provider_e0 = theme_provider_proxy["ThemeProvider"];
 
+// EXTERNAL MODULE: ./node_modules/next/script.js
+var script = __webpack_require__(91661);
+var script_default = /*#__PURE__*/__webpack_require__.n(script);
 // EXTERNAL MODULE: ./app/globals.css
 var globals = __webpack_require__(92817);
 ;// CONCATENATED MODULE: ./app/layout.js
+
 
 
 
@@ -1041,7 +1048,19 @@ function RootLayout({ children }) {
             lang: "en",
             suppressHydrationWarning: true,
             children: [
-                /*#__PURE__*/ jsx_runtime_.jsx("head", {}),
+                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("head", {
+                    children: [
+                        /*#__PURE__*/ jsx_runtime_.jsx((script_default()), {
+                            src: "https://www.googletagmanager.com/gtag/js?id=G-WVXW8DQXW5"
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx((script_default()), {
+                            id: "google-analytics",
+                            children: `window.dataLayer = window.dataLayer || []; function gtag()
+            {dataLayer.push(arguments)}
+            gtag('js', new Date()); gtag('config', 'G-WVXW8DQXW5');`
+                        })
+                    ]
+                }),
                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)("body", {
                     className: cn("min-h-screen bg-background font-sans antialiased", (fonts_js_import_Inter_arguments_subsets_latin_variable_font_sans_variableName_fontSans_default()).variable),
                     children: [

@@ -57,23 +57,14 @@ export default function Playground() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [summaries, setSummaries] = useState([]);
-  let OPENAI_API_KEY;
 
   const form = useForm({
     resolver: zodResolver(FormSchema),
   });
 
-  useEffect(() => {
-    OPENAI_API_KEY = getOpenaiApiKey();
-    process.env.OPENAI_API_KEY = OPENAI_API_KEY;
-    console.log("OPENAI_API_KEY: ", OPENAI_API_KEY);
-  }, []);
-
   const getQuickSummary = async ({ transcript }) => {
-    console.log("OPENAI_API_KEY: ", OPENAI_API_KEY);
     if (transcript.length) {
       const model = new OpenAI({
-        openAIApiKey: OPENAI_API_KEY,
         temperature: 0,
         modelName: "gpt-3.5-turbo",
       });
@@ -98,6 +89,7 @@ export default function Playground() {
 
   async function onSubmit(data) {
     console.log(data);
+    process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
     if (loading) {
       toast({
         title: "Loading",
@@ -171,6 +163,9 @@ export default function Playground() {
                           <SelectItem value="quick" selected>
                             Quick Summary
                           </SelectItem>
+                          <SelectItem value="detailed" selected>
+                            Detailed Summary
+                          </SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -188,7 +183,7 @@ export default function Playground() {
                       </FormControl>
                       <Button type="submit">
                         <div
-                          class="animate-spin mr-2"
+                          className="animate-spin mr-2"
                           viewBox="0 0 24 24"
                           style={{
                             display: loading ? "block" : "none",
@@ -226,7 +221,6 @@ export default function Playground() {
                             delay: 15,
                           }}
                           onInit={(typewriter) => {
-                            // setTypewriter(typewriter);
                             console.log(video);
                             typewriter.typeString(video.summary).start();
                           }}

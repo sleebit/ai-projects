@@ -1,6 +1,6 @@
 "use strict";
-exports.id = 51;
-exports.ids = [51];
+exports.id = 585;
+exports.ids = [585];
 exports.modules = {
 
 /***/ 89048:
@@ -69,80 +69,10 @@ const $b73a6c6685e72184$export$b04be29aa201d4f5 = /*#__PURE__*/ (0,react__WEBPAC
 
 /***/ }),
 
-/***/ 97020:
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   t: () => (/* binding */ $db6c3485150b8e66$export$1ab7ae714698c4b8)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(18038);
-/* harmony import */ var _radix_ui_react_use_layout_effect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72660);
-
-
-
-
-
-function $db6c3485150b8e66$export$1ab7ae714698c4b8(element) {
-    const [size, setSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined);
-    (0,_radix_ui_react_use_layout_effect__WEBPACK_IMPORTED_MODULE_1__/* .useLayoutEffect */ .b)(()=>{
-        if (element) {
-            // provide size as early as possible
-            setSize({
-                width: element.offsetWidth,
-                height: element.offsetHeight
-            });
-            const resizeObserver = new ResizeObserver((entries)=>{
-                if (!Array.isArray(entries)) return;
-                 // Since we only observe the one element, we don't need to loop over the
-                // array
-                if (!entries.length) return;
-                const entry = entries[0];
-                let width;
-                let height;
-                if ('borderBoxSize' in entry) {
-                    const borderSizeEntry = entry['borderBoxSize']; // iron out differences between browsers
-                    const borderSize = Array.isArray(borderSizeEntry) ? borderSizeEntry[0] : borderSizeEntry;
-                    width = borderSize['inlineSize'];
-                    height = borderSize['blockSize'];
-                } else {
-                    // for browsers that don't support `borderBoxSize`
-                    // we calculate it ourselves to get the correct border box.
-                    width = element.offsetWidth;
-                    height = element.offsetHeight;
-                }
-                setSize({
-                    width: width,
-                    height: height
-                });
-            });
-            resizeObserver.observe(element, {
-                box: 'border-box'
-            });
-            return ()=>resizeObserver.unobserve(element)
-            ;
-        } else // We only want to reset to `undefined` when the element becomes `null`,
-        // not if it changes to another element.
-        setSize(undefined);
-    }, [
-        element
-    ]);
-    return size;
-}
-
-
-
-
-
-//# sourceMappingURL=index.mjs.map
-
-
-/***/ }),
-
 /***/ 71031:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Dq: () => (/* binding */ useFieldArray),
 /* harmony export */   Gc: () => (/* binding */ useFormContext),
 /* harmony export */   KN: () => (/* binding */ appendErrors),
 /* harmony export */   Qr: () => (/* binding */ Controller),
@@ -151,7 +81,7 @@ function $db6c3485150b8e66$export$1ab7ae714698c4b8(element) {
 /* harmony export */   cI: () => (/* binding */ useForm),
 /* harmony export */   t8: () => (/* binding */ set)
 /* harmony export */ });
-/* unused harmony exports Form, useController, useFormState, useWatch */
+/* unused harmony exports Form, useController, useFieldArray, useFormState, useWatch */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(18038);
 
 
@@ -1230,11 +1160,11 @@ var updateAt = (fieldValues, index, value) => {
 function useFieldArray(props) {
     const methods = useFormContext();
     const { control = methods.control, name, keyName = 'id', shouldUnregister, } = props;
-    const [fields, setFields] = react__WEBPACK_IMPORTED_MODULE_0__.useState(control._getFieldArray(name));
-    const ids = react__WEBPACK_IMPORTED_MODULE_0__.useRef(control._getFieldArray(name).map(generateId));
-    const _fieldIds = react__WEBPACK_IMPORTED_MODULE_0__.useRef(fields);
-    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
-    const _actioned = react__WEBPACK_IMPORTED_MODULE_0__.useRef(false);
+    const [fields, setFields] = React.useState(control._getFieldArray(name));
+    const ids = React.useRef(control._getFieldArray(name).map(generateId));
+    const _fieldIds = React.useRef(fields);
+    const _name = React.useRef(name);
+    const _actioned = React.useRef(false);
     _name.current = name;
     _fieldIds.current = fields;
     control._names.array.add(name);
@@ -1252,7 +1182,7 @@ function useFieldArray(props) {
         },
         subject: control._subjects.array,
     });
-    const updateValues = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((updatedFieldArrayValues) => {
+    const updateValues = React.useCallback((updatedFieldArrayValues) => {
         _actioned.current = true;
         control._updateFieldArray(name, updatedFieldArrayValues);
     }, [control, name]);
@@ -1339,7 +1269,7 @@ function useFieldArray(props) {
         setFields([...updatedFieldArrayValues]);
         control._updateFieldArray(name, [...updatedFieldArrayValues], (data) => data, {}, true, false);
     };
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    React.useEffect(() => {
         control._state.action = false;
         isWatched(name, control._names) &&
             control._subjects.state.next({
@@ -1386,7 +1316,7 @@ function useFieldArray(props) {
         control._names.focus = '';
         control._updateValid();
     }, [fields, name, control]);
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    React.useEffect(() => {
         !get(control._formValues, name) && control._updateFieldArray(name);
         return () => {
             (control._options.shouldUnregister || shouldUnregister) &&
@@ -1394,15 +1324,15 @@ function useFieldArray(props) {
         };
     }, [name, control, keyName, shouldUnregister]);
     return {
-        swap: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(swap, [updateValues, name, control]),
-        move: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(move, [updateValues, name, control]),
-        prepend: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(prepend$1, [updateValues, name, control]),
-        append: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(append$1, [updateValues, name, control]),
-        remove: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(remove, [updateValues, name, control]),
-        insert: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(insert$1, [updateValues, name, control]),
-        update: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(update, [updateValues, name, control]),
-        replace: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(replace, [updateValues, name, control]),
-        fields: react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => fields.map((field, index) => ({
+        swap: React.useCallback(swap, [updateValues, name, control]),
+        move: React.useCallback(move, [updateValues, name, control]),
+        prepend: React.useCallback(prepend$1, [updateValues, name, control]),
+        append: React.useCallback(append$1, [updateValues, name, control]),
+        remove: React.useCallback(remove, [updateValues, name, control]),
+        insert: React.useCallback(insert$1, [updateValues, name, control]),
+        update: React.useCallback(update, [updateValues, name, control]),
+        replace: React.useCallback(replace, [updateValues, name, control]),
+        fields: React.useMemo(() => fields.map((field, index) => ({
             ...field,
             [keyName]: ids.current[index] || generateId(),
         })), [fields, keyName]),

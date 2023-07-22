@@ -84,6 +84,14 @@ module.exports = require("next/dist/shared/lib/head");
 
 /***/ }),
 
+/***/ 86819:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/head-manager-context");
+
+/***/ }),
+
 /***/ 39569:
 /***/ ((module) => {
 
@@ -722,7 +730,7 @@ function SettingsAppearancePage() {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,11,51,883,942,396,675,499,794,455], () => (__webpack_exec__(56754)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,883,20,942,396,710,499,794,455], () => (__webpack_exec__(56754)));
 module.exports = __webpack_exports__;
 
 })();

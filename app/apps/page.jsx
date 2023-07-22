@@ -49,7 +49,12 @@ export default function Playground() {
                 projectClick(project);
               }}
             >
-              <Image src={project.image} alt="project-image" />
+              <Image
+                src={project.image}
+                width={400}
+                height={400}
+                alt="project-image"
+              />
               <strong className="text-center">{project.name}</strong>
             </StyledCard>
           );

@@ -28,7 +28,7 @@ export function MainNav({ items }) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-end space-x-2">
-        <Image width={25} src={logo} alt="logo" />
+        <Image width={25} height={25} src={logo} alt="logo" />
 
         <span className="inline-block font-bold tracking-widest">
           {siteConfig.name.toUpperCase()}

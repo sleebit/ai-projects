@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -29,7 +30,14 @@ export default function RootLayout({ children }) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
+        <head>
+          <Script src="https://www.googletagmanager.com/gtag/js?id=G-WVXW8DQXW5" />
+          <Script id="google-analytics">
+            {`window.dataLayer = window.dataLayer || []; function gtag()
+            {dataLayer.push(arguments)}
+            gtag('js', new Date()); gtag('config', 'G-WVXW8DQXW5');`}
+          </Script>
+        </head>
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
