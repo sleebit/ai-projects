@@ -14,7 +14,8 @@ export async function POST(req, res) {
   console.log(
     "IP: ",
     NextRequest.ip,
-    req.headers["x-real-ip"] || req.connection.remoteAddress
+    req.headers["x-real-ip"] || req.connection?.remoteAddress,
+    req.headers
   );
   console.log("GEO: ", NextRequest.geo);
   console.log("DEVICE INFO: ", deviceInfo);
