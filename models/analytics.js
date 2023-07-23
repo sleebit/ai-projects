@@ -11,7 +11,7 @@ const analyticsSchema = new mongoose.Schema(
     data: {
       type: Object,
     },
-    device: {
+    deviceInfo: {
       type: Object,
     },
   },

@@ -5,6 +5,34 @@ exports.id = 304;
 exports.ids = [304];
 exports.modules = {
 
+/***/ 11185:
+/***/ ((module) => {
+
+module.exports = require("mongoose");
+
+/***/ }),
+
+/***/ 39491:
+/***/ ((module) => {
+
+module.exports = require("assert");
+
+/***/ }),
+
+/***/ 82361:
+/***/ ((module) => {
+
+module.exports = require("events");
+
+/***/ }),
+
+/***/ 57147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
 /***/ 13685:
 /***/ ((module) => {
 
@@ -40,10 +68,31 @@ module.exports = require("querystring");
 
 /***/ }),
 
+/***/ 12781:
+/***/ ((module) => {
+
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ 76224:
+/***/ ((module) => {
+
+module.exports = require("tty");
+
+/***/ }),
+
 /***/ 57310:
 /***/ ((module) => {
 
 module.exports = require("url");
+
+/***/ }),
+
+/***/ 73837:
+/***/ ((module) => {
+
+module.exports = require("util");
 
 /***/ }),
 
@@ -54,7 +103,7 @@ module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 69808:
+/***/ 67003:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -87,6 +136,10 @@ var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
 var next_request = __webpack_require__(47301);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-response.js
 var next_response = __webpack_require__(32413);
+// EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/user-agent.js
+var user_agent = __webpack_require__(68315);
+// EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
+var axios = __webpack_require__(66558);
 ;// CONCATENATED MODULE: ./helpers/youtube-transcript.js
 const phin = __webpack_require__(30200);
 const RE_YOUTUBE = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
@@ -227,16 +280,53 @@ class YoutubeTranscript {
     }
 }
 
+// EXTERNAL MODULE: external "mongoose"
+var external_mongoose_ = __webpack_require__(11185);
+var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_);
+;// CONCATENATED MODULE: ./models/analytics.js
+
+const analyticsSchema = new (external_mongoose_default()).Schema({
+    ip: {
+        type: String
+    },
+    geo: {
+        type: Object
+    },
+    data: {
+        type: Object
+    },
+    deviceInfo: {
+        type: Object
+    }
+}, {
+    timestamps: true
+});
+const Analytics = (external_mongoose_default()).models.analytics || external_mongoose_default().model("analytics", analyticsSchema);
+/* harmony default export */ const analytics = (Analytics);
+
 ;// CONCATENATED MODULE: ./app/api/getYoutubeTranscripts/route.js
+
+
+
 
 
 
 async function POST(request, response) {
     const data = await request.json();
-    console.log("IP: ", next_request/* default */.Z.ip);
-    console.log("GEO: ", next_request/* default */.Z.geo);
+    const ip = req.headers["x-real-ip"];
+    const { data: geo } = await axios/* default */.Z.get(`https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`);
+    const deviceInfo = (0,user_agent/* default */.Z)(req);
     try {
         const transcript = await YoutubeTranscript.fetchTranscript(data.url);
+        await analytics.create({
+            ip: ip || "",
+            geo: geo || {},
+            data: {
+                ...data,
+                videoTitle: transcript.videoTitle
+            } || {},
+            deviceInfo: deviceInfo || {}
+        });
         return next_response/* default */.Z.json({
             status: true,
             data: {
@@ -295,7 +385,7 @@ async function POST(request, response) {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,515], () => (__webpack_exec__(69808)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,789,452], () => (__webpack_exec__(67003)));
 module.exports = __webpack_exports__;
 
 })();

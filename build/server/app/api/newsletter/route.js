@@ -5,6 +5,13 @@ exports.id = 497;
 exports.ids = [497];
 exports.modules = {
 
+/***/ 11185:
+/***/ ((module) => {
+
+module.exports = require("mongoose");
+
+/***/ }),
+
 /***/ 22037:
 /***/ ((module) => {
 
@@ -12,7 +19,7 @@ module.exports = require("os");
 
 /***/ }),
 
-/***/ 36744:
+/***/ 93535:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -46,11 +53,9 @@ var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
 var next_request = __webpack_require__(47301);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-response.js
 var next_response = __webpack_require__(32413);
-// EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/user-agent.js
-var user_agent = __webpack_require__(68315);
-;// CONCATENATED MODULE: external "mongoose"
-const external_mongoose_namespaceObject = require("mongoose");
-var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_namespaceObject);
+// EXTERNAL MODULE: external "mongoose"
+var external_mongoose_ = __webpack_require__(11185);
+var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_);
 ;// CONCATENATED MODULE: ./config/dbConfig.js
 
 async function connect() {
@@ -95,16 +100,10 @@ const Subscribers = (external_mongoose_default()).models.subscribers || external
 
 
 
-
 connect();
 async function POST(req, res) {
     const data = await req.json();
     let response;
-    const deviceInfo = (0,user_agent/* default */.Z)(req);
-    console.log("HEADERS: ", req.headers);
-    console.log("IP: ", typeof req.headers, Object.keys(req.headers), req.headers.get("x-real-ip"));
-    console.log("GEO: ", next_request/* default */.Z.geo);
-    console.log("DEVICE INFO: ", deviceInfo);
     try {
         const updatedData = await subscribers.create({
             email: data.email
@@ -181,6 +180,46 @@ async function GET(req, res) {
 
     
 
+/***/ }),
+
+/***/ 47301:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var __webpack_unused_export__;
+// This file is for modularized imports for next/server to get fully-treeshaking.
+
+__webpack_unused_export__ = ({
+    value: true
+});
+__webpack_unused_export__ = ({
+    enumerable: true,
+    get: function() {
+        return _request.NextRequest;
+    }
+});
+const _request = __webpack_require__(66569); //# sourceMappingURL=next-request.js.map
+
+
+/***/ }),
+
+/***/ 32413:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var __webpack_unused_export__;
+// This file is for modularized imports for next/server to get fully-treeshaking.
+
+__webpack_unused_export__ = ({
+    value: true
+});
+Object.defineProperty(exports, "Z", ({
+    enumerable: true,
+    get: function() {
+        return _response.NextResponse;
+    }
+}));
+const _response = __webpack_require__(72917); //# sourceMappingURL=next-response.js.map
+
+
 /***/ })
 
 };
@@ -190,7 +229,7 @@ async function GET(req, res) {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,789,637], () => (__webpack_exec__(36744)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,569], () => (__webpack_exec__(93535)));
 module.exports = __webpack_exports__;
 
 })();

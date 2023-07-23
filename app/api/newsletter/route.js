@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse, userAgent } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/config/dbConfig";
 
 import Subscribers from "@/models/subscribers";
@@ -8,18 +8,6 @@ connect();
 export async function POST(req, res) {
   const data = await req.json();
   let response;
-
-  const deviceInfo = userAgent(req);
-
-  console.log("HEADERS: ", req.headers);
-  console.log(
-    "IP: ",
-    typeof req.headers,
-    Object.keys(req.headers),
-    req.headers.get("x-real-ip")
-  );
-  console.log("GEO: ", NextRequest.geo);
-  console.log("DEVICE INFO: ", deviceInfo);
 
   try {
     const updatedData = await Subscribers.create({
