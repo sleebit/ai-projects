@@ -1,14 +1,14 @@
 {
-  "/page": "/",
   "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
   "/apps/page": "/apps",
   "/api/getProjects/route": "/api/getProjects",
-  "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
   "/api/newsletter/route": "/api/newsletter",
+  "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/profile/page": "/profile",
-  "/profile/notifications/page": "/profile/notifications",
-  "/profile/appearance/page": "/profile/appearance",
   "/profile/account/page": "/profile/account",
+  "/profile/appearance/page": "/profile/appearance",
+  "/profile/notifications/page": "/profile/notifications",
   "/profile/display/page": "/profile/display"
 }

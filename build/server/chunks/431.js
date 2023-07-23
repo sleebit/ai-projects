@@ -1,5 +1,5 @@
-exports.id = 710;
-exports.ids = [710];
+exports.id = 431;
+exports.ids = [431];
 exports.modules = {
 
 /***/ 7470:
@@ -13,7 +13,7 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 40667:
+/***/ 186:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 63481, 23));
@@ -21,8 +21,8 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 69325));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 29478));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 36705));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763))
 
 /***/ }),
 
@@ -1062,6 +1062,17 @@ function RootLayout({ children }) {
             children: [
                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)("head", {
                     children: [
+                        /*#__PURE__*/ jsx_runtime_.jsx((script_default()), {
+                            type: "text/javascript",
+                            id: "inspectlet-code",
+                            children: `(function() {
+                  window.__insp = window.__insp || [];
+                  __insp.push(['wid', 179419067]);
+                  var ldinsp = function(){
+                  if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=179419067&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+                  setTimeout(ldinsp, 0);
+              })();`
+                        }),
                         /*#__PURE__*/ jsx_runtime_.jsx((script_default()), {
                             src: "https://www.googletagmanager.com/gtag/js?id=G-WVXW8DQXW5"
                         }),
