@@ -19,7 +19,7 @@ module.exports = require("os");
 
 /***/ }),
 
-/***/ 93535:
+/***/ 79956:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -53,28 +53,11 @@ var module_default = /*#__PURE__*/__webpack_require__.n(app_route_module);
 var next_request = __webpack_require__(47301);
 // EXTERNAL MODULE: ./node_modules/next/dist/server/web/exports/next-response.js
 var next_response = __webpack_require__(32413);
+// EXTERNAL MODULE: ./config/dbConfig.js
+var dbConfig = __webpack_require__(72212);
 // EXTERNAL MODULE: external "mongoose"
 var external_mongoose_ = __webpack_require__(11185);
 var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_);
-;// CONCATENATED MODULE: ./config/dbConfig.js
-
-async function connect() {
-    try {
-        external_mongoose_default().connect(process.env.MONGO_URI);
-        const connection = (external_mongoose_default()).connection;
-        connection.on("connected", ()=>{
-            console.log("MongoDB connected successfully");
-        });
-        connection.on("error", (err)=>{
-            console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
-            process.exit();
-        });
-    } catch (error) {
-        console.log("Something goes wrong!");
-        console.log(error);
-    }
-}
-
 ;// CONCATENATED MODULE: ./models/subscribers.js
 
 const subscribersSchema = new (external_mongoose_default()).Schema({
@@ -100,7 +83,7 @@ const Subscribers = (external_mongoose_default()).models.subscribers || external
 
 
 
-connect();
+(0,dbConfig/* connect */.$)();
 async function POST(req, res) {
     const data = await req.json();
     let response;
@@ -182,6 +165,35 @@ async function GET(req, res) {
 
 /***/ }),
 
+/***/ 72212:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   $: () => (/* binding */ connect)
+/* harmony export */ });
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11185);
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
+
+async function connect() {
+    try {
+        mongoose__WEBPACK_IMPORTED_MODULE_0___default().connect(process.env.MONGO_URI);
+        const connection = (mongoose__WEBPACK_IMPORTED_MODULE_0___default().connection);
+        connection.on("connected", ()=>{
+            console.log("MongoDB connected successfully");
+        });
+        connection.on("error", (err)=>{
+            console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
+            process.exit();
+        });
+    } catch (error) {
+        console.log("Something goes wrong!");
+        console.log(error);
+    }
+}
+
+
+/***/ }),
+
 /***/ 47301:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -229,7 +241,7 @@ const _response = __webpack_require__(72917); //# sourceMappingURL=next-response
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625,569], () => (__webpack_exec__(93535)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,569], () => (__webpack_exec__(79956)));
 module.exports = __webpack_exports__;
 
 })();

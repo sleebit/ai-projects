@@ -8,7 +8,7 @@
   "/apps/youtube-summarizer/page": "app/apps/youtube-summarizer/page.js",
   "/profile/page": "app/profile/page.js",
   "/profile/account/page": "app/profile/account/page.js",
-  "/profile/appearance/page": "app/profile/appearance/page.js",
   "/profile/display/page": "app/profile/display/page.js",
+  "/profile/appearance/page": "app/profile/appearance/page.js",
   "/profile/notifications/page": "app/profile/notifications/page.js"
 }

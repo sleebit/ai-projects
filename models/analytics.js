@@ -8,6 +8,9 @@ const analyticsSchema = new mongoose.Schema(
     geo: {
       type: Object,
     },
+    videoTitle: {
+      type: String,
+    },
     data: {
       type: Object,
     },

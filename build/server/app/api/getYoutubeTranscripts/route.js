@@ -280,6 +280,8 @@ class YoutubeTranscript {
     }
 }
 
+// EXTERNAL MODULE: ./config/dbConfig.js
+var dbConfig = __webpack_require__(72212);
 // EXTERNAL MODULE: external "mongoose"
 var external_mongoose_ = __webpack_require__(11185);
 var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_);
@@ -291,6 +293,9 @@ const analyticsSchema = new (external_mongoose_default()).Schema({
     },
     geo: {
         type: Object
+    },
+    videoTitle: {
+        type: String
     },
     data: {
         type: Object
@@ -311,20 +316,26 @@ const Analytics = (external_mongoose_default()).models.analytics || external_mon
 
 
 
+
+(0,dbConfig/* connect */.$)();
 async function POST(req, res) {
     const data = await req.json();
     const ip = req.headers.get("x-real-ip");
-    const { data: geo } = await axios/* default */.Z.get(`https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`);
+    let geo;
+    try {
+        const { data } = await axios/* default */.Z.get(`https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`);
+        geo = data;
+    } catch (e) {
+        geo = {};
+    }
     const deviceInfo = (0,user_agent/* default */.Z)(req);
     try {
         const transcript = await YoutubeTranscript.fetchTranscript(data.url);
         await analytics.create({
             ip: ip || "",
             geo: geo || {},
-            data: {
-                ...data,
-                videoTitle: transcript.videoTitle
-            } || {},
+            data: data || {},
+            videoTitle: transcript.videoTitle || "",
             deviceInfo: deviceInfo || {}
         });
         return next_response/* default */.Z.json({
@@ -375,6 +386,35 @@ async function POST(req, res) {
     const originalPathname = "/api/getYoutubeTranscripts/route"
 
     
+
+/***/ }),
+
+/***/ 72212:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   $: () => (/* binding */ connect)
+/* harmony export */ });
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11185);
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
+
+async function connect() {
+    try {
+        mongoose__WEBPACK_IMPORTED_MODULE_0___default().connect(process.env.MONGO_URI);
+        const connection = (mongoose__WEBPACK_IMPORTED_MODULE_0___default().connection);
+        connection.on("connected", ()=>{
+            console.log("MongoDB connected successfully");
+        });
+        connection.on("error", (err)=>{
+            console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
+            process.exit();
+        });
+    } catch (error) {
+        console.log("Something goes wrong!");
+        console.log(error);
+    }
+}
+
 
 /***/ })
 

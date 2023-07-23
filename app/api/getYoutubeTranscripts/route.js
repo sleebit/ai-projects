@@ -2,15 +2,26 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 import axios from "axios";
 
 import { YoutubeTranscript } from "../../../helpers/youtube-transcript";
+
+import { connect } from "@/config/dbConfig";
 import Analytics from "@/models/analytics";
+
+connect();
 
 export async function POST(req, res) {
   const data = await req.json();
 
   const ip = req.headers.get("x-real-ip");
-  const { data: geo } = await axios.get(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`
-  );
+  let geo;
+  try {
+    const { data } = await axios.get(
+      `https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`
+    );
+    geo = data;
+  } catch (e) {
+    geo = {};
+  }
+
   const deviceInfo = userAgent(req);
 
   try {
@@ -19,7 +30,8 @@ export async function POST(req, res) {
     await Analytics.create({
       ip: ip || "",
       geo: geo || {},
-      data: { ...data, videoTitle: transcript.videoTitle } || {},
+      data: data || {},
+      videoTitle: transcript.videoTitle || "",
       deviceInfo: deviceInfo || {},
     });
     return NextResponse.json(
