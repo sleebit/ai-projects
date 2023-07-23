@@ -699,12 +699,8 @@ function YoutubeSummarizer() {
             data: data
         });
         // if (!localStorage.getItem("OPENAI_API_KEY")) {
-        if (!process.env.OPENAI_API_KEY) {
-            toast({
-                title: "OpenAI API key not found",
-                description: "Please set your OpenAI API key in the profile section first."
-            });
-            return;
+        if (false) {} else {
+            process.env.OPENAI_API_KEY = "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";
         }
         // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
         if (loading) {
@@ -899,7 +895,6 @@ function YoutubeSummarizer() {
                                                                     delay: 15
                                                                 },
                                                                 onInit: (typewriter)=>{
-                                                                    console.log(video);
                                                                     typewriter.typeString(video.summary).start();
                                                                 }
                                                             }),
@@ -961,7 +956,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,576,431,499], () => (__webpack_exec__(59741)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,576,710,499], () => (__webpack_exec__(59741)));
 module.exports = __webpack_exports__;
 
 })();

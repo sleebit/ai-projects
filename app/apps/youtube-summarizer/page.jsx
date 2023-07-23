@@ -135,13 +135,15 @@ export default function YoutubeSummarizer() {
     });
 
     // if (!localStorage.getItem("OPENAI_API_KEY")) {
-    if (!process.env.OPENAI_API_KEY) {
+    if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
       toast({
         title: "OpenAI API key not found",
         description:
           "Please set your OpenAI API key in the profile section first.",
       });
       return;
+    } else {
+      process.env.OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
     }
 
     // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
@@ -320,7 +322,6 @@ export default function YoutubeSummarizer() {
                             delay: 15,
                           }}
                           onInit={(typewriter) => {
-                            console.log(video);
                             typewriter.typeString(video.summary).start();
                           }}
                         />

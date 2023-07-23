@@ -2,13 +2,13 @@
   "/favicon.ico/route": "/favicon.ico",
   "/page": "/",
   "/apps/page": "/apps",
-  "/api/getProjects/route": "/api/getProjects",
   "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
+  "/api/getProjects/route": "/api/getProjects",
   "/api/newsletter/route": "/api/newsletter",
   "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/profile/page": "/profile",
   "/profile/account/page": "/profile/account",
+  "/profile/display/page": "/profile/display",
   "/profile/appearance/page": "/profile/appearance",
-  "/profile/notifications/page": "/profile/notifications",
-  "/profile/display/page": "/profile/display"
+  "/profile/notifications/page": "/profile/notifications"
 }
