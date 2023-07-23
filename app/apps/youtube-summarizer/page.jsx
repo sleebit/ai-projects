@@ -57,6 +57,14 @@ export default function YoutubeSummarizer() {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const oldSummaries = localStorage.getItem("summaries");
+
+    if (oldSummaries) {
+      setSummaries(JSON.parse(oldSummaries).summaries);
+    }
+  }, []);
+
   const {
     reactiveTimeTaken,
     timeTaken,
@@ -122,12 +130,12 @@ export default function YoutubeSummarizer() {
   };
 
   async function onSubmit(data) {
-    console.log(data);
     gtag("event", "YOUTUBE_SUMMARIZATION", {
       data: data,
     });
 
-    if (!localStorage.getItem("OPENAI_API_KEY")) {
+    // if (!localStorage.getItem("OPENAI_API_KEY")) {
+    if (!process.env.OPENAI_API_KEY) {
       toast({
         title: "OpenAI API key not found",
         description:
@@ -136,7 +144,7 @@ export default function YoutubeSummarizer() {
       return;
     }
 
-    process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
+    // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
 
     if (loading) {
       toast({
@@ -162,8 +170,7 @@ export default function YoutubeSummarizer() {
         }
 
         if (summaryResp.status) {
-          setSummaries([
-            ...summaries,
+          let finalSummaries = [
             {
               ...apiResp.data,
               ...summaryResp.data,
@@ -174,7 +181,13 @@ export default function YoutubeSummarizer() {
               } Summary`,
               timeTaken: formatTime(timeTaken.current),
             },
-          ]);
+            ...summaries,
+          ];
+          localStorage.setItem(
+            "summaries",
+            JSON.stringify({ summaries: finalSummaries })
+          );
+          setSummaries(finalSummaries);
         } else {
           toast({
             title: "Error",
@@ -203,7 +216,7 @@ export default function YoutubeSummarizer() {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex w-full max-w-full flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-wider md:text-4xl mb-12">
+        <h1 className="text-3xl font-extrabold leading-tight tracking-wider md:text-4xl m-auto mb-12">
           Youtube Summarizer <br className="hidden sm:inline" />
         </h1>
 
@@ -211,78 +224,79 @@ export default function YoutubeSummarizer() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col md:flex-row space-y-6 md:space-x-6 md:-space-y-0"
+              className="flex flex-col md:flex-row items-center space-x-4 space-y-4 md:space-y-0"
             >
-              <FormField
-                control={form.control}
-                name="summaryType"
-                render={({ field }) => (
-                  <FormItem>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <SelectTrigger className="w-[220px]">
-                        <SelectValue placeholder="Select summary type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Summary Type</SelectLabel>
-                          <SelectItem value="quick">Quick Summary</SelectItem>
-                          <SelectItem value="detailed">
-                            Detailed Summary
-                          </SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="youtubeLink"
-                render={({ field }) => (
-                  <FormItem>
-                    <div className="flex w-full max-w-lg items-center space-x-2">
+              <div className="flex flex-col md:flex-row space-y-4 md:space-x-6 md:space-y-0">
+                <FormField
+                  control={form.control}
+                  name="summaryType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="w-[260px] md:w-[180px]">
+                          <SelectValue placeholder="Select summary type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Summary Type</SelectLabel>
+                            <SelectItem value="quick">Quick Summary</SelectItem>
+                            <SelectItem value="detailed" disabled>
+                              Detailed Summary
+                            </SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="youtubeLink"
+                  render={({ field }) => (
+                    <FormItem>
+                      {/* <div className="flex w-full max-w-lg items-center space-x-2"> */}
                       <FormControl>
                         <Input
                           placeholder="Enter any Youtube link"
                           {...field}
                         />
                       </FormControl>
-                      <Button type="submit">
-                        <div
-                          className="animate-spin"
-                          viewBox="0 0 24 24"
-                          style={{
-                            display: loading ? "block" : "none",
-                          }}
-                        >
-                          <Loader2Icon />
-                        </div>
-                        <span className="whitespace-nowrap ml-2 mr-[4px]">
-                          {loading ? "Summarizing in" : "Summarize"}
-                        </span>
-                        <span
-                          className="whitespace-nowrap"
-                          style={{
-                            display: loading ? "block" : "none",
-                          }}
-                        >
-                          {formatTime(reactiveTimeTaken)}
-                        </span>
-                      </Button>
-                    </div>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      {/* </div> */}
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <Button type="submit">
+                <div
+                  className="animate-spin"
+                  viewBox="0 0 24 24"
+                  style={{
+                    display: loading ? "block" : "none",
+                  }}
+                >
+                  <Loader2Icon />
+                </div>
+                <span className="whitespace-nowrap ml-2 mr-[4px]">
+                  {loading ? "Summarizing in" : "Summarize"}
+                </span>
+                <span
+                  className="whitespace-nowrap"
+                  style={{
+                    display: loading ? "block" : "none",
+                  }}
+                >
+                  {formatTime(reactiveTimeTaken)}
+                </span>
+              </Button>
             </form>
             <div className="flex flex-col items-center">
-              {/* <h2 className="text-2xl text-center font-semibold tracking-tight mt-4">
-                Here lies your video summarizations.
-              </h2> */}
               <Accordion
                 type="single"
                 collapsible
@@ -295,8 +309,8 @@ export default function YoutubeSummarizer() {
                     className="bg-[#2d333f4d] p-4"
                   >
                     <AccordionTrigger>
-                      <h2 className="text-lg text-center font-semibold tracking-tight text-[#e1e7ee]">
-                        &#8226; {video.summaryType} - {video.videoTitle}
+                      <h2 className="text-lg text-left font-semibold tracking-tight text-[#e1e7ee]">
+                        &#8226; {video.videoTitle}
                       </h2>
                     </AccordionTrigger>
                     <AccordionContent>

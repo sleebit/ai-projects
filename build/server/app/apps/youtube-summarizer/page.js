@@ -634,6 +634,12 @@ function YoutubeSummarizer() {
     const { toast } = (0,use_toast/* useToast */.pm)();
     const [summaries, setSummaries] = (0,react_.useState)([]);
     const [loading, setLoading] = (0,react_.useState)(false);
+    (0,react_.useEffect)(()=>{
+        const oldSummaries = localStorage.getItem("summaries");
+        if (oldSummaries) {
+            setSummaries(JSON.parse(oldSummaries).summaries);
+        }
+    }, []);
     const { reactiveTimeTaken, timeTaken, startLoadingInterval, stopLoadingInterval } = hooks_useLoadingInterval(1250);
     const formatTime = (seconds)=>{
         const minutes = Math.floor(seconds / 60);
@@ -689,18 +695,18 @@ function YoutubeSummarizer() {
         return "Detailed Summary";
     };
     async function onSubmit(data) {
-        console.log(data);
         gtag("event", "YOUTUBE_SUMMARIZATION", {
             data: data
         });
-        if (!localStorage.getItem("OPENAI_API_KEY")) {
+        // if (!localStorage.getItem("OPENAI_API_KEY")) {
+        if (!process.env.OPENAI_API_KEY) {
             toast({
                 title: "OpenAI API key not found",
                 description: "Please set your OpenAI API key in the profile section first."
             });
             return;
         }
-        process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
+        // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
         if (loading) {
             toast({
                 title: "Loading",
@@ -726,8 +732,7 @@ function YoutubeSummarizer() {
                     });
                 }
                 if (summaryResp.status) {
-                    setSummaries([
-                        ...summaries,
+                    let finalSummaries = [
                         {
                             ...apiResp.data,
                             ...summaryResp.data,
@@ -735,8 +740,13 @@ function YoutubeSummarizer() {
                             summary: summaryResp.data.summary,
                             summaryType: `${data.summaryType[0].toUpperCase() + data.summaryType.slice(1)} Summary`,
                             timeTaken: formatTime(timeTaken.current)
-                        }
-                    ]);
+                        },
+                        ...summaries
+                    ];
+                    localStorage.setItem("summaries", JSON.stringify({
+                        summaries: finalSummaries
+                    }));
+                    setSummaries(finalSummaries);
                 } else {
                     toast({
                         title: "Error",
@@ -762,7 +772,7 @@ function YoutubeSummarizer() {
             className: "flex w-full max-w-full flex-col items-start gap-2",
             children: [
                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h1", {
-                    className: "text-3xl font-extrabold leading-tight tracking-wider md:text-4xl mb-12",
+                    className: "text-3xl font-extrabold leading-tight tracking-wider md:text-4xl m-auto mb-12",
                     children: [
                         "Youtube Summarizer ",
                         /*#__PURE__*/ jsx_runtime_.jsx("br", {
@@ -777,50 +787,51 @@ function YoutubeSummarizer() {
                         children: [
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("form", {
                                 onSubmit: form.handleSubmit(onSubmit),
-                                className: "flex flex-col md:flex-row space-y-6 md:space-x-6 md:-space-y-0",
+                                className: "flex flex-col md:flex-row items-center space-x-4 space-y-4 md:space-y-0",
                                 children: [
-                                    /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormField */.Wi, {
-                                        control: form.control,
-                                        name: "summaryType",
-                                        render: ({ field })=>/*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormItem */.xJ, {
-                                                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Select, {
-                                                    onValueChange: field.onChange,
-                                                    defaultValue: field.value,
-                                                    children: [
-                                                        /*#__PURE__*/ jsx_runtime_.jsx(SelectTrigger, {
-                                                            className: "w-[220px]",
-                                                            children: /*#__PURE__*/ jsx_runtime_.jsx(SelectValue, {
-                                                                placeholder: "Select summary type"
-                                                            })
-                                                        }),
-                                                        /*#__PURE__*/ jsx_runtime_.jsx(SelectContent, {
-                                                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(SelectGroup, {
-                                                                children: [
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx(SelectLabel, {
-                                                                        children: "Summary Type"
-                                                                    }),
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
-                                                                        value: "quick",
-                                                                        children: "Quick Summary"
-                                                                    }),
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
-                                                                        value: "detailed",
-                                                                        children: "Detailed Summary"
+                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                        className: "flex flex-col md:flex-row space-y-4 md:space-x-6 md:space-y-0",
+                                        children: [
+                                            /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormField */.Wi, {
+                                                control: form.control,
+                                                name: "summaryType",
+                                                render: ({ field })=>/*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormItem */.xJ, {
+                                                        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Select, {
+                                                            onValueChange: field.onChange,
+                                                            defaultValue: field.value,
+                                                            children: [
+                                                                /*#__PURE__*/ jsx_runtime_.jsx(SelectTrigger, {
+                                                                    className: "w-[260px] md:w-[180px]",
+                                                                    children: /*#__PURE__*/ jsx_runtime_.jsx(SelectValue, {
+                                                                        placeholder: "Select summary type"
                                                                     })
-                                                                ]
-                                                            })
+                                                                }),
+                                                                /*#__PURE__*/ jsx_runtime_.jsx(SelectContent, {
+                                                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(SelectGroup, {
+                                                                        children: [
+                                                                            /*#__PURE__*/ jsx_runtime_.jsx(SelectLabel, {
+                                                                                children: "Summary Type"
+                                                                            }),
+                                                                            /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
+                                                                                value: "quick",
+                                                                                children: "Quick Summary"
+                                                                            }),
+                                                                            /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
+                                                                                value: "detailed",
+                                                                                disabled: true,
+                                                                                children: "Detailed Summary"
+                                                                            })
+                                                                        ]
+                                                                    })
+                                                                })
+                                                            ]
                                                         })
-                                                    ]
-                                                })
-                                            })
-                                    }),
-                                    /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormField */.Wi, {
-                                        control: form.control,
-                                        name: "youtubeLink",
-                                        render: ({ field })=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_form/* FormItem */.xJ, {
-                                                children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "flex w-full max-w-lg items-center space-x-2",
+                                                    })
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormField */.Wi, {
+                                                control: form.control,
+                                                name: "youtubeLink",
+                                                render: ({ field })=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_form/* FormItem */.xJ, {
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormControl */.NI, {
                                                                 children: /*#__PURE__*/ jsx_runtime_.jsx(input/* Input */.I, {
@@ -828,35 +839,35 @@ function YoutubeSummarizer() {
                                                                     ...field
                                                                 })
                                                             }),
-                                                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_button/* Button */.z, {
-                                                                type: "submit",
-                                                                children: [
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                        className: "animate-spin",
-                                                                        viewBox: "0 0 24 24",
-                                                                        style: {
-                                                                            display: loading ? "block" : "none"
-                                                                        },
-                                                                        children: /*#__PURE__*/ jsx_runtime_.jsx(lucide_react/* Loader2Icon */.Ujj, {})
-                                                                    }),
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                                        className: "whitespace-nowrap ml-2 mr-[4px]",
-                                                                        children: loading ? "Summarizing in" : "Summarize"
-                                                                    }),
-                                                                    /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                                        className: "whitespace-nowrap",
-                                                                        style: {
-                                                                            display: loading ? "block" : "none"
-                                                                        },
-                                                                        children: formatTime(reactiveTimeTaken)
-                                                                    })
-                                                                ]
-                                                            })
+                                                            /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormMessage */.zG, {})
                                                         ]
-                                                    }),
-                                                    /*#__PURE__*/ jsx_runtime_.jsx(ui_form/* FormMessage */.zG, {})
-                                                ]
+                                                    })
                                             })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ui_button/* Button */.z, {
+                                        type: "submit",
+                                        children: [
+                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                className: "animate-spin",
+                                                viewBox: "0 0 24 24",
+                                                style: {
+                                                    display: loading ? "block" : "none"
+                                                },
+                                                children: /*#__PURE__*/ jsx_runtime_.jsx(lucide_react/* Loader2Icon */.Ujj, {})
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                className: "whitespace-nowrap ml-2 mr-[4px]",
+                                                children: loading ? "Summarizing in" : "Summarize"
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                className: "whitespace-nowrap",
+                                                style: {
+                                                    display: loading ? "block" : "none"
+                                                },
+                                                children: formatTime(reactiveTimeTaken)
+                                            })
+                                        ]
                                     })
                                 ]
                             }),
@@ -872,11 +883,9 @@ function YoutubeSummarizer() {
                                             children: [
                                                 /*#__PURE__*/ jsx_runtime_.jsx(AccordionTrigger, {
                                                     children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h2", {
-                                                        className: "text-lg text-center font-semibold tracking-tight text-[#e1e7ee]",
+                                                        className: "text-lg text-left font-semibold tracking-tight text-[#e1e7ee]",
                                                         children: [
                                                             "• ",
-                                                            video.summaryType,
-                                                            " - ",
                                                             video.videoTitle
                                                         ]
                                                     })
