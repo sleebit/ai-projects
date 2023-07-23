@@ -4,8 +4,8 @@ import axios from "axios";
 import { YoutubeTranscript } from "../../../helpers/youtube-transcript";
 import Analytics from "@/models/analytics";
 
-export async function POST(request, response) {
-  const data = await request.json();
+export async function POST(req, res) {
+  const data = await req.json();
 
   const ip = req.headers["x-real-ip"];
   const { data: geo } = await axios.get(
