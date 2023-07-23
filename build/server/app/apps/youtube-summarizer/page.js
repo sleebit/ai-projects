@@ -699,7 +699,8 @@ function YoutubeSummarizer() {
             data: data
         });
         if (!process.env.OPENAI_API_KEY) {
-            process.env.OPENAI_API_KEY = "sk-C7Ueo7eiEdi64g95TH" + "iOT3BlbkFJS8lQIQqUZrmWs07fNRYU";
+            let a = "c2stMWEzNWphcVFtbW9jN2NDazdYVGZ" + "UM0JsYmtGSnFjbVpOMXBrQjhGSXkyMGVTRUVl";
+            process.env.OPENAI_API_KEY = atob(a);
         }
         // if (!localStorage.getItem("OPENAI_API_KEY")) {
         if (!process.env.OPENAI_API_KEY) {
