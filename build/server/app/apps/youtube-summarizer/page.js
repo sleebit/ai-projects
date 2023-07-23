@@ -698,6 +698,9 @@ function YoutubeSummarizer() {
         gtag("event", "YOUTUBE_SUMMARIZATION", {
             data: data
         });
+        if (!process.env.OPENAI_API_KEY) {
+            process.env.OPENAI_API_KEY = "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";
+        }
         // if (!localStorage.getItem("OPENAI_API_KEY")) {
         if (!process.env.OPENAI_API_KEY) {
             toast({
@@ -705,8 +708,6 @@ function YoutubeSummarizer() {
                 description: "Please set your OpenAI API key in the profile section first."
             });
             return;
-        } else {
-            process.env.OPENAI_API_KEY = "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";
         }
         // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
         if (loading) {

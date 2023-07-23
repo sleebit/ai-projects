@@ -134,6 +134,10 @@ export default function YoutubeSummarizer() {
       data: data,
     });
 
+    if (!process.env.OPENAI_API_KEY) {
+      process.env.OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+    }
+
     // if (!localStorage.getItem("OPENAI_API_KEY")) {
     if (!process.env.OPENAI_API_KEY) {
       toast({
@@ -142,8 +146,6 @@ export default function YoutubeSummarizer() {
           "Please set your OpenAI API key in the profile section first.",
       });
       return;
-    } else {
-      process.env.OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
     }
 
     // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
