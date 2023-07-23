@@ -7,8 +7,8 @@
   "/api/newsletter/route": "/api/newsletter",
   "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/profile/page": "/profile",
+  "/profile/appearance/page": "/profile/appearance",
   "/profile/account/page": "/profile/account",
   "/profile/display/page": "/profile/display",
-  "/profile/appearance/page": "/profile/appearance",
   "/profile/notifications/page": "/profile/notifications"
 }

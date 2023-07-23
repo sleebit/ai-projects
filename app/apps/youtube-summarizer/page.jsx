@@ -135,7 +135,7 @@ export default function YoutubeSummarizer() {
     });
 
     // if (!localStorage.getItem("OPENAI_API_KEY")) {
-    if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
+    if (!process.env.OPENAI_API_KEY) {
       toast({
         title: "OpenAI API key not found",
         description:

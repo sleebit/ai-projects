@@ -699,8 +699,14 @@ function YoutubeSummarizer() {
             data: data
         });
         // if (!localStorage.getItem("OPENAI_API_KEY")) {
-        if (false) {} else {
-            process.env.OPENAI_API_KEY = "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";
+        if (!process.env.OPENAI_API_KEY) {
+            toast({
+                title: "OpenAI API key not found",
+                description: "Please set your OpenAI API key in the profile section first."
+            });
+            return;
+        } else {
+            process.env.OPENAI_API_KEY = "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";
         }
         // process.env.OPENAI_API_KEY = localStorage.getItem("OPENAI_API_KEY");
         if (loading) {
