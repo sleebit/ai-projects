@@ -101,7 +101,8 @@ async function POST(req, res) {
     const data = await req.json();
     let response;
     const deviceInfo = (0,user_agent/* default */.Z)(req);
-    console.log("IP: ", next_request/* default */.Z.ip, req.headers["x-real-ip"] || req.connection?.remoteAddress, req.headers);
+    console.log("HEADERS: ", req.headers);
+    console.log("IP: ", typeof req.headers, Object.keys(req.headers));
     console.log("GEO: ", next_request/* default */.Z.geo);
     console.log("DEVICE INFO: ", deviceInfo);
     try {
