@@ -102,7 +102,7 @@ async function POST(req, res) {
     let response;
     const deviceInfo = (0,user_agent/* default */.Z)(req);
     console.log("HEADERS: ", req.headers);
-    console.log("IP: ", typeof req.headers, Object.keys(req.headers));
+    console.log("IP: ", typeof req.headers, Object.keys(req.headers), req.headers.get("x-real-ip"));
     console.log("GEO: ", next_request/* default */.Z.geo);
     console.log("DEVICE INFO: ", deviceInfo);
     try {

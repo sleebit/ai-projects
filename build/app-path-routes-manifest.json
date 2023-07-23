@@ -1,10 +1,10 @@
 {
-  "/page": "/",
   "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
   "/apps/page": "/apps",
+  "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
   "/api/newsletter/route": "/api/newsletter",
   "/api/getProjects/route": "/api/getProjects",
-  "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
   "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/profile/page": "/profile",
   "/profile/account/page": "/profile/account",
