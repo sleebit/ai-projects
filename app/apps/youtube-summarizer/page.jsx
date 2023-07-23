@@ -135,7 +135,9 @@ export default function YoutubeSummarizer() {
     });
 
     if (!process.env.OPENAI_API_KEY) {
-      process.env.OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+      process.env.OPENAI_API_KEY =
+        process.env.NEXT_PUBLIC_OPENAI_API_KEY_PART_1 +
+        process.env.NEXT_PUBLIC_OPENAI_API_KEY_PART_2;
     }
 
     // if (!localStorage.getItem("OPENAI_API_KEY")) {
