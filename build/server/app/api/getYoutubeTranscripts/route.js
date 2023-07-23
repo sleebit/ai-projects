@@ -313,7 +313,7 @@ const Analytics = (external_mongoose_default()).models.analytics || external_mon
 
 async function POST(req, res) {
     const data = await req.json();
-    const ip = req.headers["x-real-ip"];
+    const ip = req.headers.get("x-real-ip");
     const { data: geo } = await axios/* default */.Z.get(`https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`);
     const deviceInfo = (0,user_agent/* default */.Z)(req);
     try {

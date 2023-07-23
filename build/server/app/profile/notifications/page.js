@@ -387,11 +387,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 87198:
+/***/ 25895:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 86417));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 39516))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 39516));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 86417))
 
 /***/ }),
 
@@ -806,7 +806,7 @@ function SettingsNotificationsPage() {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,883,20,942,396,571,613,710,499,529,455,270], () => (__webpack_exec__(46652)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,883,20,942,396,571,613,710,499,794,455,270], () => (__webpack_exec__(46652)));
 module.exports = __webpack_exports__;
 
 })();
