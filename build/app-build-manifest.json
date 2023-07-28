@@ -47,7 +47,7 @@
       "static/chunks/214-33ac9a3584c4adf4.js",
       "static/chunks/208-83068c6e75b04760.js",
       "static/chunks/409-5c5cb07d04c67a41.js",
-      "static/chunks/app/apps/youtube-summarizer/page-73eed791978b7200.js"
+      "static/chunks/app/apps/youtube-summarizer/page-a1d0992ec7cd75a4.js"
     ],
     "/profile/page": [
       "static/chunks/webpack-a40432a2402b8270.js",
@@ -68,7 +68,7 @@
       "static/chunks/410-8dceddb6e99a18ed.js",
       "static/chunks/app/profile/layout-50f719256c0ea91b.js"
     ],
-    "/profile/appearance/page": [
+    "/profile/display/page": [
       "static/chunks/webpack-a40432a2402b8270.js",
       "static/chunks/bce60fc1-b5545ed1a5a7ea1d.js",
       "static/chunks/769-b6d84d70b1f76028.js",
@@ -76,9 +76,8 @@
       "static/chunks/9dbc26f1-065d83d333146840.js",
       "static/chunks/16-bf4c225695b71ed3.js",
       "static/chunks/217-c604ea3785302021.js",
-      "static/chunks/175-2788d48a0341bcc0.js",
-      "static/chunks/733-7d74e02b95e74b0a.js",
-      "static/chunks/app/profile/appearance/page-96eed6b89eed79b7.js"
+      "static/chunks/636-f1726b970c1920f1.js",
+      "static/chunks/app/profile/display/page-0239623c1cb18a9c.js"
     ],
     "/profile/account/page": [
       "static/chunks/webpack-a40432a2402b8270.js",
@@ -92,7 +91,7 @@
       "static/chunks/660-cceb65f70868fe37.js",
       "static/chunks/app/profile/account/page-be002a6b55c0d9e2.js"
     ],
-    "/profile/display/page": [
+    "/profile/appearance/page": [
       "static/chunks/webpack-a40432a2402b8270.js",
       "static/chunks/bce60fc1-b5545ed1a5a7ea1d.js",
       "static/chunks/769-b6d84d70b1f76028.js",
@@ -100,8 +99,9 @@
       "static/chunks/9dbc26f1-065d83d333146840.js",
       "static/chunks/16-bf4c225695b71ed3.js",
       "static/chunks/217-c604ea3785302021.js",
-      "static/chunks/636-f1726b970c1920f1.js",
-      "static/chunks/app/profile/display/page-0239623c1cb18a9c.js"
+      "static/chunks/175-2788d48a0341bcc0.js",
+      "static/chunks/733-7d74e02b95e74b0a.js",
+      "static/chunks/app/profile/appearance/page-96eed6b89eed79b7.js"
     ],
     "/profile/notifications/page": [
       "static/chunks/webpack-a40432a2402b8270.js",

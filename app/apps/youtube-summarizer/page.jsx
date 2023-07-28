@@ -63,9 +63,13 @@ export default function YoutubeSummarizer() {
 
     if (oldSummaries) {
       oldSummaries = JSON.parse(oldSummaries).summaries;
-      // oldSummaries.map((summary) => {
-      //   summary.summary = summary.summary.replaceAll("\n", "\n\n");
-      // });
+      oldSummaries.map((summary) => {
+        summary.transcript = "";
+      });
+      localStorage.setItem(
+        "summaries",
+        JSON.stringify({ summaries: oldSummaries })
+      );
       setSummaries(oldSummaries);
     }
   }, []);
@@ -285,9 +289,18 @@ export default function YoutubeSummarizer() {
             },
             ...summaries,
           ];
+
+          let summariesForLocalStorage = [];
+          finalSummaries.forEach((summary) => {
+            summariesForLocalStorage.push({
+              ...summary,
+              transcript: "",
+            });
+          });
+
           localStorage.setItem(
             "summaries",
-            JSON.stringify({ summaries: finalSummaries })
+            JSON.stringify({ summaries: summariesForLocalStorage })
           );
           setSummaries(finalSummaries);
         } else {

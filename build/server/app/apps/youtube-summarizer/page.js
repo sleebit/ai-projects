@@ -641,9 +641,12 @@ function YoutubeSummarizer() {
         let oldSummaries = localStorage.getItem("summaries");
         if (oldSummaries) {
             oldSummaries = JSON.parse(oldSummaries).summaries;
-            // oldSummaries.map((summary) => {
-            //   summary.summary = summary.summary.replaceAll("\n", "\n\n");
-            // });
+            oldSummaries.map((summary)=>{
+                summary.transcript = "";
+            });
+            localStorage.setItem("summaries", JSON.stringify({
+                summaries: oldSummaries
+            }));
             setSummaries(oldSummaries);
         }
     }, []);
@@ -841,8 +844,15 @@ function YoutubeSummarizer() {
                         },
                         ...summaries
                     ];
+                    let summariesForLocalStorage = [];
+                    finalSummaries.forEach((summary)=>{
+                        summariesForLocalStorage.push({
+                            ...summary,
+                            transcript: ""
+                        });
+                    });
                     localStorage.setItem("summaries", JSON.stringify({
-                        summaries: finalSummaries
+                        summaries: summariesForLocalStorage
                     }));
                     setSummaries(finalSummaries);
                 } else {
