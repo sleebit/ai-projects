@@ -163,7 +163,7 @@ export default function YoutubeSummarizer() {
         const final_combine_prompt_template = `Title: ${videoTitle}
         Transcript: {text}
         
-        Please generate a concise summary of the provided YouTube video transcript. Focus on the key points, main ideas, and important details. The summary should be informative, well-structured, and capture the essence of the video's content.
+        Please generate a concise summary of the provided YouTube video transcript in active voice. Focus on the key points, main ideas, and important details. The summary should be informative, well-structured, and capture the essence of the video's content.
 
         Summary:
         [Your generated summary will be placed here.]
@@ -175,15 +175,15 @@ export default function YoutubeSummarizer() {
           ...
 
         Main Ideas:
-        - 
-        - 
-        - 
+        1. 
+        2. 
+        3. 
           ...
 
         Important Details:
-        - 
-        - 
-        -         `;
+        1. 
+        2. 
+        3.         `;
         const PROMPT = new PromptTemplate({
           template: prompt_template,
           inputVariables: ["text"],
