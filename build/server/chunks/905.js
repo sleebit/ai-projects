@@ -1,5 +1,5 @@
-exports.id = 576;
-exports.ids = [576];
+exports.id = 905;
+exports.ids = [905];
 exports.modules = {
 
 /***/ 50598:
@@ -14367,8 +14367,8 @@ class conversation_ConversationChain extends (/* unused pure expression or super
 var sequential_chain = __webpack_require__(41364);
 // EXTERNAL MODULE: ./node_modules/langchain/dist/chains/combine_docs_chain.js
 var combine_docs_chain = __webpack_require__(61359);
-// EXTERNAL MODULE: ./node_modules/langchain/dist/chains/question_answering/load.js + 8 modules
-var load = __webpack_require__(49794);
+// EXTERNAL MODULE: ./node_modules/langchain/dist/chains/question_answering/load.js + 4 modules
+var load = __webpack_require__(17506);
 ;// CONCATENATED MODULE: ./node_modules/langchain/dist/chains/chat_vector_db_chain.js
 
 
@@ -24186,7 +24186,7 @@ class LLMChain extends base/* BaseChain */.l {
 
 /***/ }),
 
-/***/ 49794:
+/***/ 17506:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -24342,254 +24342,8 @@ const map_reduce_prompts_COMBINE_PROMPT_SELECTOR =
     [isChatModel, CHAT_COMBINE_PROMPT],
 ]);
 
-// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/base.js
-var base = __webpack_require__(71323);
-;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/selectors/LengthBasedExampleSelector.js
-
-function getLengthBased(text) {
-    return text.split(/\n| /).length;
-}
-class LengthBasedExampleSelector extends (/* unused pure expression or super */ null && (BaseExampleSelector)) {
-    constructor(data) {
-        super(data);
-        Object.defineProperty(this, "examples", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: []
-        });
-        Object.defineProperty(this, "examplePrompt", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "getTextLength", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: getLengthBased
-        });
-        Object.defineProperty(this, "maxLength", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 2048
-        });
-        Object.defineProperty(this, "exampleTextLengths", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: []
-        });
-        this.examplePrompt = data.examplePrompt;
-        this.maxLength = data.maxLength ?? 2048;
-        this.getTextLength = data.getTextLength ?? getLengthBased;
-    }
-    async addExample(example) {
-        this.examples.push(example);
-        const stringExample = await this.examplePrompt.format(example);
-        this.exampleTextLengths.push(this.getTextLength(stringExample));
-    }
-    async calculateExampleTextLengths(v, values) {
-        if (v.length > 0) {
-            return v;
-        }
-        const { examples, examplePrompt } = values;
-        const stringExamples = await Promise.all(examples.map((eg) => examplePrompt.format(eg)));
-        return stringExamples.map((eg) => this.getTextLength(eg));
-    }
-    async selectExamples(inputVariables) {
-        const inputs = Object.values(inputVariables).join(" ");
-        let remainingLength = this.maxLength - this.getTextLength(inputs);
-        let i = 0;
-        const examples = [];
-        while (remainingLength > 0 && i < this.examples.length) {
-            const newLength = remainingLength - this.exampleTextLengths[i];
-            if (newLength < 0) {
-                break;
-            }
-            else {
-                examples.push(this.examples[i]);
-                remainingLength = newLength;
-            }
-            i += 1;
-        }
-        return examples;
-    }
-    static async fromExamples(examples, args) {
-        const selector = new LengthBasedExampleSelector(args);
-        await Promise.all(examples.map((eg) => selector.addExample(eg)));
-        return selector;
-    }
-}
-
-;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/selectors/SemanticSimilarityExampleSelector.js
-
-
-function sortedValues(values) {
-    return Object.keys(values)
-        .sort()
-        .map((key) => values[key]);
-}
-class SemanticSimilarityExampleSelector extends (/* unused pure expression or super */ null && (BaseExampleSelector)) {
-    constructor(data) {
-        super(data);
-        Object.defineProperty(this, "vectorStore", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "k", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 4
-        });
-        Object.defineProperty(this, "exampleKeys", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "inputKeys", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        this.vectorStore = data.vectorStore;
-        this.k = data.k ?? 4;
-        this.exampleKeys = data.exampleKeys;
-        this.inputKeys = data.inputKeys;
-    }
-    async addExample(example) {
-        const inputKeys = this.inputKeys ?? Object.keys(example);
-        const stringExample = sortedValues(inputKeys.reduce((acc, key) => ({ ...acc, [key]: example[key] }), {})).join(" ");
-        await this.vectorStore.addDocuments([
-            new Document({
-                pageContent: stringExample,
-                metadata: { example },
-            }),
-        ]);
-    }
-    async selectExamples(inputVariables) {
-        const inputKeys = this.inputKeys ?? Object.keys(inputVariables);
-        const query = sortedValues(inputKeys.reduce((acc, key) => ({ ...acc, [key]: inputVariables[key] }), {})).join(" ");
-        const exampleDocs = await this.vectorStore.similaritySearch(query, this.k);
-        const examples = exampleDocs.map((doc) => doc.metadata);
-        if (this.exampleKeys) {
-            // If example keys are provided, filter examples to those keys.
-            return examples.map((example) => this.exampleKeys.reduce((acc, key) => ({ ...acc, [key]: example[key] }), {}));
-        }
-        return examples;
-    }
-    static async fromExamples(examples, embeddings, vectorStoreCls, options = {}) {
-        const inputKeys = options.inputKeys ?? null;
-        const stringExamples = examples.map((example) => sortedValues(inputKeys
-            ? inputKeys.reduce((acc, key) => ({ ...acc, [key]: example[key] }), {})
-            : example).join(" "));
-        const vectorStore = await vectorStoreCls.fromTexts(stringExamples, examples, // metadatas
-        embeddings, options);
-        return new SemanticSimilarityExampleSelector({
-            vectorStore,
-            k: options.k ?? 4,
-            exampleKeys: options.exampleKeys,
-            inputKeys: options.inputKeys,
-        });
-    }
-}
-
-// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/few_shot.js
-var few_shot = __webpack_require__(65686);
-// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/template.js
-var template = __webpack_require__(47283);
-;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/pipeline.js
-
-
-class PipelinePromptTemplate extends (/* unused pure expression or super */ null && (BasePromptTemplate)) {
-    constructor(input) {
-        super({ ...input, inputVariables: [] });
-        Object.defineProperty(this, "pipelinePrompts", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "finalPrompt", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        this.pipelinePrompts = input.pipelinePrompts;
-        this.finalPrompt = input.finalPrompt;
-        this.inputVariables = this.computeInputValues();
-    }
-    computeInputValues() {
-        const intermediateValues = this.pipelinePrompts.map((pipelinePrompt) => pipelinePrompt.name);
-        const inputValues = this.pipelinePrompts
-            .map((pipelinePrompt) => pipelinePrompt.prompt.inputVariables.filter((inputValue) => !intermediateValues.includes(inputValue)))
-            .flat();
-        return [...new Set(inputValues)];
-    }
-    static extractRequiredInputValues(allValues, requiredValueNames) {
-        return requiredValueNames.reduce((requiredValues, valueName) => {
-            // eslint-disable-next-line no-param-reassign
-            requiredValues[valueName] = allValues[valueName];
-            return requiredValues;
-        }, {});
-    }
-    async formatPipelinePrompts(values) {
-        const allValues = await this.mergePartialAndUserVariables(values);
-        for (const { name: pipelinePromptName, prompt: pipelinePrompt } of this
-            .pipelinePrompts) {
-            const pipelinePromptInputValues = PipelinePromptTemplate.extractRequiredInputValues(allValues, pipelinePrompt.inputVariables);
-            // eslint-disable-next-line no-instanceof/no-instanceof
-            if (pipelinePrompt instanceof ChatPromptTemplate) {
-                allValues[pipelinePromptName] = await pipelinePrompt.formatMessages(pipelinePromptInputValues);
-            }
-            else {
-                allValues[pipelinePromptName] = await pipelinePrompt.format(pipelinePromptInputValues);
-            }
-        }
-        return PipelinePromptTemplate.extractRequiredInputValues(allValues, this.finalPrompt.inputVariables);
-    }
-    async formatPromptValue(values) {
-        return this.finalPrompt.formatPromptValue(await this.formatPipelinePrompts(values));
-    }
-    async format(values) {
-        return this.finalPrompt.format(await this.formatPipelinePrompts(values));
-    }
-    async partial(values) {
-        const promptDict = { ...this };
-        promptDict.inputVariables = this.inputVariables.filter((iv) => !(iv in values));
-        promptDict.partialVariables = {
-            ...(this.partialVariables ?? {}),
-            ...values,
-        };
-        return new PipelinePromptTemplate(promptDict);
-    }
-    serialize() {
-        throw new Error("Not implemented.");
-    }
-    _getPromptType() {
-        return "pipeline";
-    }
-}
-
-;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/index.js
-
-
-
-
-
-
-
-
-
-
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/index.js + 3 modules
+var prompts = __webpack_require__(71476);
 ;// CONCATENATED MODULE: ./node_modules/langchain/dist/chains/question_answering/refine_prompts.js
 /* eslint-disable spaced-comment */
 
@@ -24603,7 +24357,7 @@ We have the opportunity to refine the existing answer
 ------------
 Given the new context, refine the original answer to better answer the question. 
 If the context isn't useful, return the original answer.`;
-const DEFAULT_REFINE_PROMPT = /*#__PURE__*/ new prompts_prompt.PromptTemplate({
+const DEFAULT_REFINE_PROMPT = /*#__PURE__*/ new prompts/* PromptTemplate */.Pf({
     inputVariables: ["question", "existing_answer", "context"],
     template: DEFAULT_REFINE_PROMPT_TMPL,
 });
@@ -24617,12 +24371,12 @@ We have the opportunity to refine the existing answer
 Given the new context, refine the original answer to better answer the question. 
 If the context isn't useful, return the original answer.`;
 const refine_prompts_messages = [
-    /*#__PURE__*/ chat/* HumanMessagePromptTemplate */.kq.fromTemplate("{question}"),
-    /*#__PURE__*/ chat/* AIMessagePromptTemplate */.gc.fromTemplate("{existing_answer}"),
-    /*#__PURE__*/ chat/* HumanMessagePromptTemplate */.kq.fromTemplate(refineTemplate),
+    /*#__PURE__*/ prompts/* HumanMessagePromptTemplate */.kq.fromTemplate("{question}"),
+    /*#__PURE__*/ prompts/* AIMessagePromptTemplate */.gc.fromTemplate("{existing_answer}"),
+    /*#__PURE__*/ prompts/* HumanMessagePromptTemplate */.kq.fromTemplate(refineTemplate),
 ];
 const CHAT_REFINE_PROMPT = 
-/*#__PURE__*/ chat/* ChatPromptTemplate */.ks.fromPromptMessages(refine_prompts_messages);
+/*#__PURE__*/ prompts/* ChatPromptTemplate */.ks.fromPromptMessages(refine_prompts_messages);
 const refine_prompts_REFINE_PROMPT_SELECTOR = 
 /*#__PURE__*/ new ConditionalPromptSelector(DEFAULT_REFINE_PROMPT, [
     [isChatModel, CHAT_REFINE_PROMPT],
@@ -24632,7 +24386,7 @@ const DEFAULT_TEXT_QA_PROMPT_TMPL = `Context information is below.
 {context}
 ---------------------
 Given the context information and not prior knowledge, answer the question: {question}`;
-const DEFAULT_TEXT_QA_PROMPT = /*#__PURE__*/ new prompts_prompt.PromptTemplate({
+const DEFAULT_TEXT_QA_PROMPT = /*#__PURE__*/ new prompts/* PromptTemplate */.Pf({
     inputVariables: ["context", "question"],
     template: DEFAULT_TEXT_QA_PROMPT_TMPL,
 });
@@ -24642,11 +24396,11 @@ const chat_qa_prompt_template = `Context information is below.
 ---------------------
 Given the context information and not prior knowledge, answer any questions`;
 const chat_messages = [
-    /*#__PURE__*/ chat/* SystemMessagePromptTemplate */.ov.fromTemplate(chat_qa_prompt_template),
-    /*#__PURE__*/ chat/* HumanMessagePromptTemplate */.kq.fromTemplate("{question}"),
+    /*#__PURE__*/ prompts/* SystemMessagePromptTemplate */.ov.fromTemplate(chat_qa_prompt_template),
+    /*#__PURE__*/ prompts/* HumanMessagePromptTemplate */.kq.fromTemplate("{question}"),
 ];
 const CHAT_QUESTION_PROMPT = 
-/*#__PURE__*/ chat/* ChatPromptTemplate */.ks.fromPromptMessages(chat_messages);
+/*#__PURE__*/ prompts/* ChatPromptTemplate */.ks.fromPromptMessages(chat_messages);
 const refine_prompts_QUESTION_PROMPT_SELECTOR = 
 /*#__PURE__*/ new ConditionalPromptSelector(DEFAULT_TEXT_QA_PROMPT, [
     [isChatModel, CHAT_QUESTION_PROMPT],
@@ -25033,7 +24787,7 @@ class SimpleSequentialChain extends base/* BaseChain */.l {
 /* harmony export */   VectorDBQAChain: () => (/* binding */ VectorDBQAChain)
 /* harmony export */ });
 /* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(40056);
-/* harmony import */ var _question_answering_load_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49794);
+/* harmony import */ var _question_answering_load_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17506);
 
 
 class VectorDBQAChain extends _base_js__WEBPACK_IMPORTED_MODULE_0__/* .BaseChain */ .l {
@@ -28150,6 +27904,277 @@ class FewShotPromptTemplate extends _base_js__WEBPACK_IMPORTED_MODULE_0__/* .Bas
 
 /***/ }),
 
+/***/ 71476:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  gc: () => (/* reexport */ chat/* AIMessagePromptTemplate */.gc),
+  ks: () => (/* reexport */ chat/* ChatPromptTemplate */.ks),
+  kq: () => (/* reexport */ chat/* HumanMessagePromptTemplate */.kq),
+  Pf: () => (/* reexport */ prompts_prompt.PromptTemplate),
+  ov: () => (/* reexport */ chat/* SystemMessagePromptTemplate */.ov)
+});
+
+// UNUSED EXPORTS: BaseChatPromptTemplate, BaseExampleSelector, BasePromptSelector, BasePromptTemplate, BaseStringPromptTemplate, ChatMessagePromptTemplate, ConditionalPromptSelector, FewShotPromptTemplate, LengthBasedExampleSelector, MessagesPlaceholder, PipelinePromptTemplate, SemanticSimilarityExampleSelector, StringPromptValue, checkValidTemplate, isChatModel, isLLM, parseTemplate, renderTemplate
+
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/base.js
+var base = __webpack_require__(71323);
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/prompt.js
+var prompts_prompt = __webpack_require__(19726);
+;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/selectors/LengthBasedExampleSelector.js
+
+function getLengthBased(text) {
+    return text.split(/\n| /).length;
+}
+class LengthBasedExampleSelector extends (/* unused pure expression or super */ null && (BaseExampleSelector)) {
+    constructor(data) {
+        super(data);
+        Object.defineProperty(this, "examples", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "examplePrompt", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "getTextLength", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: getLengthBased
+        });
+        Object.defineProperty(this, "maxLength", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 2048
+        });
+        Object.defineProperty(this, "exampleTextLengths", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        this.examplePrompt = data.examplePrompt;
+        this.maxLength = data.maxLength ?? 2048;
+        this.getTextLength = data.getTextLength ?? getLengthBased;
+    }
+    async addExample(example) {
+        this.examples.push(example);
+        const stringExample = await this.examplePrompt.format(example);
+        this.exampleTextLengths.push(this.getTextLength(stringExample));
+    }
+    async calculateExampleTextLengths(v, values) {
+        if (v.length > 0) {
+            return v;
+        }
+        const { examples, examplePrompt } = values;
+        const stringExamples = await Promise.all(examples.map((eg) => examplePrompt.format(eg)));
+        return stringExamples.map((eg) => this.getTextLength(eg));
+    }
+    async selectExamples(inputVariables) {
+        const inputs = Object.values(inputVariables).join(" ");
+        let remainingLength = this.maxLength - this.getTextLength(inputs);
+        let i = 0;
+        const examples = [];
+        while (remainingLength > 0 && i < this.examples.length) {
+            const newLength = remainingLength - this.exampleTextLengths[i];
+            if (newLength < 0) {
+                break;
+            }
+            else {
+                examples.push(this.examples[i]);
+                remainingLength = newLength;
+            }
+            i += 1;
+        }
+        return examples;
+    }
+    static async fromExamples(examples, args) {
+        const selector = new LengthBasedExampleSelector(args);
+        await Promise.all(examples.map((eg) => selector.addExample(eg)));
+        return selector;
+    }
+}
+
+;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/selectors/SemanticSimilarityExampleSelector.js
+
+
+function sortedValues(values) {
+    return Object.keys(values)
+        .sort()
+        .map((key) => values[key]);
+}
+class SemanticSimilarityExampleSelector extends (/* unused pure expression or super */ null && (BaseExampleSelector)) {
+    constructor(data) {
+        super(data);
+        Object.defineProperty(this, "vectorStore", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "k", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 4
+        });
+        Object.defineProperty(this, "exampleKeys", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "inputKeys", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.vectorStore = data.vectorStore;
+        this.k = data.k ?? 4;
+        this.exampleKeys = data.exampleKeys;
+        this.inputKeys = data.inputKeys;
+    }
+    async addExample(example) {
+        const inputKeys = this.inputKeys ?? Object.keys(example);
+        const stringExample = sortedValues(inputKeys.reduce((acc, key) => ({ ...acc, [key]: example[key] }), {})).join(" ");
+        await this.vectorStore.addDocuments([
+            new Document({
+                pageContent: stringExample,
+                metadata: { example },
+            }),
+        ]);
+    }
+    async selectExamples(inputVariables) {
+        const inputKeys = this.inputKeys ?? Object.keys(inputVariables);
+        const query = sortedValues(inputKeys.reduce((acc, key) => ({ ...acc, [key]: inputVariables[key] }), {})).join(" ");
+        const exampleDocs = await this.vectorStore.similaritySearch(query, this.k);
+        const examples = exampleDocs.map((doc) => doc.metadata);
+        if (this.exampleKeys) {
+            // If example keys are provided, filter examples to those keys.
+            return examples.map((example) => this.exampleKeys.reduce((acc, key) => ({ ...acc, [key]: example[key] }), {}));
+        }
+        return examples;
+    }
+    static async fromExamples(examples, embeddings, vectorStoreCls, options = {}) {
+        const inputKeys = options.inputKeys ?? null;
+        const stringExamples = examples.map((example) => sortedValues(inputKeys
+            ? inputKeys.reduce((acc, key) => ({ ...acc, [key]: example[key] }), {})
+            : example).join(" "));
+        const vectorStore = await vectorStoreCls.fromTexts(stringExamples, examples, // metadatas
+        embeddings, options);
+        return new SemanticSimilarityExampleSelector({
+            vectorStore,
+            k: options.k ?? 4,
+            exampleKeys: options.exampleKeys,
+            inputKeys: options.inputKeys,
+        });
+    }
+}
+
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/few_shot.js
+var few_shot = __webpack_require__(65686);
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/chat.js
+var chat = __webpack_require__(87397);
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/template.js
+var template = __webpack_require__(47283);
+;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/pipeline.js
+
+
+class PipelinePromptTemplate extends (/* unused pure expression or super */ null && (BasePromptTemplate)) {
+    constructor(input) {
+        super({ ...input, inputVariables: [] });
+        Object.defineProperty(this, "pipelinePrompts", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "finalPrompt", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.pipelinePrompts = input.pipelinePrompts;
+        this.finalPrompt = input.finalPrompt;
+        this.inputVariables = this.computeInputValues();
+    }
+    computeInputValues() {
+        const intermediateValues = this.pipelinePrompts.map((pipelinePrompt) => pipelinePrompt.name);
+        const inputValues = this.pipelinePrompts
+            .map((pipelinePrompt) => pipelinePrompt.prompt.inputVariables.filter((inputValue) => !intermediateValues.includes(inputValue)))
+            .flat();
+        return [...new Set(inputValues)];
+    }
+    static extractRequiredInputValues(allValues, requiredValueNames) {
+        return requiredValueNames.reduce((requiredValues, valueName) => {
+            // eslint-disable-next-line no-param-reassign
+            requiredValues[valueName] = allValues[valueName];
+            return requiredValues;
+        }, {});
+    }
+    async formatPipelinePrompts(values) {
+        const allValues = await this.mergePartialAndUserVariables(values);
+        for (const { name: pipelinePromptName, prompt: pipelinePrompt } of this
+            .pipelinePrompts) {
+            const pipelinePromptInputValues = PipelinePromptTemplate.extractRequiredInputValues(allValues, pipelinePrompt.inputVariables);
+            // eslint-disable-next-line no-instanceof/no-instanceof
+            if (pipelinePrompt instanceof ChatPromptTemplate) {
+                allValues[pipelinePromptName] = await pipelinePrompt.formatMessages(pipelinePromptInputValues);
+            }
+            else {
+                allValues[pipelinePromptName] = await pipelinePrompt.format(pipelinePromptInputValues);
+            }
+        }
+        return PipelinePromptTemplate.extractRequiredInputValues(allValues, this.finalPrompt.inputVariables);
+    }
+    async formatPromptValue(values) {
+        return this.finalPrompt.formatPromptValue(await this.formatPipelinePrompts(values));
+    }
+    async format(values) {
+        return this.finalPrompt.format(await this.formatPipelinePrompts(values));
+    }
+    async partial(values) {
+        const promptDict = { ...this };
+        promptDict.inputVariables = this.inputVariables.filter((iv) => !(iv in values));
+        promptDict.partialVariables = {
+            ...(this.partialVariables ?? {}),
+            ...values,
+        };
+        return new PipelinePromptTemplate(promptDict);
+    }
+    serialize() {
+        throw new Error("Not implemented.");
+    }
+    _getPromptType() {
+        return "pipeline";
+    }
+}
+
+;// CONCATENATED MODULE: ./node_modules/langchain/dist/prompts/index.js
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
 /***/ 19726:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -30530,6 +30555,35 @@ async function getEncoding(encoding, options) {
 async function encodingForModel(model, options) {
     return getEncoding(getEncodingNameForModel(model), options);
 }
+
+
+/***/ }),
+
+/***/ 50276:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  Pf: () => (/* reexport */ prompts/* PromptTemplate */.Pf)
+});
+
+// UNUSED EXPORTS: BasePromptTemplate, FewShotPromptTemplate, LLMChain, OpenAI
+
+// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/index.js + 3 modules
+var prompts = __webpack_require__(71476);
+// EXTERNAL MODULE: ./node_modules/langchain/dist/chains/llm_chain.js + 1 modules
+var llm_chain = __webpack_require__(37797);
+// EXTERNAL MODULE: ./node_modules/langchain/dist/llms/openai.js + 5 modules
+var openai = __webpack_require__(47847);
+;// CONCATENATED MODULE: ./node_modules/langchain/dist/index.js
+/* #__PURE__ */ console.error("[WARN] Importing from 'langchain' is deprecated. See https://js.langchain.com/docs/getting-started/install#updating-from-0052 for upgrade instructions.");
+
+
+
+
+;// CONCATENATED MODULE: ./node_modules/langchain/index.js
 
 
 /***/ }),

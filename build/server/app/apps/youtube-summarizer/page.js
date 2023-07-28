@@ -603,8 +603,11 @@ AccordionContent.displayName = react_accordion_dist/* Content */.VY.displayName;
 var ui_form = __webpack_require__(7499);
 // EXTERNAL MODULE: ./components/ui/input.jsx
 var input = __webpack_require__(62752);
+// EXTERNAL MODULE: ./node_modules/langchain/index.js + 1 modules
+var langchain = __webpack_require__(50276);
 ;// CONCATENATED MODULE: ./app/apps/youtube-summarizer/page.jsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
+
 
 
 
@@ -635,9 +638,13 @@ function YoutubeSummarizer() {
     const [summaries, setSummaries] = (0,react_.useState)([]);
     const [loading, setLoading] = (0,react_.useState)(false);
     (0,react_.useEffect)(()=>{
-        const oldSummaries = localStorage.getItem("summaries");
+        let oldSummaries = localStorage.getItem("summaries");
         if (oldSummaries) {
-            setSummaries(JSON.parse(oldSummaries).summaries);
+            oldSummaries = JSON.parse(oldSummaries).summaries;
+            // oldSummaries.map((summary) => {
+            //   summary.summary = summary.summary.replaceAll("\n", "\n\n");
+            // });
+            setSummaries(oldSummaries);
         }
     }, []);
     const { reactiveTimeTaken, timeTaken, startLoadingInterval, stopLoadingInterval } = hooks_useLoadingInterval(1250);
@@ -649,9 +656,16 @@ function YoutubeSummarizer() {
     const form = (0,index_esm/* useForm */.cI)({
         resolver: (0,zod/* zodResolver */.F)(FormSchema),
         defaultValues: {
-            summaryType: "quick"
+            summaryType: "detailed"
         }
     });
+    const copyToClipboard = (summary)=>{
+        navigator.clipboard.writeText(summary);
+        toast({
+            title: "SUCCESS",
+            description: "Copied to clipboard"
+        });
+    };
     const getQuickSummary = async ({ transcript })=>{
         if (transcript.length) {
             const model = new openai/* OpenAI */.Pp({
@@ -690,9 +704,87 @@ function YoutubeSummarizer() {
             }
         }
     };
-    const getDetailedSummary = async ({ transcript })=>{
-        console.log("Detailed summary");
-        return "Detailed Summary";
+    const getDetailedSummary = async ({ transcript, videoTitle })=>{
+        if (transcript.length) {
+            const model = new openai/* OpenAI */.Pp({
+                temperature: 0,
+                modelName: "gpt-3.5-turbo"
+            });
+            const textSplitter = new text_splitter/* RecursiveCharacterTextSplitter */.s9({
+                chunkSize: 16000
+            });
+            const docs = await textSplitter.createDocuments([
+                transcript
+            ]);
+            try {
+                const prompt_template = `Write a detailed summary of the following text, dont loose any important context:
+
+
+{text}
+`;
+                // Write summary of the following text, in points, and make sure to not loose any context from the following text:
+                const final_combine_prompt_template = `Title: ${videoTitle}
+        Transcript: {text}
+        
+        Please generate a concise summary of the provided YouTube video transcript. Focus on the key points, main ideas, and important details. The summary should be informative, well-structured, and capture the essence of the video's content.
+
+        Summary:
+        [Your generated summary will be placed here.]
+
+        Key Points:
+        1. 
+        2. 
+        3. 
+          ...
+
+        Main Ideas:
+        - 
+        - 
+        - 
+          ...
+
+        Important Details:
+        - 
+        - 
+        -         `;
+                const PROMPT = new langchain/* PromptTemplate */.Pf({
+                    template: prompt_template,
+                    inputVariables: [
+                        "text"
+                    ]
+                });
+                const FINAL_PROMPT = new langchain/* PromptTemplate */.Pf({
+                    template: final_combine_prompt_template,
+                    inputVariables: [
+                        "text"
+                    ]
+                });
+                const chain = (0,chains/* loadSummarizationChain */.O7)(model, {
+                    type: "map_reduce",
+                    combineMapPrompt: PROMPT,
+                    combinePrompt: FINAL_PROMPT
+                });
+                const res = await chain.call({
+                    input_documents: docs
+                });
+                return {
+                    status: true,
+                    data: {
+                        summary: res.text
+                    },
+                    message: ""
+                };
+            } catch (e) {
+                console.log(e.response?.data?.error?.message || e.message);
+                return {
+                    status: false,
+                    data: {
+                        summary: null
+                    },
+                    message: e.response?.data?.error?.message || "Something went wrong"
+                };
+            }
+        }
     };
     async function onSubmit(data) {
         gtag("event", "YOUTUBE_SUMMARIZATION", {
@@ -728,11 +820,13 @@ function YoutubeSummarizer() {
                 let summaryResp;
                 if (data.summaryType == "quick") {
                     summaryResp = await getQuickSummary({
-                        transcript
+                        transcript,
+                        videoTitle: apiResp.videoTitle
                     });
                 } else if (data.summaryType == "detailed") {
                     summaryResp = await getDetailedSummary({
-                        transcript
+                        transcript,
+                        videoTitle: apiResp.videoTitle
                     });
                 }
                 if (summaryResp.status) {
@@ -776,7 +870,7 @@ function YoutubeSummarizer() {
             className: "flex w-full max-w-full flex-col items-start gap-2",
             children: [
                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h1", {
-                    className: "text-3xl font-extrabold leading-tight tracking-wider md:text-4xl m-auto mb-12",
+                    className: "text-3xl uppercase font-extrabold leading-tight tracking-wider md:text-4xl m-auto mb-12",
                     children: [
                         "Youtube Summarizer ",
                         /*#__PURE__*/ jsx_runtime_.jsx("br", {
@@ -822,7 +916,6 @@ function YoutubeSummarizer() {
                                                                             }),
                                                                             /*#__PURE__*/ jsx_runtime_.jsx(SelectItem, {
                                                                                 value: "detailed",
-                                                                                disabled: true,
                                                                                 children: "Detailed Summary"
                                                                             })
                                                                         ]
@@ -883,20 +976,19 @@ function YoutubeSummarizer() {
                                     className: "w-[85vw] md:w-[48vw]",
                                     children: summaries.map((video, i)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)(AccordionItem, {
                                             value: `video-${i}`,
-                                            className: "bg-[#2d333f4d] p-4",
+                                            className: "bg-[#2d333f4d] p-4 my-[20px] mx-[auto]",
                                             children: [
                                                 /*#__PURE__*/ jsx_runtime_.jsx(AccordionTrigger, {
-                                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h2", {
-                                                        className: "text-lg text-left font-semibold tracking-tight text-[#e1e7ee]",
-                                                        children: [
-                                                            "• ",
-                                                            video.videoTitle
-                                                        ]
+                                                    children: /*#__PURE__*/ jsx_runtime_.jsx("h2", {
+                                                        className: "text-lg font-semibold tracking-tight text-[#e1e7ee]",
+                                                        dangerouslySetInnerHTML: {
+                                                            __html: `&#8226; ${video.videoTitle[0].toUpperCase() + video.videoTitle.slice(1)}`
+                                                        }
                                                     })
                                                 }),
                                                 /*#__PURE__*/ jsx_runtime_.jsx(AccordionContent, {
                                                     children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "w-[74vw] md:w-[45vw] text-base text-justify m-auto leading-relaxed text-[#d1d5db]",
+                                                        className: "w-[74vw] md:w-[45vw] text-base text-left m-auto leading-relaxed text-[#d1d5db] whitespace-pre-wrap",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx((dist_react_default()), {
                                                                 options: {
@@ -907,10 +999,19 @@ function YoutubeSummarizer() {
                                                                 }
                                                             }),
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                className: "mt-4 text-end",
+                                                                className: "mt-4 flex space-x-4 justify-end",
                                                                 children: [
-                                                                    "Time taken: ",
-                                                                    video.timeTaken
+                                                                    /*#__PURE__*/ jsx_runtime_.jsx(lucide_react/* ClipboardCheckIcon */.C2q, {
+                                                                        className: "cursor-pointer",
+                                                                        onClick: ()=>copyToClipboard(video.summary)
+                                                                    }),
+                                                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                                        className: "text-end",
+                                                                        children: [
+                                                                            "Time taken: ",
+                                                                            video.timeTaken
+                                                                        ]
+                                                                    })
                                                                 ]
                                                             })
                                                         ]
@@ -964,7 +1065,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,576,710,499], () => (__webpack_exec__(59741)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,905,710,499], () => (__webpack_exec__(59741)));
 module.exports = __webpack_exports__;
 
 })();
