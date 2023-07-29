@@ -1,9 +1,12 @@
 "use client";
 import { useToast } from "@/components/ui/use-toast";
 import { useRef, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import useLoadingInterval from "../../../hooks/useLoadingInterval";
+
+import { fetchViewersCount } from "@/helpers";
 
 import { z } from "zod";
 import axios from "axios";
@@ -40,8 +43,10 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Badge } from "@/components/ui/badge";
+
 import { Input } from "@/components/ui/input";
-import { PromptTemplate } from "langchain";
+import { PromptTemplate } from "langchain/prompts";
 
 const FormSchema = z.object({
   youtubeLink: z.string().min(2, {
@@ -53,9 +58,10 @@ const FormSchema = z.object({
 });
 
 export default function YoutubeSummarizer() {
+  const pathname = usePathname();
   const { toast } = useToast();
   const [summaries, setSummaries] = useState([]);
-
+  const [views, setViewersCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -72,6 +78,16 @@ export default function YoutubeSummarizer() {
       );
       setSummaries(oldSummaries);
     }
+
+    (async () => {
+      const viewersCount = await fetchViewersCount({
+        projectSlug: pathname.split("/")[2],
+      });
+
+      if (viewersCount) {
+        setViewersCount(viewersCount);
+      }
+    })();
   }, []);
 
   const {
@@ -258,6 +274,7 @@ export default function YoutubeSummarizer() {
 
       const { data: apiResp } = await axios.post("/api/getYoutubeTranscripts", {
         url: data.youtubeLink,
+        projectSlug: pathname?.split("/")[2],
       });
 
       if (apiResp.status) {
@@ -303,6 +320,7 @@ export default function YoutubeSummarizer() {
             JSON.stringify({ summaries: summariesForLocalStorage })
           );
           setSummaries(finalSummaries);
+          await fetchViewersCount();
         } else {
           toast({
             title: "Error",
@@ -331,9 +349,12 @@ export default function YoutubeSummarizer() {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex w-full max-w-full flex-col items-start gap-2">
-        <h1 className="text-3xl uppercase font-extrabold leading-tight tracking-wider md:text-4xl m-auto mb-12">
-          Youtube Summarizer <br className="hidden sm:inline" />
-        </h1>
+        <div className="flex items-center justify-start space-x-8 m-auto mb-12">
+          <h1 className="text-3xl uppercase font-extrabold leading-tight tracking-wider md:text-4xl">
+            Youtube Summarizer
+          </h1>
+          {views ? <Badge variant="">{views} people have used</Badge> : null}
+        </div>
 
         <div className="w-full flex flex-col gap-8 items-center justify-center">
           <Form {...form}>

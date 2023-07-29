@@ -28,11 +28,17 @@ export async function POST(req, res) {
     const transcript = await YoutubeTranscript.fetchTranscript(data.url);
 
     await Analytics.create({
-      ip: ip || "",
-      geo: geo || {},
-      data: data || {},
-      videoTitle: transcript.videoTitle || "",
-      deviceInfo: deviceInfo || {},
+      projectSlug: data.projectSlug,
+      data: { videoTitle: transcript.videoTitle, url: data.url },
+      geo: {
+        country: geo.country_name,
+        city: geo.city,
+        time_zone: geo.time_zone?.name,
+      },
+      deviceInfo: {
+        device: deviceInfo.device || deviceInfo.cpu,
+        os: deviceInfo.os,
+      },
     });
     return NextResponse.json(
       {

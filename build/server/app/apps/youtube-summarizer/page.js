@@ -398,11 +398,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 48164:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89219))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 45060))
 
 /***/ }),
 
-/***/ 89219:
+/***/ 45060:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -420,6 +420,8 @@ var jsx_runtime_ = __webpack_require__(56786);
 var use_toast = __webpack_require__(80346);
 // EXTERNAL MODULE: external "next/dist/compiled/react"
 var react_ = __webpack_require__(18038);
+// EXTERNAL MODULE: ./node_modules/next/navigation.js
+var navigation = __webpack_require__(59483);
 // EXTERNAL MODULE: ./node_modules/@hookform/resolvers/zod/dist/zod.mjs + 1 modules
 var zod = __webpack_require__(89048);
 // EXTERNAL MODULE: ./node_modules/react-hook-form/dist/index.esm.mjs
@@ -464,10 +466,24 @@ const useLoadingInterval = (intervalTime)=>{
 };
 /* harmony default export */ const hooks_useLoadingInterval = (useLoadingInterval);
 
-// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
-var lib = __webpack_require__(17123);
 // EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
 var axios = __webpack_require__(40248);
+;// CONCATENATED MODULE: ./helpers/index.js
+/* __next_internal_client_entry_do_not_use__ getOpenaiApiKey,fetchViewersCount auto */ 
+function getOpenaiApiKey() {
+    return localStorage.getItem("OPENAI_API_KEY") || null;
+}
+async function fetchViewersCount({ projectSlug }) {
+    const { data } = await axios/* default */.Z.get(`/api/getViewersCount/${projectSlug}`);
+    if (data.status) {
+        return data.data.views;
+    } else {
+        return "NaN";
+    }
+}
+
+// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
+var lib = __webpack_require__(17123);
 // EXTERNAL MODULE: ./node_modules/lucide-react/dist/cjs/lucide-react.js
 var lucide_react = __webpack_require__(64660);
 // EXTERNAL MODULE: ./node_modules/langchain/llms/openai.js
@@ -601,12 +617,45 @@ AccordionContent.displayName = react_accordion_dist/* Content */.VY.displayName;
 
 // EXTERNAL MODULE: ./components/ui/form.jsx + 1 modules
 var ui_form = __webpack_require__(7499);
+// EXTERNAL MODULE: ./node_modules/class-variance-authority/dist/index.mjs
+var class_variance_authority_dist = __webpack_require__(17247);
+;// CONCATENATED MODULE: ./components/ui/badge.jsx
+
+
+
+
+const badgeVariants = (0,class_variance_authority_dist/* cva */.j)("inline-flex items-center rounded-md border border-zinc-200 px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 dark:border-zinc-800 dark:focus:ring-zinc-800", {
+    variants: {
+        variant: {
+            default: "border-transparent bg-zinc-900 text-zinc-50 shadow hover:bg-zinc-900/80 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/80",
+            secondary: "border-transparent bg-zinc-100 text-zinc-900 hover:bg-zinc-100/80 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-800/80",
+            destructive: "border-transparent bg-red-500 text-zinc-50 shadow hover:bg-red-500/80 dark:bg-red-900 dark:text-red-50 dark:hover:bg-red-900/80",
+            outline: "text-zinc-950 dark:text-zinc-50"
+        }
+    },
+    defaultVariants: {
+        variant: "default"
+    }
+});
+function Badge({ className, variant, ...props }) {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        className: (0,utils.cn)(badgeVariants({
+            variant
+        }), className),
+        ...props
+    });
+}
+
+
 // EXTERNAL MODULE: ./components/ui/input.jsx
 var input = __webpack_require__(62752);
-// EXTERNAL MODULE: ./node_modules/langchain/index.js + 1 modules
-var langchain = __webpack_require__(50276);
+// EXTERNAL MODULE: ./node_modules/langchain/prompts.js
+var prompts = __webpack_require__(54697);
 ;// CONCATENATED MODULE: ./app/apps/youtube-summarizer/page.jsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
+
+
+
 
 
 
@@ -634,8 +683,10 @@ const FormSchema = lib.z.object({
     })
 });
 function YoutubeSummarizer() {
+    const pathname = (0,navigation.usePathname)();
     const { toast } = (0,use_toast/* useToast */.pm)();
     const [summaries, setSummaries] = (0,react_.useState)([]);
+    const [views, setViewersCount] = (0,react_.useState)(0);
     const [loading, setLoading] = (0,react_.useState)(false);
     (0,react_.useEffect)(()=>{
         let oldSummaries = localStorage.getItem("summaries");
@@ -649,6 +700,14 @@ function YoutubeSummarizer() {
             }));
             setSummaries(oldSummaries);
         }
+        (async ()=>{
+            const viewersCount = await fetchViewersCount({
+                projectSlug: pathname.split("/")[2]
+            });
+            if (viewersCount) {
+                setViewersCount(viewersCount);
+            }
+        })();
     }, []);
     const { reactiveTimeTaken, timeTaken, startLoadingInterval, stopLoadingInterval } = hooks_useLoadingInterval(1250);
     const formatTime = (seconds)=>{
@@ -750,13 +809,13 @@ function YoutubeSummarizer() {
         1. 
         2. 
         3.         `;
-                const PROMPT = new langchain/* PromptTemplate */.Pf({
+                const PROMPT = new prompts/* PromptTemplate */.Pf({
                     template: prompt_template,
                     inputVariables: [
                         "text"
                     ]
                 });
-                const FINAL_PROMPT = new langchain/* PromptTemplate */.Pf({
+                const FINAL_PROMPT = new prompts/* PromptTemplate */.Pf({
                     template: final_combine_prompt_template,
                     inputVariables: [
                         "text"
@@ -816,7 +875,8 @@ function YoutubeSummarizer() {
             setLoading(true);
             startLoadingInterval();
             const { data: apiResp } = await axios/* default */.Z.post("/api/getYoutubeTranscripts", {
-                url: data.youtubeLink
+                url: data.youtubeLink,
+                projectSlug: pathname?.split("/")[2]
             });
             if (apiResp.status) {
                 const transcript = apiResp.data.transcript.map((e)=>e.text).join(" ");
@@ -855,6 +915,7 @@ function YoutubeSummarizer() {
                         summaries: summariesForLocalStorage
                     }));
                     setSummaries(finalSummaries);
+                    await fetchViewersCount();
                 } else {
                     toast({
                         title: "Error",
@@ -879,13 +940,20 @@ function YoutubeSummarizer() {
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
             className: "flex w-full max-w-full flex-col items-start gap-2",
             children: [
-                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h1", {
-                    className: "text-3xl uppercase font-extrabold leading-tight tracking-wider md:text-4xl m-auto mb-12",
+                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    className: "flex items-center justify-start space-x-8 m-auto mb-12",
                     children: [
-                        "Youtube Summarizer ",
-                        /*#__PURE__*/ jsx_runtime_.jsx("br", {
-                            className: "hidden sm:inline"
-                        })
+                        /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                            className: "text-3xl uppercase font-extrabold leading-tight tracking-wider md:text-4xl",
+                            children: "Youtube Summarizer"
+                        }),
+                        views ? /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Badge, {
+                            variant: "",
+                            children: [
+                                views,
+                                " people have used"
+                            ]
+                        }) : null
                     ]
                 }),
                 /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -1075,7 +1143,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,905,299,499], () => (__webpack_exec__(59741)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,795,710,499], () => (__webpack_exec__(59741)));
 module.exports = __webpack_exports__;
 
 })();

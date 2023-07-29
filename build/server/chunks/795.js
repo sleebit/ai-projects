@@ -1,5 +1,5 @@
-exports.id = 905;
-exports.ids = [905];
+exports.id = 795;
+exports.ids = [795];
 exports.modules = {
 
 /***/ 50598:
@@ -30559,35 +30559,6 @@ async function encodingForModel(model, options) {
 
 /***/ }),
 
-/***/ 50276:
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  Pf: () => (/* reexport */ prompts/* PromptTemplate */.Pf)
-});
-
-// UNUSED EXPORTS: BasePromptTemplate, FewShotPromptTemplate, LLMChain, OpenAI
-
-// EXTERNAL MODULE: ./node_modules/langchain/dist/prompts/index.js + 3 modules
-var prompts = __webpack_require__(71476);
-// EXTERNAL MODULE: ./node_modules/langchain/dist/chains/llm_chain.js + 1 modules
-var llm_chain = __webpack_require__(37797);
-// EXTERNAL MODULE: ./node_modules/langchain/dist/llms/openai.js + 5 modules
-var openai = __webpack_require__(47847);
-;// CONCATENATED MODULE: ./node_modules/langchain/dist/index.js
-/* #__PURE__ */ console.error("[WARN] Importing from 'langchain' is deprecated. See https://js.langchain.com/docs/getting-started/install#updating-from-0052 for upgrade instructions.");
-
-
-
-
-;// CONCATENATED MODULE: ./node_modules/langchain/index.js
-
-
-/***/ }),
-
 /***/ 3664:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
@@ -30596,6 +30567,18 @@ var openai = __webpack_require__(47847);
 /* harmony export */   Pp: () => (/* reexport safe */ _dist_llms_openai_js__WEBPACK_IMPORTED_MODULE_0__.OpenAI)
 /* harmony export */ });
 /* harmony import */ var _dist_llms_openai_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(47847);
+
+
+/***/ }),
+
+/***/ 54697:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Pf: () => (/* reexport safe */ _dist_prompts_index_js__WEBPACK_IMPORTED_MODULE_0__.Pf)
+/* harmony export */ });
+/* harmony import */ var _dist_prompts_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(71476);
 
 
 /***/ }),

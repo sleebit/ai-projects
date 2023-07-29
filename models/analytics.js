@@ -2,16 +2,13 @@ import mongoose from "mongoose";
 
 const analyticsSchema = new mongoose.Schema(
   {
-    ip: {
-      type: String,
-    },
-    geo: {
-      type: Object,
-    },
-    videoTitle: {
+    projectSlug: {
       type: String,
     },
     data: {
+      type: Object,
+    },
+    geo: {
       type: Object,
     },
     deviceInfo: {

@@ -103,7 +103,7 @@ module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 67003:
+/***/ 69808:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -282,33 +282,8 @@ class YoutubeTranscript {
 
 // EXTERNAL MODULE: ./config/dbConfig.js
 var dbConfig = __webpack_require__(72212);
-// EXTERNAL MODULE: external "mongoose"
-var external_mongoose_ = __webpack_require__(11185);
-var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_);
-;// CONCATENATED MODULE: ./models/analytics.js
-
-const analyticsSchema = new (external_mongoose_default()).Schema({
-    ip: {
-        type: String
-    },
-    geo: {
-        type: Object
-    },
-    videoTitle: {
-        type: String
-    },
-    data: {
-        type: Object
-    },
-    deviceInfo: {
-        type: Object
-    }
-}, {
-    timestamps: true
-});
-const Analytics = (external_mongoose_default()).models.analytics || external_mongoose_default().model("analytics", analyticsSchema);
-/* harmony default export */ const analytics = (Analytics);
-
+// EXTERNAL MODULE: ./models/analytics.js
+var analytics = __webpack_require__(29718);
 ;// CONCATENATED MODULE: ./app/api/getYoutubeTranscripts/route.js
 
 
@@ -331,12 +306,21 @@ async function POST(req, res) {
     const deviceInfo = (0,user_agent/* default */.Z)(req);
     try {
         const transcript = await YoutubeTranscript.fetchTranscript(data.url);
-        await analytics.create({
-            ip: ip || "",
-            geo: geo || {},
-            data: data || {},
-            videoTitle: transcript.videoTitle || "",
-            deviceInfo: deviceInfo || {}
+        await analytics/* default */.Z.create({
+            projectSlug: data.projectSlug,
+            data: {
+                videoTitle: transcript.videoTitle,
+                url: data.url
+            },
+            geo: {
+                country: geo.country_name,
+                city: geo.city,
+                time_zone: geo.time_zone?.name
+            },
+            deviceInfo: {
+                device: deviceInfo.device || deviceInfo.cpu,
+                os: deviceInfo.os
+            }
         });
         return next_response/* default */.Z.json({
             status: true,
@@ -387,35 +371,6 @@ async function POST(req, res) {
 
     
 
-/***/ }),
-
-/***/ 72212:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   $: () => (/* binding */ connect)
-/* harmony export */ });
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11185);
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-
-async function connect() {
-    try {
-        mongoose__WEBPACK_IMPORTED_MODULE_0___default().connect(process.env.MONGO_URI);
-        const connection = (mongoose__WEBPACK_IMPORTED_MODULE_0___default().connection);
-        connection.on("connected", ()=>{
-            console.log("MongoDB connected successfully");
-        });
-        connection.on("error", (err)=>{
-            console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
-            process.exit();
-        });
-    } catch (error) {
-        console.log("Something goes wrong!");
-        console.log(error);
-    }
-}
-
-
 /***/ })
 
 };
@@ -425,7 +380,7 @@ async function connect() {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,789,452], () => (__webpack_exec__(67003)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,625,569,789,452,882], () => (__webpack_exec__(69808)));
 module.exports = __webpack_exports__;
 
 })();
