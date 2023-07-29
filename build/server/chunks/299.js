@@ -1,5 +1,5 @@
-exports.id = 710;
-exports.ids = [710];
+exports.id = 299;
+exports.ids = [299];
 exports.modules = {
 
 /***/ 7470:
@@ -13,16 +13,16 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 40667:
+/***/ 70994:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 63481, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 27977, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 69325));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 29478));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 36705));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 43763));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 89361));
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 27977, 23));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 69325));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 29478))
 
 /***/ }),
 
@@ -101,6 +101,7 @@ function MainNav({ items }) {
                 className: "flex gap-6 max-sm:hidden",
                 children: items?.map((item, index)=>item.href && /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
                         href: item.href,
+                        target: item.target,
                         className: (0,utils.cn)("flex items-center text-sm font-medium text-muted-foreground", item.disabled && "cursor-not-allowed opacity-80"),
                         children: item.title
                     }, index))
@@ -302,7 +303,7 @@ function ThemeToggle() {
         onClick: handleRotIconsClick,
         rel: "noreferrer",
         variant: "default",
-        className: "relative top-[12px] motion-safe:animate-bounce",
+        className: "relative top-[12px] motion-safe:animate-bounce whitespace-nowrap",
         size: "lg",
         children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
             className: "motion-safe:animate-bounce",
@@ -707,6 +708,11 @@ const siteConfig = {
         {
             title: "Apps",
             href: "/apps"
+        },
+        {
+            title: "Go to twitter",
+            href: "https://twitter.com/thesleebit",
+            target: "_blank"
         }
     ],
     links: {
@@ -765,6 +771,11 @@ const siteConfig = {
         {
             title: "Apps",
             href: "/apps"
+        },
+        {
+            title: "Go to twitter",
+            href: "https://twitter.com/thesleebit",
+            target: "_blank"
         }
     ],
     links: {
@@ -900,7 +911,7 @@ function SiteHeader() {
     return /*#__PURE__*/ jsx_runtime_.jsx("header", {
         className: "sticky top-0 z-40 w-full border-b bg-background",
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-            className: "container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0",
+            className: "mx-4 md:container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0",
             children: [
                 /*#__PURE__*/ jsx_runtime_.jsx(e0, {
                     items: siteConfig.mainNav
@@ -925,46 +936,6 @@ function SiteHeader() {
                                         /*#__PURE__*/ jsx_runtime_.jsx("span", {
                                             className: "sr-only",
                                             children: "Profile"
-                                        })
-                                    ]
-                                })
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
-                                href: siteConfig.links.github,
-                                target: "_blank",
-                                rel: "noreferrer",
-                                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                    className: buttonVariants({
-                                        size: "sm",
-                                        variant: "ghost"
-                                    }),
-                                    children: [
-                                        /*#__PURE__*/ jsx_runtime_.jsx(Icons.gitHub, {
-                                            className: "h-5 w-5"
-                                        }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                            className: "sr-only",
-                                            children: "GitHub"
-                                        })
-                                    ]
-                                })
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
-                                href: siteConfig.links.twitter,
-                                target: "_blank",
-                                rel: "noreferrer",
-                                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                    className: buttonVariants({
-                                        size: "sm",
-                                        variant: "ghost"
-                                    }),
-                                    children: [
-                                        /*#__PURE__*/ jsx_runtime_.jsx(Icons.twitter, {
-                                            className: "h-5 w-5 fill-current"
-                                        }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                            className: "sr-only",
-                                            children: "Twitter"
                                         })
                                     ]
                                 })

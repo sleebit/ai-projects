@@ -1,12 +1,12 @@
-exports.id = 529;
-exports.ids = [529];
+exports.id = 923;
+exports.ids = [923];
 exports.modules = {
 
-/***/ 78205:
+/***/ 47345:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 63912, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 86417));
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 63912, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5712))
 
 /***/ }),
@@ -98,7 +98,6 @@ __webpack_require__.d(__webpack_exports__, {
 var jsx_runtime_ = __webpack_require__(56786);
 // EXTERNAL MODULE: ./node_modules/next/image.js
 var next_image = __webpack_require__(10993);
-var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 // EXTERNAL MODULE: ./components/ui/separator.jsx
 var separator = __webpack_require__(98186);
 // EXTERNAL MODULE: ./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js
@@ -132,64 +131,43 @@ const sidebarNavItems = [
     }
 ];
 function SettingsLayout({ children }) {
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
-        children: [
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "md:hidden",
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
-                        src: "/examples/forms-light.png",
-                        width: 1280,
-                        height: 791,
-                        alt: "Forms",
-                        className: "block dark:hidden"
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
-                        src: "/examples/forms-dark.png",
-                        width: 1280,
-                        height: 791,
-                        alt: "Forms",
-                        className: "hidden dark:block"
-                    })
-                ]
-            }),
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "hidden space-y-6 p-10 pb-16 md:block",
-                children: [
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                        className: "space-y-0.5",
-                        children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("h2", {
-                                className: "text-2xl font-bold tracking-tight",
-                                children: "Settings"
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                className: "text-muted-foreground",
-                                children: "Manage your account settings and set e-mail preferences."
+    return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
+        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+            className: "space-y-6 p-10 pb-16",
+            children: [
+                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    className: "space-y-0.5",
+                    children: [
+                        /*#__PURE__*/ jsx_runtime_.jsx("h2", {
+                            className: "text-2xl font-bold tracking-tight",
+                            children: "Settings"
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                            className: "text-muted-foreground",
+                            children: "Manage your account settings and set e-mail preferences."
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ jsx_runtime_.jsx(separator/* Separator */.Z, {
+                    className: "my-6"
+                }),
+                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    className: "flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0",
+                    children: [
+                        /*#__PURE__*/ jsx_runtime_.jsx("aside", {
+                            className: "-mx-4 lg:w-1/5",
+                            children: /*#__PURE__*/ jsx_runtime_.jsx(e0, {
+                                items: sidebarNavItems
                             })
-                        ]
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx(separator/* Separator */.Z, {
-                        className: "my-6"
-                    }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                        className: "flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0",
-                        children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("aside", {
-                                className: "-mx-4 lg:w-1/5",
-                                children: /*#__PURE__*/ jsx_runtime_.jsx(e0, {
-                                    items: sidebarNavItems
-                                })
-                            }),
-                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: "flex-1 lg:max-w-2xl",
-                                children: children
-                            })
-                        ]
-                    })
-                ]
-            })
-        ]
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                            className: "flex-1 lg:max-w-2xl",
+                            children: children
+                        })
+                    ]
+                })
+            ]
+        })
     });
 }
 

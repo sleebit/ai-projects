@@ -11,6 +11,11 @@ export const siteConfig = {
       title: "Apps",
       href: "/apps",
     },
+    {
+      title: "Go to twitter",
+      href: "https://twitter.com/thesleebit",
+      target: "_blank",
+    },
   ],
   links: {
     twitter: "https://twitter.com/thesleebit",
