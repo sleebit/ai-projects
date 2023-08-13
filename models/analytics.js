@@ -19,7 +19,7 @@ const analyticsSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+console.log("mongoose.models: ", mongoose.models);
 const Analytics =
   mongoose.models.analytics || mongoose.model("analytics", analyticsSchema);
 

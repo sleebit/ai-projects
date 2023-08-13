@@ -220,6 +220,14 @@ module.exports = require("assert");
 
 /***/ }),
 
+/***/ 6113:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("crypto");
+
+/***/ }),
+
 /***/ 82361:
 /***/ ((module) => {
 
@@ -353,7 +361,7 @@ __webpack_require__.r(__webpack_exports__);
       ]
       },
         {
-          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 328)), "/home/sumit/_Projects/ai_projects/app/layout.js"],
+          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 79412)), "/home/sumit/_Projects/ai_projects/app/layout.js"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 83174))).default(props))],
     apple: [],
@@ -553,7 +561,7 @@ function SettingsProfilePage() {
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,883,710,499,529], () => (__webpack_exec__(78679)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,827,585,483,218,421,533], () => (__webpack_exec__(78679)));
 module.exports = __webpack_exports__;
 
 })();

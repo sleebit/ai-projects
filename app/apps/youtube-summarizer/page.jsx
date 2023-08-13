@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import useLoadingInterval from "../../../hooks/useLoadingInterval";
+import useLoadingInterval from "@/lib/hooks/useLoadingInterval";
 
 import { fetchViewersCount } from "@/helpers";
 
@@ -320,7 +320,13 @@ export default function YoutubeSummarizer() {
             JSON.stringify({ summaries: summariesForLocalStorage })
           );
           setSummaries(finalSummaries);
-          await fetchViewersCount();
+          const viewersCount = await fetchViewersCount({
+            projectSlug: pathname.split("/")[2],
+          });
+
+          if (viewersCount) {
+            setViewersCount(viewersCount);
+          }
         } else {
           toast({
             title: "Error",

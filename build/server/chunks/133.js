@@ -65154,44 +65154,6 @@ const $5d3850c4d0b4e6c7$export$f39c2d165cd861fe = $5d3850c4d0b4e6c7$export$fba2f
 
 /***/ }),
 
-/***/ 81042:
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-var react__WEBPACK_IMPORTED_MODULE_0___namespace_cache;
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   M: () => (/* binding */ $1746a345f3d73bb7$export$f680877a34711e37)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(18038);
-/* harmony import */ var _radix_ui_react_use_layout_effect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72660);
-
-
-
-
-
-const $1746a345f3d73bb7$var$useReactId = /*#__PURE__*/ (react__WEBPACK_IMPORTED_MODULE_0___namespace_cache || (react__WEBPACK_IMPORTED_MODULE_0___namespace_cache = __webpack_require__.t(react__WEBPACK_IMPORTED_MODULE_0__, 2)))['useId'.toString()] || (()=>undefined
-);
-let $1746a345f3d73bb7$var$count = 0;
-function $1746a345f3d73bb7$export$f680877a34711e37(deterministicId) {
-    const [id, setId] = react__WEBPACK_IMPORTED_MODULE_0__.useState($1746a345f3d73bb7$var$useReactId()); // React versions older than 18 will have client-side ids only.
-    (0,_radix_ui_react_use_layout_effect__WEBPACK_IMPORTED_MODULE_1__/* .useLayoutEffect */ .b)(()=>{
-        if (!deterministicId) setId((reactId)=>reactId !== null && reactId !== void 0 ? reactId : String($1746a345f3d73bb7$var$count++)
-        );
-    }, [
-        deterministicId
-    ]);
-    return deterministicId || (id ? `radix-${id}` : '');
-}
-
-
-
-
-
-//# sourceMappingURL=index.mjs.map
-
-
-/***/ }),
-
 /***/ 4535:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 

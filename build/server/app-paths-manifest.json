@@ -1,4 +1,6 @@
 {
+  "/api/chat/route": "app/api/chat/route.js",
+  "/apps/chatgpt-clone/page": "app/apps/chatgpt-clone/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
   "/apps/page": "app/apps/page.js",
@@ -6,8 +8,8 @@
   "/api/getYoutubeTranscripts/route": "app/api/getYoutubeTranscripts/route.js",
   "/api/newsletter/route": "app/api/newsletter/route.js",
   "/apps/youtube-summarizer/page": "app/apps/youtube-summarizer/page.js",
-  "/api/getViewersCount/[projectSlug]/route": "app/api/getViewersCount/[projectSlug]/route.js",
   "/profile/page": "app/profile/page.js",
+  "/api/viewersCount/[projectSlug]/route": "app/api/viewersCount/[projectSlug]/route.js",
   "/profile/account/page": "app/profile/account/page.js",
   "/profile/appearance/page": "app/profile/appearance/page.js",
   "/profile/display/page": "app/profile/display/page.js",

@@ -5,8 +5,10 @@ import { Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
+import { usePathname } from "next/navigation";
 
 export function SiteFooter() {
+  const pathname = usePathname();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const addUserToSubscribersList = async () => {
@@ -27,7 +29,7 @@ export function SiteFooter() {
     }
     setLoading(false);
   };
-  return (
+  return pathname.includes("chatgpt-clone") ? null : (
     <footer className="flex justify-center px-4 text-gray-800  dark:text-white ">
       <div className="container px-6 py-6">
         <h1 className="text-lg font-bold text-center lg:text-2xl">

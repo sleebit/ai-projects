@@ -1,4 +1,6 @@
 {
+  "/api/chat/route": "/api/chat",
+  "/apps/chatgpt-clone/page": "/apps/chatgpt-clone",
   "/favicon.ico/route": "/favicon.ico",
   "/page": "/",
   "/apps/page": "/apps",
@@ -6,8 +8,8 @@
   "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
   "/api/newsletter/route": "/api/newsletter",
   "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
-  "/api/getViewersCount/[projectSlug]/route": "/api/getViewersCount/[projectSlug]",
   "/profile/page": "/profile",
+  "/api/viewersCount/[projectSlug]/route": "/api/viewersCount/[projectSlug]",
   "/profile/account/page": "/profile/account",
   "/profile/appearance/page": "/profile/appearance",
   "/profile/display/page": "/profile/display",

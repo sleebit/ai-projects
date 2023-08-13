@@ -370,7 +370,7 @@ __webpack_require__.r(__webpack_exports__);
       ]
       },
         {
-          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 328)), "/home/sumit/_Projects/ai_projects/app/layout.js"],
+          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 79412)), "/home/sumit/_Projects/ai_projects/app/layout.js"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 83174))).default(props))],
     apple: [],
@@ -398,11 +398,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ 48164:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 45060))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 14331))
 
 /***/ }),
 
-/***/ 45060:
+/***/ 14331:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -426,7 +426,7 @@ var navigation = __webpack_require__(59483);
 var zod = __webpack_require__(89048);
 // EXTERNAL MODULE: ./node_modules/react-hook-form/dist/index.esm.mjs
 var index_esm = __webpack_require__(71031);
-;// CONCATENATED MODULE: ./hooks/useLoadingInterval.js
+;// CONCATENATED MODULE: ./lib/hooks/useLoadingInterval.js
 
 const useLoadingInterval = (intervalTime)=>{
     const [reactiveTimeTaken, setReactiveTimeTaken] = (0,react_.useState)(2);
@@ -467,18 +467,30 @@ const useLoadingInterval = (intervalTime)=>{
 /* harmony default export */ const hooks_useLoadingInterval = (useLoadingInterval);
 
 // EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
-var axios = __webpack_require__(40248);
+var lib_axios = __webpack_require__(40248);
 ;// CONCATENATED MODULE: ./helpers/index.js
-/* __next_internal_client_entry_do_not_use__ getOpenaiApiKey,fetchViewersCount auto */ 
+/* __next_internal_client_entry_do_not_use__ getOpenaiApiKey,fetchViewersCount,updateViewersCount auto */ 
 function getOpenaiApiKey() {
     return localStorage.getItem("OPENAI_API_KEY") || null;
 }
 async function fetchViewersCount({ projectSlug }) {
-    const { data } = await axios/* default */.Z.get(`/api/getViewersCount/${projectSlug}`);
+    const { data } = await lib_axios/* default */.Z.get(`/api/viewersCount/${projectSlug}`);
     if (data.status) {
         return data.data.views;
     } else {
         return "NaN";
+    }
+}
+async function updateViewersCount({ projectSlug, data }) {
+    console.log();
+    try {
+        await axios.post(`/api/viewersCount/${projectSlug}`, {
+            data
+        });
+        return true;
+    } catch (e) {
+        console.log(e.message);
+        return false;
     }
 }
 
@@ -620,7 +632,6 @@ var ui_form = __webpack_require__(7499);
 // EXTERNAL MODULE: ./node_modules/class-variance-authority/dist/index.mjs
 var class_variance_authority_dist = __webpack_require__(17247);
 ;// CONCATENATED MODULE: ./components/ui/badge.jsx
-
 
 
 
@@ -874,7 +885,7 @@ function YoutubeSummarizer() {
         } else {
             setLoading(true);
             startLoadingInterval();
-            const { data: apiResp } = await axios/* default */.Z.post("/api/getYoutubeTranscripts", {
+            const { data: apiResp } = await lib_axios/* default */.Z.post("/api/getYoutubeTranscripts", {
                 url: data.youtubeLink,
                 projectSlug: pathname?.split("/")[2]
             });
@@ -915,7 +926,12 @@ function YoutubeSummarizer() {
                         summaries: summariesForLocalStorage
                     }));
                     setSummaries(finalSummaries);
-                    await fetchViewersCount();
+                    const viewersCount = await fetchViewersCount({
+                        projectSlug: pathname.split("/")[2]
+                    });
+                    if (viewersCount) {
+                        setViewersCount(viewersCount);
+                    }
                 } else {
                     toast({
                         title: "Error",
@@ -1143,7 +1159,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,941,585,20,942,858,795,710,499], () => (__webpack_exec__(59741)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,827,585,5,284,795,218,421], () => (__webpack_exec__(59741)));
 module.exports = __webpack_exports__;
 
 })();

@@ -13,7 +13,6 @@ import lightLogo from "./assets/sleebit-logo-transparent-black.png";
 
 export function MainNav({ items }) {
   const { setTheme, theme } = useTheme();
-  setTheme("dark");
   let [logo, setLogo] = useState();
   useEffect(() => {
     setLogo(

@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
 import Script from "next/script";
 
 import "./globals.css";
@@ -68,12 +70,14 @@ export default function RootLayout({ children }) {
             enableSystem={false}
             defaultTheme="dark"
           >
-            <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
-              <div className="flex-1">{children}</div>
-              <SiteFooter />
-            </div>
-            {/* <TailwindIndicator /> */}
+            <TooltipProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <SiteHeader />
+                <div className="flex-1">{children}</div>
+                <SiteFooter />
+              </div>
+              {/* <TailwindIndicator /> */}
+            </TooltipProvider>
           </ThemeProvider>
           <Toaster />
         </body>
