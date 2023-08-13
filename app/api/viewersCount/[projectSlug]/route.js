@@ -33,7 +33,8 @@ export async function GET(req, { params }) {
 }
 
 export async function POST(req, { params }) {
-  const json = req.json();
+  const json = await req.json();
+  console.log("json: ", json);
 
   const ip = req.headers.get("x-real-ip");
 
@@ -52,7 +53,7 @@ export async function POST(req, { params }) {
   try {
     await Analytics.create({
       projectSlug: params.projectSlug || "",
-      data: json || "",
+      data: json.data || {},
       geo: {
         country: geo.country_name || "",
         city: geo.city || "",

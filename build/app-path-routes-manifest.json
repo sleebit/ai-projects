@@ -1,17 +1,17 @@
 {
-  "/apps/chatgpt-clone/page": "/apps/chatgpt-clone",
   "/api/chat/route": "/api/chat",
-  "/page": "/",
+  "/apps/chatgpt-clone/page": "/apps/chatgpt-clone",
   "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
   "/apps/page": "/apps",
-  "/api/getProjects/route": "/api/getProjects",
   "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
+  "/api/getProjects/route": "/api/getProjects",
   "/api/newsletter/route": "/api/newsletter",
   "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/profile/page": "/profile",
-  "/profile/account/page": "/profile/account",
   "/api/viewersCount/[projectSlug]/route": "/api/viewersCount/[projectSlug]",
-  "/profile/display/page": "/profile/display",
+  "/profile/account/page": "/profile/account",
   "/profile/appearance/page": "/profile/appearance",
+  "/profile/display/page": "/profile/display",
   "/profile/notifications/page": "/profile/notifications"
 }

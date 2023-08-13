@@ -88,7 +88,8 @@ async function GET(req, { params }) {
     }
 }
 async function POST(req, { params }) {
-    const json = req.json();
+    const json = await req.json();
+    console.log("json: ", json);
     const ip = req.headers.get("x-real-ip");
     let geo;
     try {
@@ -101,7 +102,7 @@ async function POST(req, { params }) {
     try {
         await analytics/* default */.Z.create({
             projectSlug: params.projectSlug || "",
-            data: json || "",
+            data: json.data || {},
             geo: {
                 country: geo.country_name || "",
                 city: geo.city || "",
