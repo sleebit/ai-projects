@@ -57,7 +57,6 @@ const analyticsSchema = new (mongoose__WEBPACK_IMPORTED_MODULE_0___default().Sch
 }, {
     timestamps: true
 });
-console.log("mongoose.models: ", (mongoose__WEBPACK_IMPORTED_MODULE_0___default().models));
 const Analytics = (mongoose__WEBPACK_IMPORTED_MODULE_0___default().models).analytics || mongoose__WEBPACK_IMPORTED_MODULE_0___default().model("analytics", analyticsSchema);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Analytics);
 

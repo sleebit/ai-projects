@@ -57,10 +57,7 @@ var user_agent = __webpack_require__(68315);
 var dbConfig = __webpack_require__(72212);
 // EXTERNAL MODULE: ./models/analytics.js
 var analytics = __webpack_require__(29718);
-// EXTERNAL MODULE: ./node_modules/next/headers.js
-var headers = __webpack_require__(63919);
 ;// CONCATENATED MODULE: ./app/api/viewersCount/[projectSlug]/route.js
-
 
 
 
@@ -91,9 +88,8 @@ async function GET(req, { params }) {
     }
 }
 async function POST(req, { params }) {
-    const data = req.json();
-    const headersList = (0,headers.headers)();
-    const ip = headersList.get("x-real-ip");
+    const json = req.json();
+    const ip = req.headers.get("x-real-ip");
     let geo;
     try {
         const { data } = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=9a5c785879944311bfd58fb20044c2c3&ip=${ip}`);
@@ -105,7 +101,7 @@ async function POST(req, { params }) {
     try {
         await analytics/* default */.Z.create({
             projectSlug: params.projectSlug || "",
-            data: data.data || "",
+            data: json || "",
             geo: {
                 country: geo.country_name || "",
                 city: geo.city || "",
@@ -117,6 +113,11 @@ async function POST(req, { params }) {
             }
         });
     } catch (e) {}
+    return next_response/* default */.Z.json({
+        status: true,
+        data: {},
+        message: ""
+    });
 }
 
 ;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?page=%2Fapi%2FviewersCount%2F%5BprojectSlug%5D%2Froute&name=app%2Fapi%2FviewersCount%2F%5BprojectSlug%5D%2Froute&pagePath=private-next-app-dir%2Fapi%2FviewersCount%2F%5BprojectSlug%5D%2Froute.js&appDir=%2Fhome%2Fsumit%2F_Projects%2Fai_projects%2Fapp&appPaths=%2Fapi%2FviewersCount%2F%5BprojectSlug%5D%2Froute&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!
@@ -186,15 +187,6 @@ Object.defineProperty(exports, "Z", ({
     }
 }));
 const _useragent = __webpack_require__(71789); //# sourceMappingURL=user-agent.js.map
-
-
-/***/ }),
-
-/***/ 63919:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-module.exports = __webpack_require__(83851);
 
 
 /***/ })

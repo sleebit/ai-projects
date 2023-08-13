@@ -49,7 +49,7 @@ export default function ChatWithYoutube() {
   return (
     <section className="grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex w-full max-w-full flex-col items-start gap-2">
-        <div className="flex items-center justify-start space-x-8 m-auto mb-12">
+        <div className="flex flex-col md:flex-row lg:flex-row items-center justify-start space-x-8 space-y-2 m-auto mb-12">
           <h1 className="text-3xl uppercase font-extrabold leading-tight tracking-wider md:text-4xl">
             ChatGPT Clone
           </h1>

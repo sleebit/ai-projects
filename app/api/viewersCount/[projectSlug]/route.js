@@ -2,7 +2,6 @@ import { NextResponse, userAgent } from "next/server";
 
 import { connect } from "@/config/dbConfig";
 import Analytics from "@/models/analytics";
-import { headers } from "next/headers";
 
 connect();
 
@@ -34,10 +33,9 @@ export async function GET(req, { params }) {
 }
 
 export async function POST(req, { params }) {
-  const data = req.json();
+  const json = req.json();
 
-  const headersList = headers();
-  const ip = headersList.get("x-real-ip");
+  const ip = req.headers.get("x-real-ip");
 
   let geo;
   try {
@@ -54,7 +52,7 @@ export async function POST(req, { params }) {
   try {
     await Analytics.create({
       projectSlug: params.projectSlug || "",
-      data: data.data || "",
+      data: json || "",
       geo: {
         country: geo.country_name || "",
         city: geo.city || "",
@@ -66,4 +64,10 @@ export async function POST(req, { params }) {
       },
     });
   } catch (e) {}
+
+  return NextResponse.json({
+    status: true,
+    data: {},
+    message: "",
+  });
 }
