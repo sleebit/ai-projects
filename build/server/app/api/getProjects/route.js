@@ -59,8 +59,22 @@ async function GET(request) {
             name: "ChatGPT Clone",
             slug: "chatgpt-clone",
             description: "This is a chatgpt clone using Next.js and ChatGPT API.",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png",
+            image: "https://www.edigitalagency.com.au/wp-content/uploads/chatgpt-logo-white-on-transparent-background-png.png",
             comingSoon: false
+        },
+        {
+            name: "Twitter Thread Generator",
+            slug: "twitter-thread-generator",
+            description: "This is a twitter thread generator using Next.js and Twitter API.",
+            image: "https://cdn-icons-png.flaticon.com/512/3488/3488290.png",
+            comingSoon: true
+        },
+        {
+            name: "Voice Cloner AI",
+            slug: "voice-cloner-ai",
+            description: "This is a voice cloner using Next.js and OpenAI API.",
+            image: "https://app.resemble.ai/assets/resemble-d122f1da51a879a36af7999a188fdef23ad2ad525e7e3dbba9be97684676d0ac.png",
+            comingSoon: true
         }
     ], {
         status: 200
