@@ -1,0 +1,18 @@
+{
+  "/apps/chatgpt-clone/page": "/apps/chatgpt-clone",
+  "/api/chat/route": "/api/chat",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/apps/page": "/apps",
+  "/api/getYoutubeTranscripts/route": "/api/getYoutubeTranscripts",
+  "/api/newsletter/route": "/api/newsletter",
+  "/api/getProjects/route": "/api/getProjects",
+  "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
+  "/privacy/sleebit-ai-replies/page": "/privacy/sleebit-ai-replies",
+  "/profile/page": "/profile",
+  "/api/viewersCount/[projectSlug]/route": "/api/viewersCount/[projectSlug]",
+  "/profile/account/page": "/profile/account",
+  "/profile/appearance/page": "/profile/appearance",
+  "/profile/display/page": "/profile/display",
+  "/profile/notifications/page": "/profile/notifications"
+}

@@ -9,7 +9,7 @@ export default function Home() {
         <p class="text-3xl text-gray-700 dark:text-gray-200">Privacy Policy</p>
 
         <p class="mt-4 leading-loose text-gray-600 dark:text-gray-300">
-          Welcome to the Sleebit AI Replies Chrome Extension ("Extension")
+          Welcome to the Sleebit AI Replies Chrome Extension (&#34Extension&#34)
           provided by Sleebit. We respect your privacy and are committed to
           protecting your data. This Privacy Policy explains how we collect,
           use, and protect the information collected when you use our Extension.
@@ -41,9 +41,9 @@ export default function Home() {
             </a>
 
             <p class="mt-2 text-gray-500 dark:text-gray-400">
-              We collect nothing but only users' Twitter handles for performance
-              tracking purposes. This information is used solely for analytics
-              and is not personally identifiable.
+              We collect nothing but only users&#39 Twitter handles for
+              performance tracking purposes. This information is used solely for
+              analytics and is not personally identifiable.
             </p>
           </div>
 

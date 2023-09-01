@@ -431,7 +431,7 @@ function Home() {
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                     class: "mt-4 leading-loose text-gray-600 dark:text-gray-300",
-                    children: 'Welcome to the Sleebit AI Replies Chrome Extension ("Extension") provided by Sleebit. We respect your privacy and are committed to protecting your data. This Privacy Policy explains how we collect, use, and protect the information collected when you use our Extension. By installing and using the Sleebit AI Replies Chrome Extension, you consent to the practices described in this Privacy Policy.'
+                    children: "Welcome to the Sleebit AI Replies Chrome Extension (&#34Extension&#34) provided by Sleebit. We respect your privacy and are committed to protecting your data. This Privacy Policy explains how we collect, use, and protect the information collected when you use our Extension. By installing and using the Sleebit AI Replies Chrome Extension, you consent to the practices described in this Privacy Policy."
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("hr", {
                     class: "my-6 border-gray-200 dark:border-gray-700"
@@ -463,7 +463,7 @@ function Home() {
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                     class: "mt-2 text-gray-500 dark:text-gray-400",
-                                    children: "We collect nothing but only users' Twitter handles for performance tracking purposes. This information is used solely for analytics and is not personally identifiable."
+                                    children: "We collect nothing but only users&#39 Twitter handles for performance tracking purposes. This information is used solely for analytics and is not personally identifiable."
                                 })
                             ]
                         }),
