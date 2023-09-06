@@ -78,7 +78,12 @@ async function GET(request) {
             prompt: "Imagine you're a Twitter user adding a comment under a tweet you found hilarious. Craft a funny response in under 150 characters. Keep it light, skip the big words and hashtags. Let your humor shine!"
         }
     ], {
-        status: 200
+        status: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        }
     });
 }
 
