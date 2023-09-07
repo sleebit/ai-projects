@@ -10,10 +10,11 @@
   "/apps/youtube-summarizer/page": "/apps/youtube-summarizer",
   "/privacy/sleebit-ai-replies/page": "/privacy/sleebit-ai-replies",
   "/profile/page": "/profile",
-  "/profile/account/page": "/profile/account",
   "/api/viewersCount/[projectSlug]/route": "/api/viewersCount/[projectSlug]",
+  "/profile/account/page": "/profile/account",
   "/profile/appearance/page": "/profile/appearance",
   "/profile/notifications/page": "/profile/notifications",
   "/profile/display/page": "/profile/display",
+  "/api/extensions/sleebit-ai-replies/isUpdateAvailable/route": "/api/extensions/sleebit-ai-replies/isUpdateAvailable",
   "/api/extensions/sleebit-ai-replies/getDefaultPrompts/route": "/api/extensions/sleebit-ai-replies/getDefaultPrompts"
 }
