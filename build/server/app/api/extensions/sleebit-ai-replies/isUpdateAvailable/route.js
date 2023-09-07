@@ -49,7 +49,7 @@ async function GET(request) {
     return next_response/* default */.Z.json({
         status: true,
         data: {
-            isUpdateAvailable: true
+            isUpdateAvailable: false
         }
     }, {
         status: 200,

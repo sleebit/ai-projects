@@ -5,7 +5,7 @@ export async function GET(request) {
     {
       status: true,
       data: {
-        isUpdateAvailable: true,
+        isUpdateAvailable: false,
       },
     },
     {

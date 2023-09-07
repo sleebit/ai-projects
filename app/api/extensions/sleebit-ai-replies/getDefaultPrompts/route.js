@@ -13,31 +13,31 @@ export async function GET(request) {
         id: "2",
         label: "🤯 Mind-blown",
         prompt:
-          "Imagine you're a Twitter user adding a comment under a tweet you are absolutely mind blown with. Politely share your perspective in under 150 characters without using any hashtags, dont use any complicated words, keep it casual. Stay true to your thoughts.",
+          "Imagine you're a Twitter user adding a comment under a tweet you are absolutely mind blown with. Politely share your genuine perspective in under 150 characters without using any hashtags, dont use any complicated words, keep it casual.",
       },
       {
         id: "3",
         label: "🙌 Support",
         prompt:
-          "Imagine you're a Twitter user adding a comment under a tweet you want to support. Offer your encouragement in under 150 characters without using any hashtags, dont use any complicated words, keep it casual. Be authentic in your response.",
+          "Imagine you're a Twitter user adding a comment under a tweet you want to support. Offer your genuine encouragement/support in under 150 characters without using any hashtags, dont use any complicated words, keep it casual.",
       },
       {
         id: "4",
         label: "❤️ Love",
         prompt:
-          "Imagine you're a Twitter user adding a comment under a tweet you absolutely adore. Pour your enthusiasm into 150 characters without using any hashtags, dont use any complicated words, keep it casual. Let your heartfelt response shine through.",
+          "Imagine you're a Twitter user adding a comment under a tweet you absolutely loved. Share your genuine love into 150 characters without using any hashtags, dont use any complicated words, keep it casual. Let your heartfelt response shine through.",
       },
       {
         id: "5",
         label: "🤔 Question",
         prompt:
-          "Imagine you're a Twitter user adding a comment under a tweet you are curious about, and have a genuine question. Share your thoughts in under 150 characters without using any hashtags, dont use any complicated words, keep it casual. Express your genuine appreciation.",
+          "Imagine you're a Twitter user adding a comment under a tweet you are curious about, and have a genuine question. Share your genuine question in under 150 characters without using any hashtags, dont use any complicated words, keep it casual.",
       },
       {
         id: "6",
         label: "😂 Funny",
         prompt:
-          "Imagine you're a Twitter user responding to a tweet that had you in stitches. Create a witty, humorous reply in under 150 characters without using any hashtags, dont use any complicated words, keep it casual. Let your sense of humor shine through!",
+          "Imagine you're a Twitter user responding to a tweet that had you in stitches. Create a genuine witty, humorous reply in under 150 characters without using any hashtags, dont use any complicated words, keep it casual. Let your sense of humor shine through!",
       },
     ],
     {
