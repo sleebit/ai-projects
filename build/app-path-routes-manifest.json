@@ -1,6 +1,6 @@
 {
-  "/api/chat/route": "/api/chat",
   "/apps/chatgpt-clone/page": "/apps/chatgpt-clone",
+  "/api/chat/route": "/api/chat",
   "/page": "/",
   "/favicon.ico/route": "/favicon.ico",
   "/apps/page": "/apps",
@@ -11,10 +11,10 @@
   "/privacy/sleebit-ai-replies/page": "/privacy/sleebit-ai-replies",
   "/profile/page": "/profile",
   "/api/viewersCount/[projectSlug]/route": "/api/viewersCount/[projectSlug]",
-  "/profile/display/page": "/profile/display",
-  "/profile/notifications/page": "/profile/notifications",
   "/profile/account/page": "/profile/account",
   "/profile/appearance/page": "/profile/appearance",
+  "/profile/display/page": "/profile/display",
+  "/profile/notifications/page": "/profile/notifications",
   "/api/extensions/sleebit-ai-replies/getDefaultPrompts/route": "/api/extensions/sleebit-ai-replies/getDefaultPrompts",
   "/api/extensions/sleebit-ai-replies/isUpdateAvailable/route": "/api/extensions/sleebit-ai-replies/isUpdateAvailable"
 }

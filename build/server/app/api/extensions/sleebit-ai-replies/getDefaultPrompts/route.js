@@ -50,32 +50,32 @@ async function GET(request) {
         {
             id: "1",
             label: "\uD83D\uDC4D Like",
-            prompt: "Imagine you're a Twitter user adding a comment under a tweet you agree with. Share your genuine agreement in under 150 characters without using any hashtags, dont use any complicated words, keep it casual."
+            prompt: "Imagine you're a Twitter user who came across a tweet you genuinely like. Craft a concise and friendly opinion (under 150 characters) to express your appreciation without using any hashtags or emojies. Make it sound like a real person who liked the tweet. Also use simple language, no overcomplicated vocabulary."
         },
         {
             id: "2",
             label: "\uD83E\uDD2F Mind-blown",
-            prompt: "Imagine you're a Twitter user adding a comment under a tweet you are absolutely mind blown with. Politely share your genuine perspective in under 150 characters without using any hashtags, dont use any complicated words, keep it casual."
+            prompt: "Pretend you stumbled upon a mind-blowing tweet. Craft a comment (under 150 characters) that conveys your astonishment and curiosity. Keep it authentic, as if you're genuinely amazed."
         },
         {
             id: "3",
             label: "\uD83D\uDE4C Support",
-            prompt: "Imagine you're a Twitter user adding a comment under a tweet you want to support. Offer your genuine encouragement/support in under 150 characters without using any hashtags, dont use any complicated words, keep it casual."
+            prompt: "You've found a tweet that aligns with your beliefs and values. Write a supportive comment (under 150 characters) that encourages the conversation in a positive direction. Make it sound like a friendly endorsement."
         },
         {
             id: "4",
             label: "❤️ Love",
-            prompt: "Imagine you're a Twitter user adding a comment under a tweet you absolutely loved. Share your genuine love into 150 characters without using any hashtags, dont use any complicated words, keep it casual. Let your heartfelt response shine through."
+            prompt: "Imagine you've just read a heartfelt and touching tweet that resonates with you on a deep level. Craft a warm and affectionate comment (under 150 characters) that expresses your love and appreciation. Make it sound like a genuine response from someone who truly cares."
         },
         {
             id: "5",
             label: "\uD83E\uDD14 Question",
-            prompt: "Imagine you're a Twitter user adding a comment under a tweet you are curious about, and have a genuine question. Share your genuine question in under 150 characters without using any hashtags, dont use any complicated words, keep it casual."
+            prompt: "Encountered a tweet that piqued your curiosity? Craft a brief, friendly question (under 150 characters) that invites the author and others to share more. Keep it natural, as if you're genuinely seeking information."
         },
         {
             id: "6",
             label: "\uD83D\uDE02 Funny",
-            prompt: "Imagine you're a Twitter user responding to a tweet that had you in stitches. Create a genuine witty, humorous reply in under 150 characters without using any hashtags, dont use any complicated words, keep it casual. Let your sense of humor shine through!"
+            prompt: "You've come across a humorous tweet. Create a funny and lighthearted comment (under 150 characters) that adds to the humor and encourages laughter. Make it seem like a real person sharing a joke."
         }
     ], {
         status: 200,
