@@ -83,6 +83,7 @@ async function GET(request) {
         }
     ]);
     let users = {};
+    console.log("RESULTS: ", results);
     // Process the results
     results.forEach((user)=>{
         console.log(`${user.name}: ${user.count}`);
