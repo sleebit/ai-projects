@@ -13,8 +13,8 @@
   "/api/viewersCount/[projectSlug]/route": "/api/viewersCount/[projectSlug]",
   "/profile/account/page": "/profile/account",
   "/profile/appearance/page": "/profile/appearance",
-  "/profile/display/page": "/profile/display",
   "/profile/notifications/page": "/profile/notifications",
+  "/profile/display/page": "/profile/display",
   "/api/extensions/sleebit-ai-replies/getDefaultPrompts/route": "/api/extensions/sleebit-ai-replies/getDefaultPrompts",
   "/api/extensions/sleebit-ai-replies/isUpdateAvailable/route": "/api/extensions/sleebit-ai-replies/isUpdateAvailable"
 }

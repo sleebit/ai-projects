@@ -49,8 +49,8 @@ async function GET(request) {
     return next_response/* default */.Z.json([
         {
             id: "1",
-            label: "\uD83D\uDC4D Like",
-            prompt: "Imagine you're a Twitter user who came across a tweet you genuinely like. Craft a concise and friendly opinion (under 150 characters) to express your appreciation without using any hashtags or emojies. Make it sound like a real person who liked the tweet. Also use simple language, no overcomplicated vocabulary."
+            label: "\uD83D\uDC4D Agree",
+            prompt: "Imagine you're a Twitter user who came across a tweet you genuinely agree with. Craft a concise and friendly opinion (under 150 characters) to express your agreement without using any hashtags or emojies. Make it sound like a real person who agree with the tweet. Also use simple language, no overcomplicated vocabulary."
         },
         {
             id: "2",
@@ -70,12 +70,17 @@ async function GET(request) {
         {
             id: "5",
             label: "\uD83E\uDD14 Question",
-            prompt: "Encountered a tweet that piqued your curiosity? Craft a brief, friendly question (under 150 characters) that invites the author and others to share more. Keep it natural, as if you're genuinely seeking information."
+            prompt: "Imagine you have encountered a tweet that piqued your curiosity? Craft a brief, friendly question as a comment (under 150 characters) that encourages the author and others to engage with it. Keep it natural, as if you're genuinely seeking information."
         },
         {
             id: "6",
             label: "\uD83D\uDE02 Funny",
-            prompt: "You've come across a humorous tweet. Create a funny and lighthearted comment (under 150 characters) that adds to the humor and encourages laughter. Make it seem like a real person sharing a joke."
+            prompt: "Imagine you've come across a humorous tweet. Create a funny and lighthearted comment (under 150 characters) that adds to the humor and encourages laughter. Make it seem like a real person making a joke comment. Your comment should be relatable to the most amount of twitter audience relevant to the tweet's context, also it should encourage the author and others to engage with it."
+        },
+        {
+            id: "7",
+            label: "\uD83E\uDD16\xa0Auto",
+            prompt: "Imagine you're a Twitter user who came across a tweet while scrolling your feed. Craft a concise, friendly & a genuine opinion (under 150 characters) without using any hashtags or emojies. Your reply should be very engaging in nature. Make it sound like a real person who read the tweet. Also use simple language, no overcomplicated vocabulary."
         }
     ], {
         status: 200,
