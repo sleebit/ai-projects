@@ -3,12 +3,12 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
   return NextResponse.json(
     {
-      initialPrompt: `The tone of your all your responses, should be strictly very casual like a normal average social media user who is very curious and is always wanting to engage with others. The responses should be strictly very casual in nature, no formal tone. Your response shouldn't look like a ChatGPT/ Robot/ AI written responses. Don't use the word "Absolutely", or similar kindof words at the start of your replies.`,
+      customInstructions: `The tone of your all your responses, should be strictly very casual like a normal average social media user who is very curious and is always wanting to engage with others. The responses should be strictly very casual in nature, no formal tone. Your response shouldn't look like a ChatGPT/ Robot/ AI written responses. Don't use the word "Absolutely", or similar kindof words at the start of your replies. Dont use any conversational expression sentences like "Totally feel this", "Absolutely". "Totally agree", and many more.`,
       defaultPrompts: [
         {
           id: "1",
           label: "👍 Agree",
-          prompt: `Imagine you're a Twitter user who came across a tweet you genuinely agree with. Craft a concise and friendly opinion (under 150 characters) to express your agreement without using any hashtags or emojies. Make it sound like a real person who agree with the tweet. Also use simple language, no overcomplicated vocabulary.`,
+          prompt: `Imagine you came across a tweet you genuinely agree with. Craft a concise and friendly opinion (under 150 characters) to express your agreement  using no complicated words.`,
         },
         {
           id: "2",
@@ -38,7 +38,7 @@ export async function GET(request) {
         {
           id: "7",
           label: "🤖 Auto",
-          prompt: `Imagine you're a Twitter user who came across a tweet while scrolling your feed. You need to automatically decide what kind of reply should be given to this tweet. Craft a concise, friendly & a genuine comment (under 150 characters) without using any hashtags or emojies. Your reply should be very engaging in nature. Make it sound like a real person who read the tweet. Also use simple language, no overcomplicated vocabulary.`,
+          prompt: `Imagine you're a Twitter user who came across a tweet while scrolling your feed. Craft a concise, friendly & a genuine opinion (under 150 characters) without using any hashtags or emojies. Your reply should be very engaging in nature. Make it sound like a real person who read the tweet. Also use simple language, no overcomplicated vocabulary.`,
         },
       ],
     },
