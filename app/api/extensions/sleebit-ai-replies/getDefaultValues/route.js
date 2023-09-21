@@ -27,12 +27,12 @@ export async function GET(request) {
         },
         {
           id: "5",
-          label: "🤔 Question",
+          label: "🤔 Curious",
           prompt: `Imagine you have encountered a tweet that piqued your curiosity? Craft a brief, friendly question as a comment (under 150 characters) that encourages the author and others to engage with it. Keep it natural, as if you're genuinely seeking information.`,
         },
         {
           id: "6",
-          label: "😂 Funny",
+          label: "😂 Haha",
           prompt: `Imagine you've come across a humorous tweet. Create a funny and lighthearted comment (under 150 characters) that adds to the humor and encourages laughter. Make it seem like a real person making a joke comment. Your comment should be relatable to the most amount of twitter audience relevant to the tweet's context, also it should encourage the author and others to engage with it.`,
         },
         {
