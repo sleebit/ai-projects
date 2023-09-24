@@ -15,7 +15,7 @@
       "static/chunks/464-9b22732d65e7e937.js",
       "static/chunks/195-74a65901d420611e.js",
       "static/css/a64511b33dadbaf6.css",
-      "static/chunks/app/layout-0dc9c59ccef4744f.js"
+      "static/chunks/app/layout-ed823ebb24f52e0d.js"
     ],
     "/page": [
       "static/chunks/webpack-ee054f3a1c546f9b.js",
@@ -37,6 +37,14 @@
       "static/css/187946f220ca4167.css",
       "static/chunks/app/apps/page-422694132a471ea7.js"
     ],
+    "/privacy/sleebit-ai-replies/page": [
+      "static/chunks/webpack-ee054f3a1c546f9b.js",
+      "static/chunks/bce60fc1-0dc79326f9d96a0a.js",
+      "static/chunks/769-1b059f2bdd091462.js",
+      "static/chunks/main-app-20ceb4767d28436f.js",
+      "static/chunks/846-9d6280b3b1404923.js",
+      "static/chunks/app/privacy/sleebit-ai-replies/page-f9359018f75a642d.js"
+    ],
     "/apps/youtube-summarizer/page": [
       "static/chunks/webpack-ee054f3a1c546f9b.js",
       "static/chunks/bce60fc1-0dc79326f9d96a0a.js",
@@ -51,14 +59,6 @@
       "static/chunks/25-e8308e905ec2940a.js",
       "static/chunks/83-170fef561e34fdaf.js",
       "static/chunks/app/apps/youtube-summarizer/page-2141a0339325be1f.js"
-    ],
-    "/privacy/sleebit-ai-replies/page": [
-      "static/chunks/webpack-ee054f3a1c546f9b.js",
-      "static/chunks/bce60fc1-0dc79326f9d96a0a.js",
-      "static/chunks/769-1b059f2bdd091462.js",
-      "static/chunks/main-app-20ceb4767d28436f.js",
-      "static/chunks/846-9d6280b3b1404923.js",
-      "static/chunks/app/privacy/sleebit-ai-replies/page-f9359018f75a642d.js"
     ],
     "/profile/page": [
       "static/chunks/webpack-ee054f3a1c546f9b.js",
