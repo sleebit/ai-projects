@@ -49,7 +49,8 @@ async function GET(request) {
     return next_response/* default */.Z.json({
         status: true,
         data: {
-            isUpdateAvailable: false
+            isUpdateAvailable: true,
+            updateText: "Ensure you have the GPT 3.5 tab open in ChatGPT, then click refresh to log in."
         }
     }, {
         status: 200,

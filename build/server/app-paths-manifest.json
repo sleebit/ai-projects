@@ -4,8 +4,8 @@
   "/page": "app/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/apps/page": "app/apps/page.js",
-  "/api/getYoutubeTranscripts/route": "app/api/getYoutubeTranscripts/route.js",
   "/api/getProjects/route": "app/api/getProjects/route.js",
+  "/api/getYoutubeTranscripts/route": "app/api/getYoutubeTranscripts/route.js",
   "/api/newsletter/route": "app/api/newsletter/route.js",
   "/apps/youtube-summarizer/page": "app/apps/youtube-summarizer/page.js",
   "/privacy/sleebit-ai-replies/page": "app/privacy/sleebit-ai-replies/page.js",
@@ -15,8 +15,8 @@
   "/profile/appearance/page": "app/profile/appearance/page.js",
   "/profile/display/page": "app/profile/display/page.js",
   "/profile/notifications/page": "app/profile/notifications/page.js",
-  "/api/extensions/sleebit-ai-replies/getAnalytics/route": "app/api/extensions/sleebit-ai-replies/getAnalytics/route.js",
   "/api/extensions/sleebit-ai-replies/getDefaultPrompts/route": "app/api/extensions/sleebit-ai-replies/getDefaultPrompts/route.js",
   "/api/extensions/sleebit-ai-replies/getDefaultValues/route": "app/api/extensions/sleebit-ai-replies/getDefaultValues/route.js",
+  "/api/extensions/sleebit-ai-replies/getAnalytics/route": "app/api/extensions/sleebit-ai-replies/getAnalytics/route.js",
   "/api/extensions/sleebit-ai-replies/isUpdateAvailable/route": "app/api/extensions/sleebit-ai-replies/isUpdateAvailable/route.js"
 }
