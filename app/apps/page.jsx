@@ -24,7 +24,9 @@ export default function Playground() {
   }, []);
 
   function projectClick(project) {
-    if (project.comingSoon) {
+    if (project.externalLink) {
+      window.open(project.externalLink);
+    } else if (project.comingSoon) {
       toast({
         title: "Coming soon",
         description: `${project.name} will be coming soon.`,

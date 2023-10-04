@@ -63,11 +63,12 @@ async function GET(request) {
             comingSoon: false
         },
         {
-            name: "Twitter Thread Generator",
-            slug: "twitter-thread-generator",
-            description: "This is a twitter thread generator using Next.js and Twitter API.",
+            name: "Twitter Manager",
+            slug: "twitter-manager",
+            description: "This is a twitter manager extension.",
             image: "https://cdn-icons-png.flaticon.com/512/3488/3488290.png",
-            comingSoon: true
+            comingSoon: true,
+            externalLink: "https://chrome.google.com/webstore/detail/social-ai-assistant-grow/hhmnpeafdkdhgghnmbglliileijdhfgh"
         },
         {
             name: "Voice Cloner AI",

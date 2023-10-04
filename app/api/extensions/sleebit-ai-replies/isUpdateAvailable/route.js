@@ -7,7 +7,7 @@ export async function GET(request) {
       data: {
         isUpdateAvailable: true,
         updateText:
-          "Ensure you have the GPT 3.5 tab opened in ChatGPT for this to work. Refresh with GPT 3.5 tab opened once, if login isn't working.",
+          "Click here to leave your valuable review on Chrome Web Store.",
         updateUrl:
           "https://chrome.google.com/webstore/detail/social-ai-assistant-grow/hhmnpeafdkdhgghnmbglliileijdhfgh",
       },
