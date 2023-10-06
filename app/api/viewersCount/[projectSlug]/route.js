@@ -51,19 +51,43 @@ export async function POST(req, { params }) {
   const deviceInfo = userAgent(req);
 
   try {
-    await Analytics.create({
-      projectSlug: params.projectSlug || "",
-      data: json.data || {},
-      geo: {
-        country: geo.country_name || "",
-        city: geo.city || "",
-        time_zone: geo.time_zone?.name || "",
-      },
-      deviceInfo: {
-        device: deviceInfo.device || deviceInfo.cpu,
-        os: deviceInfo.os || "",
-      },
-    });
+    if (params.projectSlug.includes("social-ai-assistant")) {
+      await Analytics.updateOne(
+        { "data.name": json.data.name }, // Match by 'name'
+        {
+          $inc: {
+            "data.count": 1, // Increment the 'count' field by 1
+          },
+          $set: {
+            projectSlug: params.projectSlug || "",
+            geo: {
+              country: geo.country_name || "",
+              city: geo.city || "",
+              time_zone: geo.time_zone?.name || "",
+            },
+            deviceInfo: {
+              device: deviceInfo.device || deviceInfo.cpu,
+              os: deviceInfo.os || "",
+            },
+          },
+        },
+        { upsert: true } // Upsert: Insert if not exists, update if exists
+      );
+    } else {
+      await Analytics.create({
+        projectSlug: params.projectSlug || "",
+        data: json.data || {},
+        geo: {
+          country: geo.country_name || "",
+          city: geo.city || "",
+          time_zone: geo.time_zone?.name || "",
+        },
+        deviceInfo: {
+          device: deviceInfo.device || deviceInfo.cpu,
+          os: deviceInfo.os || "",
+        },
+      });
+    }
   } catch (e) {}
 
   return NextResponse.json({

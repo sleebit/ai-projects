@@ -100,19 +100,44 @@ async function POST(req, { params }) {
     }
     const deviceInfo = (0,user_agent/* default */.Z)(req);
     try {
-        await analytics/* default */.Z.create({
-            projectSlug: params.projectSlug || "",
-            data: json.data || {},
-            geo: {
-                country: geo.country_name || "",
-                city: geo.city || "",
-                time_zone: geo.time_zone?.name || ""
-            },
-            deviceInfo: {
-                device: deviceInfo.device || deviceInfo.cpu,
-                os: deviceInfo.os || ""
-            }
-        });
+        if (params.projectSlug.includes("social-ai-assistant")) {
+            await analytics/* default */.Z.updateOne({
+                "data.name": json.data.name
+            }, {
+                $inc: {
+                    "data.count": 1
+                },
+                $set: {
+                    projectSlug: params.projectSlug || "",
+                    geo: {
+                        country: geo.country_name || "",
+                        city: geo.city || "",
+                        time_zone: geo.time_zone?.name || ""
+                    },
+                    deviceInfo: {
+                        device: deviceInfo.device || deviceInfo.cpu,
+                        os: deviceInfo.os || ""
+                    }
+                }
+            }, {
+                upsert: true
+            } // Upsert: Insert if not exists, update if exists
+            );
+        } else {
+            await analytics/* default */.Z.create({
+                projectSlug: params.projectSlug || "",
+                data: json.data || {},
+                geo: {
+                    country: geo.country_name || "",
+                    city: geo.city || "",
+                    time_zone: geo.time_zone?.name || ""
+                },
+                deviceInfo: {
+                    device: deviceInfo.device || deviceInfo.cpu,
+                    os: deviceInfo.os || ""
+                }
+            });
+        }
     } catch (e) {}
     return next_response/* default */.Z.json({
         status: true,
