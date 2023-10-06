@@ -7,7 +7,7 @@ export async function GET(request) {
       data: {
         isUpdateAvailable: true,
         updateText:
-          "Click here to leave your valuable review on Chrome Web Store.",
+          "Start Typing, and AI will complete your replies for you when you click on the buttons.",
         updateUrl:
           "https://chrome.google.com/webstore/detail/social-ai-assistant-grow/hhmnpeafdkdhgghnmbglliileijdhfgh",
       },
