@@ -1,0 +1,47 @@
+{
+  "sortedMiddleware": [],
+  "middleware": {},
+  "functions": {
+    "/apps/chatgpt-clone/page": {
+      "files": [
+        "server/server-reference-manifest.js",
+        "server/client-reference-manifest.js",
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/apps/chatgpt-clone/page.js"
+      ],
+      "name": "app/apps/chatgpt-clone/page",
+      "page": "/apps/chatgpt-clone/page",
+      "matchers": [
+        {
+          "regexp": "^/apps/chatgpt\\-clone$",
+          "originalSource": "/apps/chatgpt-clone"
+        }
+      ],
+      "wasm": [],
+      "assets": []
+    },
+    "/api/chat/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/api/chat/route.js"
+      ],
+      "name": "app/api/chat/route",
+      "page": "/api/chat/route",
+      "matchers": [
+        {
+          "regexp": "^/api/chat$",
+          "originalSource": "/api/chat"
+        }
+      ],
+      "wasm": [],
+      "assets": []
+    }
+  },
+  "version": 2
+}
