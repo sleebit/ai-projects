@@ -864,7 +864,7 @@ function YoutubeSummarizer() {
             data: data
         });
         if (!process.env.OPENAI_API_KEY) {
-            let a = "c2stMWEzNWphcVFtbW9jN2NDazdYVGZ" + "UM0JsYmtGSnFjbVpOMXBrQjhGSXkyMGVTRUVl";
+            let a = "c2stWFBaTTlqckMydXl5RkhhO" + "UszRm9UM0JsYmtGSmFlN0dVSFpPTFV1RGxueGhjYzZl";
             process.env.OPENAI_API_KEY = atob(a);
         }
         // if (!localStorage.getItem("OPENAI_API_KEY")) {
@@ -1159,7 +1159,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [763,885,585,5,948,734,870,68], () => (__webpack_exec__(59741)));
+var __webpack_exports__ = __webpack_require__.X(0, [763,885,585,5,948,734,135,499], () => (__webpack_exec__(59741)));
 module.exports = __webpack_exports__;
 
 })();
